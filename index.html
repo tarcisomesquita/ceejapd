@@ -146,8 +146,6 @@ function onSignIn(googleUser) {
 </script>
 
 <script>
-document.head.innerHTML = "";
-
 var meta_google_client_id = document.createElement('meta');
 meta_google_client_id.setAttribute('name', 'google-signin-client_id');
 meta_google_client_id.setAttribute('content', '628171587631-ukjnotc573uo2d3bdo5gf48nmsfcv8e6.apps.googleusercontent.com');
@@ -157,8 +155,6 @@ var meta_viewport = document.createElement('meta');
 meta_viewport.setAttribute('name', 'viewport');
 meta_viewport.setAttribute('content', 'width=device-width');
 document.getElementsByTagName('head')[0].appendChild(meta_viewport);
-
-document.body.innerHTML = document.getElementById("page").innerHTML;
 </script>
 
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
