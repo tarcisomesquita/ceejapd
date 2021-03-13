@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -83,6 +83,24 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 </div>
 
 <script>
+var info = "Page: github" + 
+           "\nuserAgent: " + navigator.userAgent + 
+           "\nscreen.width: " + screen.width + 
+           "\nscreen.height: " + screen.height + 
+           "\ninnerWidth: " + innerWidth + 
+           "\ninnerHeight: " + innerHeight + 
+           "\ndeviceMemory: " + navigator.deviceMemory + "GiB of RAM";
+
+
+fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: 'entry.667481942=' + escape(info),
+    })
+
+  
 var token = "";
 
 function avaliacao(){
