@@ -13,12 +13,12 @@ function startApp() {
   gapi.load(
     'auth2',
     function() {
-      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', cookiepolicy: 'single_host_origin',});
+      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com'});
       auth2.attachClickHandler(
         document.getElementById('customBtn'), 
         {},
         function(googleUser) {
-          document.getElementById('name').innerText = "Usuário: " + googleUser.getBasicProfile().getEmail();
+          document.getElementById('mail').innerText = "Usuário: " + googleUser.getBasicProfile().getEmail();
           document.getElementById('customBtn').style.visibility = 'hidden';
           //token = googleUser.getAuthResponse().id_token;
         }, 
@@ -61,11 +61,10 @@ body {
 }
 </style>
 </head>
-<body>
+<body onload='startApp()'>
 
 <div id="customBtn" class="customBtn">Fazer login</div>
 
-<div id="name"></div>
-<script>startApp();</script>
+<div id="mail"></div>
 </body>
 </html>
