@@ -2,7 +2,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta viewport='width=device-width'>
+
 <title>CEEJA Paulo Decourt</title>
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script>
+//https://developers.google.com/identity/sign-in/web/sign-in
+//https://console.cloud.google.com/apis/credentials
+
+//https://myaccount.google.com/permissions
+//https://codebeautify.org/jsviewer
+
+var googleUser = {};
+var token = '';
+function startApp() {
+  gapi.load(
+    'auth2',
+    function() {
+      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com'});
+      auth2.attachClickHandler(
+        document.getElementById('customBtn'), 
+        {},
+        function(googleUser) {
+          document.getElementById('mail').innerText = "Usuário: " + googleUser.getBasicProfile().getEmail();
+          document.getElementById('customBtn').style.visibility = 'hidden';
+          token = googleUser.getAuthResponse().id_token;
+        }, 
+        function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        }
+      );
+    }
+  );
+}
+</script>
 
 <style>
 body {
@@ -14,20 +48,35 @@ a:link    {color:#2160DE; text-decoration:none;}      /* unvisited link  */
 a:visited {color:#2160DE; text-decoration:none;}      /* visited link    */
 a:hover   {color:#2160DE; text-decoration:underline;} /* mouse over link */
 a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
+
+#customBtn {
+  display: inline-block;
+  background: #1a73e8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 16px;
+  margin-left: 10px;
+  margin-right: 8px;
+  min-width: 96px;
+  padding: 9px 23px;
+  text-align: center;
+  vertical-align: middle;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#customBtn:hover {
+  cursor: pointer;
+}
 </style>
-<!--
-<span style="cursor:default">default</span><br>
-<span style="cursor:wait">wait</span><br>
- -->
-
 </head>
+<body onload='startApp()'>
 
-<body>
+<div id="customBtn" class="customBtn">Fazer login</div>
+<div id="mail"></div>
 
-<br />
-<a id="entrar" href="https://ceejapd.blogspot.com/p/login.html">Fazer login</a><br />
-<br />
-<br />
 <p>Matrícula <input type="text" minlength="6" maxlength="6" id="matricula" name="matricula_n"></p>
 <br />
 <a href="https://bit.ly/ceejaonline">Drive Livros</a><br />
@@ -147,25 +196,8 @@ function onSignIn(googleUser) {
          '\nName: ' + profile.getName() + 
          '\nImage URL: ' + profile.getImageUrl(); 
 */
-  
-  document.getElementById("entrar").innerHTML = 'Desconectar da conta ' + profile.getEmail();
-  document.getElementById("entrar").setAttribute("href", "https://accounts.google.com/Logout");  
 }
 </script>
-
-<script>
-var meta_google_client_id = document.createElement('meta');
-meta_google_client_id.setAttribute('name', 'google-signin-client_id');
-meta_google_client_id.setAttribute('content', '628171587631-ukjnotc573uo2d3bdo5gf48nmsfcv8e6.apps.googleusercontent.com');
-document.getElementsByTagName('head')[0].appendChild(meta_google_client_id);
-  
-var meta_viewport = document.createElement('meta');
-meta_viewport.setAttribute('name', 'viewport');
-meta_viewport.setAttribute('content', 'width=device-width');
-document.getElementsByTagName('head')[0].appendChild(meta_viewport);
-</script>
-
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 </body>
 </html>
