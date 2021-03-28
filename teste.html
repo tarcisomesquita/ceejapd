@@ -1,34 +1,42 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-  <script src="https://apis.google.com/js/api:client.js"></script>
-  <script>
-  var googleUser = {};
-  var startApp = function() {
-    gapi.load('auth2', function(){
-      // Retrieve the singleton for the GoogleAuth library and set up the client.
-      auth2 = gapi.auth2.init({
-        client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        // Request scopes in addition to 'profile' and 'email'
-        //scope: 'additional_scope'
-      });
-      attachSignin(document.getElementById('customBtn'));
-    });
-  };
+<meta charset="UTF-8">
+<meta viewport='width=device-width'>
 
-  function attachSignin(element) {
-    console.log(element.id);
-    auth2.attachClickHandler(element, {},
-        function(googleUser) {
-          document.getElementById('name').innerText = "Signed in: " +
-              googleUser.getBasicProfile().getName();
-        }, function(error) {
-          alert(JSON.stringify(error, undefined, 2));
-        });
-  }
-  </script>
-  <style type="text/css">
+<title>teste</title>
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script>
+var googleUser = {};
+function startApp() {
+  gapi.load('auth2', function() {
+    // Retrieve the singleton for the GoogleAuth library and set up the client.
+    auth2 = gapi.auth2.init({
+      client_id: '628171587631-ukjnotc573uo2d3bdo5gf48nmsfcv8e6.apps.googleusercontent.com',
+      cookiepolicy: 'single_host_origin',
+      //scope: 'additional_scope'
+    });
+    attachSignin(document.getElementById('customBtn'));
+  });
+}
+
+function attachSignin(element) {
+  console.log(element.id);
+  auth2.attachClickHandler(
+    element, 
+    {},
+    function(googleUser) {
+      document.getElementById('name').innerText = "Signed in: " + googleUser.getBasicProfile().getName();
+    }, 
+    function(error) {
+      alert(JSON.stringify(error, undefined, 2));
+    }
+  );
+}
+</script>
+
+<style type="text/css">
     #customBtn {
       display: inline-block;
       background: white;
@@ -64,11 +72,19 @@
       font-family: 'Roboto', sans-serif;
     }
   </style>
-  </head>
-  <body>
-  <!-- In the callback, you would hide the gSignInWrapper element on a
-  successful sign in -->
-  <div id="gSignInWrapper">
+
+<style>
+body {
+  line-height: 23px;
+  font-size: 16px;
+  font-family: 'Open Sans',sans-serif;
+}
+</style>
+</head>
+<body>
+
+<!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
+<div id="gSignInWrapper">
     <span class="label">Sign in with:</span>
     <div id="customBtn" class="customGPlusSignIn">
       <span class="icon"></span>
