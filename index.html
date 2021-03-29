@@ -60,10 +60,7 @@ function anote() {
     }
   );
 }
-</script>
 
-
-<script>
 // HTTP GET and POST have limit of 2048 characters.
 
 function avaliacao(){
@@ -111,14 +108,34 @@ function passaporte(){
 
 <style>
 body {
-  line-height: 23px;
-  font-size: 16px;
+  height: 100%;
+  background-color: #EEEEEE;
   font-family: 'Open Sans',sans-serif;
+  color: #000000;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: justify;
+  margin: 0px;
+  padding: 0px;
 }
+
 a:link    {color:#2160DE; text-decoration:none;}      /* unvisited link  */
 a:visited {color:#2160DE; text-decoration:none;}      /* visited link    */
 a:hover   {color:#2160DE; text-decoration:underline;} /* mouse over link */
 a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
+
+.erro {
+  text-align: center;
+  font-size: 14pt;
+  line-height: 20pt;
+  font-weight: bold;
+  
+  margin: 0px;
+  padding-top: 2cm;
+  padding-bottom: 2cm;
+  width: 100vw;
+  background-color: #FFFF77;
+}
 
 #customBtn {
   display: inline-block;
@@ -152,50 +169,47 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <div id="customBtn" class="customBtn">Fazer login</div>
 <div id="mail"></div>
 
-<p>Matrícula <input type="text" minlength="6" maxlength="6" id="matricula" name="matricula_n"></p>
+<p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
 <br />
-<a href="https://bit.ly/ceejaonline">Drive Livros</a><br />
+<p onclick="avaliacao()">Pegar avaliação</p>
 <br />
-<a href="" onclick="avaliacao()">Pegar avaliação</a><br />
+<p onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</p>
 <br />
-<a href="" onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</a><br />
-<a href="" onclick="gerar_passaporte()">Passaporte (versão antiga)</a><br />
-<br />
-<a href="https://bit.ly/escolapaulo">Formulário de rematrícula</a><br />
+<p><a href="https://bit.ly/escolapaulo">Formulário de rematrícula</a></p>
 <br />
 <br />
 <br />
-<a href="https://bit.ly/PD_POR">Português</a><br />
-<a href="https://bit.ly/PD_ING">Ingles</a><br />
-<a href="https://bit.ly/PD_ART">Arte</a><br />
-<a href="https://bit.ly/PD_MAT">Matemática</a><br />
-<a href="https://bit.ly/PD_HIS">História</a><br />
-<a href="https://bit.ly/PD_GEO">Geografia</a><br />
-<a href="https://bit.ly/PD_FIL">Filosofia</a><br />
-<a href="https://bit.ly/PD_SOC">Sociologia</a><br />
-<a href="https://bit.ly/PD_BIO">Biologia</a><br />
-<a href="https://bit.ly/PD_QUI">Química</a><br />
-<a href="https://bit.ly/PD_FIS">Física</a><br />
+<p><a href="https://bit.ly/PD_POR">Português</a></p>
+<p><a href="https://bit.ly/PD_ING">Ingles</a></p>
+<p><a href="https://bit.ly/PD_ART">Arte</a></p>
+<p><a href="https://bit.ly/PD_MAT">Matemática</a></p>
+<p><a href="https://bit.ly/PD_HIS">História</a></p>
+<p><a href="https://bit.ly/PD_GEO">Geografia</a></p>
+<p><a href="https://bit.ly/PD_FIL">Filosofia</a></p>
+<p><a href="https://bit.ly/PD_SOC">Sociologia</a></p>
+<p><a href="https://bit.ly/PD_BIO">Biologia</a></p>
+<p><a href="https://bit.ly/PD_QUI">Química</a></p>
+<p><a href="https://bit.ly/PD_FIS">Física</a></p>
 <br />
-<a href="" onclick="mkboletim()">Gerar boletim</a><br />
+<p onclick="mkboletim()">Gerar boletim</p>
 <br />
 <br />
 <br />
-<a href="https://drive.google.com/drive/folders/18TxnjlmMWt7-ifq5xqS5ZYed9iPCggs7">Drive Secretaria</a><br />
+<p><a href="https://drive.google.com/drive/folders/18TxnjlmMWt7-ifq5xqS5ZYed9iPCggs7">Drive Secretaria</a></p>
 <br />
-<a href="" onclick="requerimento_matricula()">Requerimento de matrícula</a><br />
+<p onclick="requerimento_matricula()">Requerimento de matrícula</a></p>
 <br />
-<a href="" onclick="relatorio_anual()">Relatório anual</a><br />
+<p onclick="relatorio_anual()">Relatório anual</a></p>
 <!--<br />
-<a href="" onclick="permissoes()">Atualizar permissões</a><br />-->
+<p onclick="permissoes()">Atualizar permissões</a></p>-->
 <br />
 <br />
 <br />
-<a href="https://facebook.com/ceejapaulodecourt">facebook</a><br />
+<p><a href="https://facebook.com/ceejapaulodecourt">facebook</a></p>
 <br />
-<a href="https://instagram.com/ceeja.paulo.decourt">instagram</a><br />
+<p><a href="https://instagram.com/ceeja.paulo.decourt">instagram</a></p>
 <br />
-<a href="https://www.youtube.com/channel/UCaugpxhjj2F7aOfbG4k3TFQ/videos">youtube</a><br />
+<p><a href="https://www.youtube.com/channel/UCaugpxhjj2F7aOfbG4k3TFQ/videos">youtube</a></p>
 <br />
 <br />
 <br />
