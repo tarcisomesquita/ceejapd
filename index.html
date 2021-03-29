@@ -64,7 +64,21 @@ function anote() {
 // HTTP GET and POST have limit of 2048 characters.
 
 function avaliacao(){
-  window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+  if (token === '') {
+    window.alert('Precisa fazer login.');
+  }
+  else {
+    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+    document.getElementById('page').style.cursor = 'wait';
+    
+    let matricula = prompt('Digite o número da matrícula',);
+     
+    let s = document.createElement('script');
+    s.src = 'https://script.google.com/macros/s/AKfycbzRywL2-P16JQncg1aZKSfJRjj5VkfVUiszoGbofril53M5pqVIntqR9GnA9Kq-PbAn/exec?matricula=' + matricula + '&token=' + token;
+    document.body.appendChild(s);
+    
+    document.getElementById('page').remove();
+  }
 }
 
 function passaporte(){
