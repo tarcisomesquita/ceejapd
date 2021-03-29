@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta viewport='width=device-width'>
+
+<title>passaporte</title>
+
+<style>
+body {
+  line-height: 23px;
+  font-size: 16px;
+  font-family: 'Open Sans',sans-serif;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div id="logou">
+</div><!-- page -->
+
+<script>
+let params = new URLSearchParams(document.location.search.substring(1));
+
+let matricula = params.get('matricula');
+if (matricula === null || matricula === '' || matricula === undefined) {
+  window.alert("Precisa digitar a matricula.");
+  window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/index.html';
+}
+
+let token = params.get('token');
+if (matricula === null || matricula === '' || matricula === undefined) {
+  window.alert("Precisa fazer login.");
+  window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/index.html';
+}
+
+document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
+document.getElementById('page').style.cursor = 'wait';
+
+let s = document.createElement('script');
+s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + token;
+document.body.appendChild(s);
+</script>
+
+</body>
+</html>
