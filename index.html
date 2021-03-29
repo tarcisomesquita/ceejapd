@@ -92,16 +92,20 @@ function ps(){
 }
 
 function passaporte(){
-  document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
   document.getElementById('page').style.cursor = 'wait';
   
   if (token === '') {
-    window.alert("Precisa fazer login.");
+    window.alert('Precisa fazer login.');
   }
   else {
-    let matricula = prompt("Digite o número da matrícula",);
+    let matricula = prompt('Digite o número da matrícula',);
+     
+    let s = document.createElement('script');
+    s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + token;
+    document.body.appendChild(s);
     
-    window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/page.html?id=' + 'AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w' + '&matricula=' + matricula + '&token=' + token;
+    document.getElementById('page').style.cursor = 'default';
   }
 }
 </script>
@@ -109,9 +113,9 @@ function passaporte(){
 <style>
 body {
   height: 100%;
-  background-color: #EEEEEE;
+  background-color: #FFFFFF;
   font-family: 'Open Sans',sans-serif;
-  color: #000000;
+  color: #2160DE;
   font-size: 16px;
   line-height: 23px;
   text-align: justify;
@@ -165,20 +169,20 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <body onload='startApp()'>
 
 <div id="page">
-
+<br />
 <div id="customBtn" class="customBtn">Fazer login</div>
 <div id="mail"></div>
 
 <p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
-<br />
-<p onclick="avaliacao()">Pegar avaliação</p>
-<br />
-<p onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</p>
-<br />
+
+<p onclick="avaliacao()" style='cursor:pointer'>Pegar avaliação</p>
+
+<p onclick="passaporte()"  style='cursor:pointer; color:#22BB22'>Ver notas (passaporte)</p>
+
 <p><a href="https://bit.ly/escolapaulo">Formulário de rematrícula</a></p>
+
 <br />
-<br />
-<br />
+
 <p><a href="https://bit.ly/PD_POR">Português</a></p>
 <p><a href="https://bit.ly/PD_ING">Ingles</a></p>
 <p><a href="https://bit.ly/PD_ART">Arte</a></p>
@@ -190,31 +194,29 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <p><a href="https://bit.ly/PD_BIO">Biologia</a></p>
 <p><a href="https://bit.ly/PD_QUI">Química</a></p>
 <p><a href="https://bit.ly/PD_FIS">Física</a></p>
+
+<p onclick="mkboletim()" style='cursor:pointer'>Gerar boletim</p>
+
 <br />
-<p onclick="mkboletim()">Gerar boletim</p>
-<br />
-<br />
-<br />
+
 <p><a href="https://drive.google.com/drive/folders/18TxnjlmMWt7-ifq5xqS5ZYed9iPCggs7">Drive Secretaria</a></p>
+
+<p onclick="requerimento_matricula()" style='cursor:pointer'>Requerimento de matrícula</a></p>
+
+<p onclick="relatorio_anual()" style='cursor:pointer'>Relatório anual</a></p>
+<!--
+<p onclick="permissoes()" style='cursor:pointer'>Atualizar permissões</a></p>-->
+
 <br />
-<p onclick="requerimento_matricula()">Requerimento de matrícula</a></p>
-<br />
-<p onclick="relatorio_anual()">Relatório anual</a></p>
-<!--<br />
-<p onclick="permissoes()">Atualizar permissões</a></p>-->
-<br />
-<br />
-<br />
+
 <p><a href="https://facebook.com/ceejapaulodecourt">facebook</a></p>
-<br />
+
 <p><a href="https://instagram.com/ceeja.paulo.decourt">instagram</a></p>
-<br />
+
 <p><a href="https://www.youtube.com/channel/UCaugpxhjj2F7aOfbG4k3TFQ/videos">youtube</a></p>
+
 <br />
-<br />
-<br />
-<br />
-<br />
+
 </div><!-- page -->
 
 </body>
