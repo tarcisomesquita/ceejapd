@@ -29,11 +29,9 @@ function startApp() {
           usuario = googleUser.getBasicProfile().getEmail();
           document.getElementById('mail').innerText = "Usuário: " + usuario;
           document.getElementById('customBtn').style.visibility = 'hidden';
-          anote();
         }, 
         function(error) {
           usuario = JSON.stringify(error, undefined, 2);
-          anote();
         }
       );
     }
