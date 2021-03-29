@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>relatório anual</title>
+
+<meta viewport="width=device-width">
+<style>
+body {
+  line-height: 23px;
+  font-size: 16px;
+  font-family: 'Open Sans',sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div id="page" style="color: #000000;">
+</div>
+
+<script>
+let params = new URLSearchParams(document.location.search.substring(1));
+let token = params.get('token');
+if (token == null || token == '') {
+  window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/index.html';
+}
+  
+let s = document.createElement('script');
+s.src = 'https://script.google.com/macros/s/AKfycby-lbZc1oXrl_ONBN4w7kXeis_y2QLtMeHqkTZD3gnz/dev' + '?token=' + token;
+document.body.appendChild(s);  
+</script>
+</body>
+</html>
