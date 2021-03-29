@@ -62,6 +62,54 @@ function anote() {
 }
 </script>
 
+
+<script>
+// HTTP GET and POST have limit of 2048 characters.
+
+function avaliacao(){
+  window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+}
+
+function gerar_passaporte(){
+  window.open('https://script.google.com/macros/s/AKfycbzeRnfDQB8NpLu1YXN84uRr_HyBFYIZvwYUtre1TmmGfMxs9Il_BdET/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+}
+
+function mkboletim(){
+  window.open('https://script.google.com/macros/s/AKfycbzTyOey45kUt0KB8PHPrrfqxusv_u2ioOUTOd03w1hoC2WDJXGjgIo/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+}
+
+function requerimento_matricula(){
+  window.open('https://script.google.com/macros/s/AKfycbzrQWhUGKvd9nmujuxkMiih4xB85pllTm2cMoy6PDk_o9xypvDoQ04I/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+}
+
+function relatorio_anual(){
+  window.open('https://script.google.com/macros/s/AKfycby4qN4l4bCo8FZn_xD2G8uCWqjSlPXQTynIc8HIN-MsUrDG1NUNRJLnrw/exec?token=' + token);
+}
+
+function permissoes(){
+  window.open('https://script.google.com/macros/s/AKfycbw5KAnRugIwei2GCKWWQr6wBk8-C4tBd26zp4mp9FI/dev?token=' + token);
+}
+
+function ps(){
+  window.open('https://ceejapd.blogspot.com/p/ps.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+}
+
+function passaporte(){
+  document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  if (token === '') {
+    window.alert("Precisa fazer login.");
+  }
+  else {
+    let matricula = prompt("Digite o número da matrícula",);
+    
+    window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/page.html?id=' + 
+      AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w' + &matricula=' + matricula + '&token=' + token;
+  }
+}
+</script>
+
 <style>
 body {
   line-height: 23px;
@@ -155,56 +203,6 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <br />
 <br />
 </div><!-- page -->
-
-<script id="funcoes">
-let matricula = '';
-
-// HTTP GET and POST have limit of 2048 characters.
-
-function avaliacao(){
-  window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function gerar_passaporte(){
-  window.open('https://script.google.com/macros/s/AKfycbzeRnfDQB8NpLu1YXN84uRr_HyBFYIZvwYUtre1TmmGfMxs9Il_BdET/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function mkboletim(){
-  window.open('https://script.google.com/macros/s/AKfycbzTyOey45kUt0KB8PHPrrfqxusv_u2ioOUTOd03w1hoC2WDJXGjgIo/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function requerimento_matricula(){
-  window.open('https://script.google.com/macros/s/AKfycbzrQWhUGKvd9nmujuxkMiih4xB85pllTm2cMoy6PDk_o9xypvDoQ04I/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function relatorio_anual(){
-  window.open('https://script.google.com/macros/s/AKfycby4qN4l4bCo8FZn_xD2G8uCWqjSlPXQTynIc8HIN-MsUrDG1NUNRJLnrw/exec?token=' + token);
-}
-
-function permissoes(){
-  window.open('https://script.google.com/macros/s/AKfycbw5KAnRugIwei2GCKWWQr6wBk8-C4tBd26zp4mp9FI/dev?token=' + token);
-}
-
-function ps(){
-  window.open('https://ceejapd.blogspot.com/p/ps.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function passaporte(){
-  document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
-  document.getElementById('page').style.cursor = 'wait';
-  
-  if (token === '') {
-    window.alert("Precisa fazer login.");
-  }
-  else {
-    let matricula = prompt("Digite o número da matrícula",);
-    AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w
-    window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/page.html?id=' + 
-      AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w' + &matricula=' + matricula + '&token=' + token;
-  }
-}
-
-</script>
 
 </body>
 </html>
