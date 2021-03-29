@@ -14,8 +14,9 @@
 //https://myaccount.google.com/permissions
 //https://codebeautify.org/jsviewer
 
+var usuario = ''; 
 var googleUser = {};
-var token = '';
+
 function startApp() {
   gapi.load(
     'auth2',
@@ -25,14 +26,38 @@ function startApp() {
         document.getElementById('customBtn'), 
         {},
         function(googleUser) {
-          document.getElementById('mail').innerText = "Usuário: " + googleUser.getBasicProfile().getEmail();
+          usuario = googleUser.getBasicProfile().getEmail();
+          document.getElementById('mail').innerText = "Usuário: " + usuario;
           document.getElementById('customBtn').style.visibility = 'hidden';
-          token = googleUser.getAuthResponse().id_token;
+          anote();
         }, 
         function(error) {
-          alert(JSON.stringify(error, undefined, 2));
+          usuario = JSON.stringify(error, undefined, 2);
+          anote();
         }
       );
+    }
+  );
+}
+
+function anote() {
+  let info = "ceejapd/index.html" + 
+             "\nusuario: " + usuario + 
+             "\nuserAgent: " + navigator.userAgent + 
+             "\nscreen.width: " + screen.width + 
+             "\nscreen.height: " + screen.height + 
+             "\ninnerWidth: " + innerWidth + 
+             "\ninnerHeight: " + innerHeight + 
+             "\ndeviceMemory: " + navigator.deviceMemory + "GiB of RAM";
+
+  fetch(
+    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: 'entry.667481942=' + escape(info),
     }
   );
 }
@@ -71,8 +96,12 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
   cursor: pointer;
 }
 </style>
+
 </head>
+
 <body onload='startApp()'>
+
+<div id="page">
 
 <div id="customBtn" class="customBtn">Fazer login</div>
 <div id="mail"></div>
@@ -126,76 +155,77 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <br />
 <br />
 <br />
+</div><!-- page -->
 
-<div id="botao" style="visibility:hidden">
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-</div>
+<script id="funcoes">
+let matricula = '';
 
-<script>
-var info = "Page: github" + 
-           "\nuserAgent: " + navigator.userAgent + 
-           "\nscreen.width: " + screen.width + 
-           "\nscreen.height: " + screen.height + 
-           "\ninnerWidth: " + innerWidth + 
-           "\ninnerHeight: " + innerHeight + 
-           "\ndeviceMemory: " + navigator.deviceMemory + "GiB of RAM";
-
-
-fetch("https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: 'entry.667481942=' + escape(info),
-    })
-
-  
-var token = "";
+let m1 = ['clauferganz', 'helo.campanini', 'pc.ceejapaulodecourt', 'rosmariabatistasilva65', 'claricesourosa', 'sed.decourt', 'danicris1004', 'helenytavares', 'maurinha.ga', 'osmirolipe7', 'inglesdecourtceeja', 'artedecourtceeja', 'cibignardi', 'reinaldogianese', 'julianamartinsohn', 'historiacpdc', 'fabianoferrari41', 'geografiaceejapd', 'filosofiaceejapd', 'sociologiaceejapd', 'crisbotezelli', 'cristienm', 'tarcisomesquita'];
+let m2 = ['rodrigogrigoletto', 'cecyre', 'gisellefranchini'];
 
 function avaliacao(){
-  window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+  window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
 }
 
 function gerar_passaporte(){
-  window.open('https://script.google.com/macros/s/AKfycbzeRnfDQB8NpLu1YXN84uRr_HyBFYIZvwYUtre1TmmGfMxs9Il_BdET/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+  window.open('https://script.google.com/macros/s/AKfycbzeRnfDQB8NpLu1YXN84uRr_HyBFYIZvwYUtre1TmmGfMxs9Il_BdET/exec?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
 }
 
 function mkboletim(){
-  window.open('https://script.google.com/macros/s/AKfycbzTyOey45kUt0KB8PHPrrfqxusv_u2ioOUTOd03w1hoC2WDJXGjgIo/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+  window.open('https://script.google.com/macros/s/AKfycbzTyOey45kUt0KB8PHPrrfqxusv_u2ioOUTOd03w1hoC2WDJXGjgIo/exec?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
 }
 
 function requerimento_matricula(){
-  window.open('https://script.google.com/macros/s/AKfycbzrQWhUGKvd9nmujuxkMiih4xB85pllTm2cMoy6PDk_o9xypvDoQ04I/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+  window.open('https://script.google.com/macros/s/AKfycbzrQWhUGKvd9nmujuxkMiih4xB85pllTm2cMoy6PDk_o9xypvDoQ04I/exec?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
 }
 
 function relatorio_anual(){
-  window.open('https://script.google.com/macros/s/AKfycby4qN4l4bCo8FZn_xD2G8uCWqjSlPXQTynIc8HIN-MsUrDG1NUNRJLnrw/exec?token=' + token);
+  window.open('https://script.google.com/macros/s/AKfycby4qN4l4bCo8FZn_xD2G8uCWqjSlPXQTynIc8HIN-MsUrDG1NUNRJLnrw/exec?token=' + googleUser.getAuthResponse().id_token);
 }
 
 function permissoes(){
-  window.open('https://script.google.com/macros/s/AKfycbw5KAnRugIwei2GCKWWQr6wBk8-C4tBd26zp4mp9FI/dev?token=' + token);
+  window.open('https://script.google.com/macros/s/AKfycbw5KAnRugIwei2GCKWWQr6wBk8-C4tBd26zp4mp9FI/dev?token=' + googleUser.getAuthResponse().id_token);
 }
 
 function ps(){
-  window.open('https://ceejapd.blogspot.com/p/ps.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+  window.open('https://ceejapd.blogspot.com/p/ps.html?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
 }
 
 function passaporte(){
-  window.open('https://ceejapd.blogspot.com/p/passaporte.html?matricula=' + document.getElementById('matricula').value);
-}
-
-</script>
-
-<script>
-function onSignIn(googleUser) {
-  var auth = googleUser.getAuthResponse();
-  var profile = googleUser.getBasicProfile();
-  token = googleUser.getAuthResponse().id_token;
-/*
-  var info = 'Email: ' + profile.getEmail() +
-         '\nName: ' + profile.getName() + 
-         '\nImage URL: ' + profile.getImageUrl(); 
-*/
+  let matricula = ''; 
+  
+  if (googleUser.getAuthResponse().id_token === null || googleUser.getAuthResponse().id_token === undefined) {
+    window.alert("Precisa fazer login.");
+  }
+  else {
+    for (let i = 0; i < m1.length ;i++) {
+      if (usuario === m1[i] + '@gmail.com') {
+        matricula = prompt("Digite o número da matrícula",);
+        if (! /[0-9]{6}/.test(matricula)) {
+          alert("A matrícula digitada não tem 6 dígitos.");
+          return;
+        }
+        break;
+      }
+    }
+    for (let i = 0; i < m2.length ;i++) {
+      if (usuario === m2[i] + '@prof.educacao.sp.gov.br') {
+        matricula = prompt("Digite o número da matrícula",);
+        if (! /[0-9]{6}/.test(matricula)) {
+          alert("A matrícula digitada não tem 6 dígitos.");
+          return;
+        }
+        break;
+      }
+    }
+    document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
+    document.getElementById('page').style.cursor = 'wait';
+    document.body.remove(document.getElementById('funcoes'));
+    
+    let s = document.createElement('script');
+    s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + googleUser.getAuthResponse().id_token;
+    document.body.appendChild(s);  
+  }
 }
 </script>
 
