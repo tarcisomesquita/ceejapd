@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta viewport='width=device-width'>
+
+<title>console log</title>
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script>
+//https://developers.google.com/identity/sign-in/web/sign-in
+//https://console.cloud.google.com/apis/credentials
+
+//https://myaccount.google.com/permissions
+//https://codebeautify.org/jsviewer
+var token = ''
+var usuario = ''; 
+var googleUser = {};
+
+function startApp() {
+  gapi.load(
+    'auth2',
+    function() {
+      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com'});
+      auth2.attachClickHandler(
+        document.getElementById('customBtn'), 
+        {},
+        function(googleUser) {
+          token = googleUser.getAuthResponse().id_token;
+          usuario = googleUser.getBasicProfile().getEmail();
+          document.getElementById('mail').innerText = "Usuário: " + usuario;
+          document.getElementById('customBtn').style.visibility = 'hidden';
+        }, 
+        function(error) {
+          usuario = JSON.stringify(error, undefined, 2);
+        }
+      );
+    }
+  );
+}
+
+function anote() {
+  let info = "ceejapd/index.html" + 
+             "\nusuario: " + usuario + 
+             "\nuserAgent: " + navigator.userAgent + 
+             "\nscreen.width: " + screen.width + 
+             "\nscreen.height: " + screen.height + 
+             "\ninnerWidth: " + innerWidth + 
+             "\ninnerHeight: " + innerHeight + 
+             "\ndeviceMemory: " + navigator.deviceMemory + "GiB of RAM";
+
+  fetch(
+    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: 'entry.667481942=' + escape(info),
+    }
+  );
+}
+</script>
+
+<style>
+body {
+  line-height: 23px;
+  font-size: 16px;
+  font-family: 'Open Sans',sans-serif;
+}
+a:link    {color:#2160DE; text-decoration:none;}      /* unvisited link  */
+a:visited {color:#2160DE; text-decoration:none;}      /* visited link    */
+a:hover   {color:#2160DE; text-decoration:underline;} /* mouse over link */
+a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
+
+#customBtn {
+  display: inline-block;
+  background: #1a73e8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 16px;
+  margin-left: 10px;
+  margin-right: 8px;
+  min-width: 96px;
+  padding: 9px 23px;
+  text-align: center;
+  vertical-align: middle;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#customBtn:hover {
+  cursor: pointer;
+}
+</style>
+
+</head>
+
+<body onload='startApp()'>
+
+<script>
+console.log(googleUser.getAuthResponse().id_token);
+console.log(token);
+</script>
+
+</body>
+</html>
