@@ -200,7 +200,7 @@ function passaporte(){
   else {
     let matricula = prompt("Digite o número da matrícula",);
     
-    window.open('https://tarcisomesquita.github.io/ceejapd/passaporte.html?matricula=' + matricula + '&token=' + token);
+    window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/passaporte.html?matricula=' + matricula + '&token=' + token;
   }
 }
 
