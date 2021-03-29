@@ -13,7 +13,7 @@
 
 //https://myaccount.google.com/permissions
 //https://codebeautify.org/jsviewer
-var token = ''
+var token = '';
 var usuario = ''; 
 var googleUser = {};
 
@@ -30,7 +30,6 @@ function startApp() {
           usuario = googleUser.getBasicProfile().getEmail();
           document.getElementById('mail').innerText = "Usuário: " + usuario;
           document.getElementById('customBtn').style.visibility = 'hidden';
-          anote();
         }, 
         function(error) {
           usuario = JSON.stringify(error, undefined, 2);
