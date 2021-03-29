@@ -192,39 +192,18 @@ function ps(){
 
 function passaporte(){
   document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
-  let matricula = ''; 
+  document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
+  document.getElementById('page').style.cursor = 'wait';
+  document.body.remove(document.getElementById('funcoes'));
   
   if (token === '') {
     window.alert("Precisa fazer login.");
   }
   else {
-    for (let i = 0; i < m1.length ;i++) {
-      alert(String(m1[i] + '@gmail.com'));
-      if (usuario == String(m1[i] + '@gmail.com')) {
-        matricula = prompt("Digite o número da matrícula",);
-        if (! /[0-9]{6}/.test(matricula)) {
-          alert("A matrícula digitada não tem 6 dígitos.");
-          return;
-        }
-        break;
-      }
-    }
-    for (let i = 0; i < m2.length ;i++) {
-      if (usuario === m2[i] + '@prof.educacao.sp.gov.br') {
-        matricula = prompt("Digite o número da matrícula",);
-        if (! /[0-9]{6}/.test(matricula)) {
-          alert("A matrícula digitada não tem 6 dígitos.");
-          return;
-        }
-        break;
-      }
-    }
-    document.getElementById('page').innerHTML = 'Aguarde 1 minuto. Gerando arquivo...';
-    document.getElementById('page').style.cursor = 'wait';
-    document.body.remove(document.getElementById('funcoes'));
+    let matricula = prompt("Digite o número da matrícula",);
     
     let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + googleUser.getAuthResponse().id_token;
+    s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + token;
     document.body.appendChild(s);  
   }
 }
