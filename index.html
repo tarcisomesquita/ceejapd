@@ -13,7 +13,7 @@
 
 //https://myaccount.google.com/permissions
 //https://codebeautify.org/jsviewer
-
+var token = ''
 var usuario = ''; 
 var googleUser = {};
 
@@ -26,6 +26,7 @@ function startApp() {
         document.getElementById('customBtn'), 
         {},
         function(googleUser) {
+          token = googleUser.getAuthResponse().id_token;
           usuario = googleUser.getBasicProfile().getEmail();
           document.getElementById('mail').innerText = "Usuário: " + usuario;
           document.getElementById('customBtn').style.visibility = 'hidden';
@@ -162,27 +163,27 @@ let m1 = ['clauferganz', 'helo.campanini', 'pc.ceejapaulodecourt', 'rosmariabati
 let m2 = ['rodrigogrigoletto', 'cecyre', 'gisellefranchini'];
 
 function avaliacao(){
-  window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
+  window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
 }
 
 function gerar_passaporte(){
-  window.open('https://script.google.com/macros/s/AKfycbzeRnfDQB8NpLu1YXN84uRr_HyBFYIZvwYUtre1TmmGfMxs9Il_BdET/exec?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
+  window.open('https://script.google.com/macros/s/AKfycbzeRnfDQB8NpLu1YXN84uRr_HyBFYIZvwYUtre1TmmGfMxs9Il_BdET/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
 }
 
 function mkboletim(){
-  window.open('https://script.google.com/macros/s/AKfycbzTyOey45kUt0KB8PHPrrfqxusv_u2ioOUTOd03w1hoC2WDJXGjgIo/exec?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
+  window.open('https://script.google.com/macros/s/AKfycbzTyOey45kUt0KB8PHPrrfqxusv_u2ioOUTOd03w1hoC2WDJXGjgIo/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
 }
 
 function requerimento_matricula(){
-  window.open('https://script.google.com/macros/s/AKfycbzrQWhUGKvd9nmujuxkMiih4xB85pllTm2cMoy6PDk_o9xypvDoQ04I/exec?matricula=' + document.getElementById('matricula').value + '&token=' + googleUser.getAuthResponse().id_token);
+  window.open('https://script.google.com/macros/s/AKfycbzrQWhUGKvd9nmujuxkMiih4xB85pllTm2cMoy6PDk_o9xypvDoQ04I/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
 }
 
 function relatorio_anual(){
-  window.open('https://script.google.com/macros/s/AKfycby4qN4l4bCo8FZn_xD2G8uCWqjSlPXQTynIc8HIN-MsUrDG1NUNRJLnrw/exec?token=' + googleUser.getAuthResponse().id_token);
+  window.open('https://script.google.com/macros/s/AKfycby4qN4l4bCo8FZn_xD2G8uCWqjSlPXQTynIc8HIN-MsUrDG1NUNRJLnrw/exec?token=' + token);
 }
 
 function permissoes(){
-  window.open('https://script.google.com/macros/s/AKfycbw5KAnRugIwei2GCKWWQr6wBk8-C4tBd26zp4mp9FI/dev?token=' + googleUser.getAuthResponse().id_token);
+  window.open('https://script.google.com/macros/s/AKfycbw5KAnRugIwei2GCKWWQr6wBk8-C4tBd26zp4mp9FI/dev?token=' + token);
 }
 
 function ps(){
@@ -192,7 +193,7 @@ function ps(){
 function passaporte(){
   let matricula = ''; 
   
-  if (googleUser.getAuthResponse().id_token === null || googleUser.getAuthResponse().id_token === undefined) {
+  if (token === '') {
     window.alert("Precisa fazer login.");
   }
   else {
