@@ -100,8 +100,16 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 
 <body onload='startApp()'>
 
+<div id="customBtn" class="customBtn">Fazer login</div>
+<div id="mail"></div>
+
+<a href="" onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</a><br />
+
 <script>
-console.log(token);
+function passaporte(){
+  console.log(token);
+  console.log(googleUser.getAuthResponse().id_token);
+}
 </script>
 
 </body>
