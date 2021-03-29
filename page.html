@@ -28,7 +28,6 @@ let matricula = params.get('matricula');
 let token = params.get('token');
 
 document.getElementById('page').innerHTML = '<p>Aguarde 1 minuto. Gerando arquivo...</p>';
-document.getElementById('page').style.cursor = 'wait';
 
 let s = document.createElement('script');
 s.src = 'https://script.google.com/macros/s/' + id + '/exec?matricula=' + matricula + '&token=' + token;
