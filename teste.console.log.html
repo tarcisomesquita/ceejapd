@@ -106,11 +106,17 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <br />
 <p onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</p>
 </div><!-- page-->
+<p id='logou'><p>
 
 <script>
-function passaporte(){
-  document.getElementById('page').innerHTML = '<p>testando</p>';
-  console.log(token);
+function passaporte() {
+  let matricula = '212121';
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + token;
+  document.body.appendChild(s);  
+
+  //document.getElementById('page').innerHTML = '<p>testando</p>';
+  //console.log(token);
 }
 </script>
 
