@@ -81,7 +81,7 @@ function passaporte(){
     s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + token;
     document.body.appendChild(s);
     
-    document.getElementById('page').style.cursor = 'default';
+    document.getElementById('page').remove();
   }
 }
 
@@ -135,6 +135,8 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
   padding-bottom: 2cm;
   width: 100vw;
   background-color: #FFFF77;
+  position: fixed;
+  top: 50%;
 }
 
 .link {
