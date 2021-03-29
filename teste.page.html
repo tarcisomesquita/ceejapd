@@ -21,7 +21,7 @@ function startApp(pagina) {
   gapi.load(
     'auth2',
     function() {
-      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', cookie_policy: 'none'});
+      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', cookie_policy: 'index.html'});
       auth2.attachClickHandler(
         document.getElementById('customBtn'), 
         {},
