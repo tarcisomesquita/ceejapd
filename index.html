@@ -197,7 +197,8 @@ function passaporte(){
   }
   else {
     for (let i = 0; i < m1.length ;i++) {
-      if (usuario === m1[i] + '@gmail.com') {
+      alert(String(m1[i] + '@gmail.com'));
+      if (usuario == String(m1[i] + '@gmail.com')) {
         matricula = prompt("Digite o número da matrícula",);
         if (! /[0-9]{6}/.test(matricula)) {
           alert("A matrícula digitada não tem 6 dígitos.");
