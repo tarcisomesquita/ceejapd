@@ -97,6 +97,7 @@ function passaporte(){
   
   if (token === '') {
     window.alert('Precisa fazer login.');
+    window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/index.html';
   }
   else {
     let matricula = prompt('Digite o número da matrícula',);
@@ -120,7 +121,7 @@ body {
   line-height: 23px;
   text-align: justify;
   margin: 0px;
-  padding: 0px;
+  padding: 5mm;
 }
 
 a:link    {color:#2160DE; text-decoration:none;}      /* unvisited link  */
@@ -169,9 +170,13 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <body onload='startApp()'>
 
 <div id="page">
+
 <br />
+
 <div id="customBtn" class="customBtn">Fazer login</div>
 <div id="mail"></div>
+
+<br />
 
 <p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
 
