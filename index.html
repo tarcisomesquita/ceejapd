@@ -67,8 +67,22 @@ function avaliacao(){
   window.open('https://ceejapd.blogspot.com/p/avaliacaov5.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
 }
 
-function gerar_passaporte(){
-  window.open('https://script.google.com/macros/s/AKfycbzeRnfDQB8NpLu1YXN84uRr_HyBFYIZvwYUtre1TmmGfMxs9Il_BdET/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
+function passaporte(){
+  if (token === '') {
+    window.alert('Precisa fazer login.');
+  }
+  else {
+    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+    document.getElementById('page').style.cursor = 'wait';
+    
+    let matricula = prompt('Digite o número da matrícula',);
+     
+    let s = document.createElement('script');
+    s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + token;
+    document.body.appendChild(s);
+    
+    document.getElementById('page').style.cursor = 'default';
+  }
 }
 
 function mkboletim(){
@@ -89,25 +103,6 @@ function permissoes(){
 
 function ps(){
   window.open('https://ceejapd.blogspot.com/p/ps.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function passaporte(){
-  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
-  document.getElementById('page').style.cursor = 'wait';
-  
-  if (token === '') {
-    window.alert('Precisa fazer login.');
-    window.top.location.href = 'https://tarcisomesquita.github.io/ceejapd/index.html';
-  }
-  else {
-    let matricula = prompt('Digite o número da matrícula',);
-     
-    let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/AKfycbzu4q8qKPPsXL9l5NqR9j281E9UC6WFvX0hGZrX44C2oRNUaazSOAGPvZKRYXg4_ili3w/exec?matricula=' + matricula + '&token=' + token;
-    document.body.appendChild(s);
-    
-    document.getElementById('page').style.cursor = 'default';
-  }
 }
 </script>
 
@@ -142,9 +137,12 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
   background-color: #FFFF77;
 }
 
-.link, .link:hover {
-  text-decoration:underline;
+.link {
   cursor:pointer
+}
+
+.link:hover, .link:active {
+  text-decoration:underline;
 }
 
 #customBtn {
@@ -187,7 +185,7 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 
 <p onclick="avaliacao()" class='link'>Pegar avaliação</p>
 
-<p onclick="passaporte()"  style='cursor:pointer; color:#22BB22'>Ver notas (passaporte)</p>
+<p onclick="passaporte()" class='link' style='color:#22BB22'>Ver notas (passaporte)</p>
 
 <p><a href="https://bit.ly/escolapaulo">Formulário de rematrícula</a></p>
 
@@ -205,17 +203,17 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 <p><a href="https://bit.ly/PD_QUI">Química</a></p>
 <p><a href="https://bit.ly/PD_FIS">Física</a></p>
 
-<p onclick="mkboletim()" style='cursor:pointer'>Gerar boletim</p>
+<p onclick="mkboletim()" class='link'>Gerar boletim</p>
 
 <br />
 
 <p><a href="https://drive.google.com/drive/folders/18TxnjlmMWt7-ifq5xqS5ZYed9iPCggs7">Drive Secretaria</a></p>
 
-<p onclick="requerimento_matricula()" style='cursor:pointer'>Requerimento de matrícula</a></p>
+<p onclick="requerimento_matricula()" class='link'>Requerimento de matrícula</a></p>
 
-<p onclick="relatorio_anual()" style='cursor:pointer'>Relatório anual</a></p>
+<p onclick="relatorio_anual()" class='link'>Relatório anual</a></p>
 <!--
-<p onclick="permissoes()" style='cursor:pointer'>Atualizar permissões</a></p>-->
+<p onclick="permissoes()" class='link'>Atualizar permissões</a></p>-->
 
 <br />
 
