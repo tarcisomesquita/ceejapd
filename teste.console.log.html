@@ -30,6 +30,7 @@ function startApp() {
           usuario = googleUser.getBasicProfile().getEmail();
           document.getElementById('mail').innerText = "Usuário: " + usuario;
           document.getElementById('customBtn').style.visibility = 'hidden';
+          anote();
         }, 
         function(error) {
           usuario = JSON.stringify(error, undefined, 2);
@@ -102,13 +103,12 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 
 <div id="customBtn" class="customBtn">Fazer login</div>
 <div id="mail"></div>
-
+<br />
 <a href="" onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</a><br />
 
 <script>
 function passaporte(){
   console.log(token);
-  console.log(googleUser.getAuthResponse().id_token);
 }
 </script>
 
