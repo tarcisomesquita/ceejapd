@@ -100,14 +100,16 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
 
 <body onload='startApp()'>
 
+<div id="page">
 <div id="customBtn" class="customBtn">Fazer login</div>
 <div id="mail"></div>
 <br />
-<a href="" onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</a><br />
+<p onclick="passaporte()" style="color:#22BB22">Ver notas (passaporte)</p>
+</div><!-- page-->
 
 <script>
 function passaporte(){
-  window.open('https://tarcisomesquita.github.io/ceejapd/teste.page.html?token=' + token,'_top');
+  document.getElementById('page').innerHTML = '<p>testando</p>';
   console.log(token);
 }
 </script>
