@@ -548,8 +548,6 @@ function autentica_usuario(matricula_, token) {
       }
     }
     
-    if (usuario === 'sed.decourt@gmail.com' ||  usuario === 'tarcisomesquita@gmail.com') matricula = matricula_;
-    
     if (! /^[0-9]{6}$/.test(matricula)) {
       return 'Erro interno. O número da matrícula de ' + usuario + ' está com formato errado. Informe o professor.';
     }
