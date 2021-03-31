@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste7</title>
+<title>teste8</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -60,38 +60,58 @@ var initSignIn = function() {
 };
 
 var signinChanged = function (val) {
-  console.log('Signin state changed to ', val);
-  document.getElementById('signed-in-cell').innerText = val;
+  if (val) {
+    token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
+    usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    console.log('logged in: ' + usuario);
+    console.log('token_id: ' + token);
+  }
+  else {
+    document.getElementById('blogin').style.visibility = 'visible'; // | "hidden"
+    document.getElementById('bmail').style.visibility = 'hidden';   // | "visible"
+  }
 };
 
 var userChanged = function (user) {
-  console.log('User now: ', user);
   googleUser = user;
-  document.getElementById('googleUser').innerText = JSON.stringify(googleUser);
   updateGoogleUser();
 };
 
 var updateGoogleUser = function () {
   if (googleUser) {
-    // googleUser.getAuthResponse().id_token; // | expires_in | expires_at
-    document.getElementById('mail').innerText = googleUser.getBasicProfile().getEmail(); // | getImageUrl() | getName()
-    document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse()); // reloadAuthResponse | update
+    //document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse()); // reloadAuthResponse | update
+    
+    token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
+    usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    console.log('logged in: ' + usuario);
+    console.log('token_id: ' + token);
+    
+    document.getElementById('blogin').style.visibility = 'hidden'; // | "visible"
+    document.getElementById('bmail').style.visibility = 'visible'; // | "hidden"
+    document.getElementById('mail').innerText = usuario;
   }
   else {
-    document.getElementById('mail').innerText = '--';
-    document.getElementById('auth-response').innerText = '--';
+    document.getElementById('blogin').style.visibility = 'visible'; // | "hidden"
+    document.getElementById('bmail').style.visibility = 'hidden';   // | "visible"
   }
 };
 
 var onSucess = function(googleUser) {
   token = googleUser.getAuthResponse().id_token;
   usuario = googleUser.getBasicProfile().getEmail();
+  console.log('logged in: ' + usuario);
+  console.log('token_id: ' + token);
+  
+  document.getElementById('blogin').style.visibility = 'hidden'; // | "visible"
+  document.getElementById('bmail').style.visibility = 'visible'; // | "hidden"
   document.getElementById('mail').innerText = usuario;
-  document.getElementById('customBtn').style.visibility = 'hidden';
 }
 
 var onFailure = function(error) {
+  console.log(error);
   usuario = JSON.stringify(error, undefined, 2);
+  document.getElementById('blogin').style.visibility = 'visible'; // | "hidden"
+  document.getElementById('bmail').style.visibility = 'hidden'; // | "visible"
 }
 
 function anote() {
@@ -229,7 +249,7 @@ pre {
 <br />
 
 <div id="blogin"><div id="customBtn" class="customBtn" style="float:left">Fazer login</div><p>(<b>em guia anônima, não funciona</b>)</p><br/></div>
-<p>Usuário: <span id="mail"></span></p>
+<p id="bmail">Usuário: <span id="mail"></span></p>
 
 <br />
 
