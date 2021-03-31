@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste4</title>
+<title>teste5</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -82,7 +82,7 @@ var userChanged = function (user) {
 
 var updateGoogleUser = function () {
   if (googleUser) {
-    document.getElementById('mail').innerText = googleUser.getEmail();
+    document.getElementById('mail').innerText = googleUser.getBasicProfile();
     document.getElementById('user-id').innerText = googleUser.getId();
     document.getElementById('user-scopes').innerText = googleUser.getGrantedScopes();
     document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse());
@@ -203,7 +203,7 @@ pre {
 
 </head>
 
-<body onload='startApp()'>
+<body>
 
 <div id="page">
 
