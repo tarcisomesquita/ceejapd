@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste15</title>
+<title>teste16</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -63,7 +63,7 @@ var initSignIn = function() {
   auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
   
 //  auth2.attachClickHandler(document.getElementById('customBtn'), {}, onSucess, onFailure);
-  auth2.attachClickHandler(document.getElementById('customBtn'), {}, undefined, undefined);
+  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
   
   auth2.isSignedIn.listen(signinChanged);
 
@@ -84,6 +84,7 @@ var signinChanged = function (val) {
     console.log('signin true');
     token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     console.log('usuario: ' + usuario);
@@ -93,7 +94,7 @@ var signinChanged = function (val) {
     console.log('signin false');
     token = '';
     usuario = '';
-    document.getElementById('customBtn').style.display = 'block';
+    document.getElementById('customBtn').style.display = 'inline';
     document.getElementById('bmail').style.display = 'none';
   }
 };
