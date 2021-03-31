@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste13</title>
+<title>teste14</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -84,6 +84,8 @@ var signinChanged = function (val) {
     console.log('signin true');
     token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    document.getElementById('customBtn').style.display = 'none';
+    document.getElementById('bmail').style.display = 'block';
     console.log('usuario: ' + usuario);
     console.log('token_id: ' + token);
   }
@@ -91,13 +93,19 @@ var signinChanged = function (val) {
     console.log('signin false');
     token = '';
     usuario = '';
-    document.getElementById('blogin').style.display = 'block'; // | "hidden"
-    document.getElementById('bmail').style.display = 'none';   // | "visible"
+    document.getElementById('customBtn').style.display = 'block';
+    document.getElementById('bmail').style.display = 'none';
   }
 };
 
 var userChanged = function (user) {
+  console.log('userChanged');
   googleUser = user;
+  
+  token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
+  usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+  console.log('usuario: ' + usuario);
+  console.log('token_id: ' + token);
   //updateGoogleUser();
 };
 
@@ -280,7 +288,7 @@ pre {
 
 <br />
 
-<div id="blogin"><div id="customBtn" class="customBtn" style="float:left">Fazer login</div><p>(<b>em guia anônima, não funciona</b>)</p><br/></div>
+<div id="customBtn" class="customBtn">Fazer login</div>
 <p id="bmail">Usuário: <span id="mail" style='color:#DD4433'></span></p>
 
 <br />
