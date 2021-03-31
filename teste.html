@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste5</title>
+<title>teste6</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -41,7 +41,7 @@ var googleUser;
 var startApp = function() {
   gapi.load('auth2', initSignIn);
   console.log('gapi: ', gapi);
-  document.getElementById('gapi').innerText = JSON.stringify(gapi);
+  document.getElementById('gapi').innerText = gapi.toString();
 };
 
 var initSignIn = function() {
@@ -52,7 +52,7 @@ var initSignIn = function() {
   auth2.currentUser.listen(userChanged);
   
   console.log('auth2: ', auth2);
-  document.getElementById('auth2').innerText = JSON.stringify(auth2);
+  document.getElementById('auth2').innerText = auth2.toString();
   
   // Sign in the user if they are currently signed in.
   if (auth2.isSignedIn.get() == true) {
@@ -77,12 +77,12 @@ var userChanged = function (user) {
   console.log('User now: ', user);
   googleUser = user;
   updateGoogleUser();
-  document.getElementById('curr-user-cell').innerText = JSON.stringify(user);
+  document.getElementById('googleUser').innerText = JSON.stringify(user);
 };
 
 var updateGoogleUser = function () {
   if (googleUser) {
-    document.getElementById('mail').innerText = googleUser.getBasicProfile();
+    document.getElementById('mail').innerText = googleUser.getBasicProfile().getEmail();
     document.getElementById('user-id').innerText = googleUser.getId();
     document.getElementById('user-scopes').innerText = googleUser.getGrantedScopes();
     document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse());
