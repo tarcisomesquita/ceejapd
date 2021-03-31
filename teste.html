@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste11</title>
+<title>teste12</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -62,11 +62,13 @@ var signinChanged = function (val) {
     console.log('signin true');
     token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    console.log('logged in: ' + usuario);
+    console.log('usuario: ' + usuario);
     console.log('token_id: ' + token);
   }
   else {
     console.log('signin false');
+    token = '';
+    usuario = '';
     document.getElementById('blogin').style.display = 'block'; // | "hidden"
     document.getElementById('bmail').style.display = 'none';   // | "visible"
   }
@@ -84,7 +86,7 @@ var updateGoogleUser = function () {
     
     token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    console.log('logged in: ' + usuario);
+    console.log('usuario: ' + usuario);
     console.log('token_id: ' + token);
     
     document.getElementById('blogin').style.display = 'none'; // | "visible"
@@ -93,6 +95,8 @@ var updateGoogleUser = function () {
   }
   else {
     console.log('update googleUser false');
+    token = '';
+    usuario = '';
     document.getElementById('blogin').style.display = 'block'; // | "hidden"
     document.getElementById('bmail').style.display = 'none';   // | "visible"
   }
@@ -113,6 +117,8 @@ var onSucess = function(googleUser) {
 var onFailure = function(error) {
   console.log('login failure');
   console.log(error);
+  token = '';
+  usuario = '';
   usuario = JSON.stringify(error, undefined, 2);
   document.getElementById('blogin').style.display = 'block'; // | "hidden"
   document.getElementById('bmail').style.display = 'none'; // | "visible"
