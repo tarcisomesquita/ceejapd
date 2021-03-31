@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste3</title>
+<title>teste4</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -16,12 +16,8 @@
 /*
 var token = '';
 var usuario = ''; 
-var googleUser = {};
 
-function startApp() {
-  gapi.load(
-    'auth2',
-    function() {
+    initSignIn = function() {
       auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
       auth2.attachClickHandler(
         document.getElementById('customBtn'), 
@@ -37,30 +33,39 @@ function startApp() {
         }
       );
     }
-  );
-}
 */
 
 var auth2;
-var googleUser; // The current user.
+var googleUser;
 
 var startApp = function() {
-  gapi.load('auth2', initSigninV2);
+  gapi.load('auth2', initSignIn);
+  console.log('gapi: ', gapi);
+  document.getElementById('gapi').innerText = JSON.stringify(gapi);
 };
 
-var initSigninV2 = function() {
+var initSignIn = function() {
   auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
   
-  auth2.isSignedIn.listen(signinChanged); // Listen for sign-in state changes.
+  auth2.isSignedIn.listen(signinChanged);
 
-  auth2.currentUser.listen(userChanged);  // Listen for changes to current user.
+  auth2.currentUser.listen(userChanged);
+  
+  console.log('auth2: ', auth2);
+  document.getElementById('auth2').innerText = JSON.stringify(auth2);
   
   // Sign in the user if they are currently signed in.
   if (auth2.isSignedIn.get() == true) {
     auth2.signIn();
   }
   
-  refreshValues(); // Start with the current live values.
+  googleUser = auth2.currentUser.get();
+  
+  document.getElementById('curr-user-cell').innerText = JSON.stringify(googleUser);
+  document.getElementById('curr-user-cell').innerText = JSON.stringify(googleUser);
+  document.getElementById('signed-in-cell').innerText = auth2.isSignedIn.get();
+  
+  updateGoogleUser();
 };
 
 var signinChanged = function (val) {
@@ -72,15 +77,15 @@ var userChanged = function (user) {
   console.log('User now: ', user);
   googleUser = user;
   updateGoogleUser();
-  document.getElementById('curr-user-cell').innerText = JSON.stringify(user, undefined, 2);
+  document.getElementById('curr-user-cell').innerText = JSON.stringify(user);
 };
 
 var updateGoogleUser = function () {
   if (googleUser) {
-    document.getElementById('mail').innerText = googleUser.getBasicProfile().getEmail();
+    document.getElementById('mail').innerText = googleUser.getEmail();
     document.getElementById('user-id').innerText = googleUser.getId();
     document.getElementById('user-scopes').innerText = googleUser.getGrantedScopes();
-    document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse(), undefined, 2);
+    document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse());
   }
   else {
     document.getElementById('user-id').innerText = '--';
@@ -88,9 +93,9 @@ var updateGoogleUser = function () {
     document.getElementById('auth-response').innerText = '--';
   }
 };
-
+/*
 var refreshValues = function() {
-  if (auth2){
+  if (auth2) {
     console.log('Refreshing values...');
     
     googleUser = auth2.currentUser.get();
@@ -101,7 +106,7 @@ var refreshValues = function() {
     updateGoogleUser();
   }
 }
-
+*/
 
 
 function anote() {
@@ -205,12 +210,22 @@ pre {
 <br />
 
 <div id="customBtn" class="customBtn">Fazer login</div>
-<div id="mail"></div>
-<p id='signed-in-cell'></p>
-<p id='user-id'></p>
-<p id='user-scopes'></p>
-<p id='auth-response'></p>
-<p id='curr-user-cell'></p>
+<br />
+<p>gapi: <span id="gapi"></span></p>
+<br />
+<p>auth2: <span id="auth2"></span></p>
+<br />
+<p>mail: <span id="mail"></span></p>
+<br />
+<p>signed-in-cell: <span id='signed-in-cell'></span></p>
+<br />
+<p>user-id: <span id='user-id'></span></p>
+<br />
+<p>user-scopes: <span id='user-scopes'></span></p>
+<br />
+<p>auth-response: <span id='auth-response'></span></p>
+<br />
+<p>googleUser: <span id='googleUser'></span></p>
 
 </div><!-- page -->
 
