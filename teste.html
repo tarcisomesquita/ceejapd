@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste6</title>
+<title>teste7</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -33,6 +33,18 @@ var usuario = '';
         }
       );
     }
+onSucess
+onFailure
+
+mostrar botão quando não logado
+ocultar botão quando não logado (validade do id_token, atualizar se menos de uma hora)
+date -I'seconds' --date '@1617166706' // descartar 3 últimos dígitos de expires_at
+Expira em uma hora
+
+usuário logado mas não conectado ao app
+usuario deslogado e não conectado ao app
+
+log acesso com fetch
 */
 
 var auth2;
@@ -40,8 +52,6 @@ var googleUser;
 
 var startApp = function() {
   gapi.load('auth2', initSignIn);
-  console.log('gapi: ', gapi);
-  document.getElementById('gapi').innerText = gapi.toString();
 };
 
 var initSignIn = function() {
@@ -51,19 +61,14 @@ var initSignIn = function() {
 
   auth2.currentUser.listen(userChanged);
   
-  console.log('auth2: ', auth2);
-  document.getElementById('auth2').innerText = auth2.toString();
-  
   // Sign in the user if they are currently signed in.
   if (auth2.isSignedIn.get() == true) {
-    auth2.signIn();
+    auth2.signIn(); // |  signOut()
   }
   
   googleUser = auth2.currentUser.get();
   
-  document.getElementById('curr-user-cell').innerText = JSON.stringify(googleUser);
-  document.getElementById('curr-user-cell').innerText = JSON.stringify(googleUser);
-  document.getElementById('signed-in-cell').innerText = auth2.isSignedIn.get();
+  document.getElementById('googleUser').innerText = JSON.stringify(googleUser);
   
   updateGoogleUser();
 };
@@ -76,38 +81,21 @@ var signinChanged = function (val) {
 var userChanged = function (user) {
   console.log('User now: ', user);
   googleUser = user;
+  document.getElementById('googleUser').innerText = JSON.stringify(googleUser);
   updateGoogleUser();
-  document.getElementById('googleUser').innerText = JSON.stringify(user);
 };
 
 var updateGoogleUser = function () {
   if (googleUser) {
-    document.getElementById('mail').innerText = googleUser.getBasicProfile().getEmail();
-    document.getElementById('user-id').innerText = googleUser.getId();
-    document.getElementById('user-scopes').innerText = googleUser.getGrantedScopes();
-    document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse());
+    // googleUser.getAuthResponse().id_token; // | expires_in | expires_at
+    document.getElementById('mail').innerText = googleUser.getBasicProfile().getEmail(); // | getImageUrl() | getName()
+    document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse()); // reloadAuthResponse | update
   }
   else {
-    document.getElementById('user-id').innerText = '--';
-    document.getElementById('user-scopes').innerText = '--';
+    document.getElementById('mail').innerText = '--';
     document.getElementById('auth-response').innerText = '--';
   }
 };
-/*
-var refreshValues = function() {
-  if (auth2) {
-    console.log('Refreshing values...');
-    
-    googleUser = auth2.currentUser.get();
-    
-    document.getElementById('curr-user-cell').innerText = JSON.stringify(googleUser, undefined, 2);
-    document.getElementById('signed-in-cell').innerText = auth2.isSignedIn.get();
-    
-    updateGoogleUser();
-  }
-}
-*/
-
 
 function anote() {
   let info = "ceejapd/index.html" + 
@@ -211,17 +199,11 @@ pre {
 
 <div id="customBtn" class="customBtn">Fazer login</div>
 <br />
-<p>gapi: <span id="gapi"></span></p>
-<br />
-<p>auth2: <span id="auth2"></span></p>
-<br />
 <p>mail: <span id="mail"></span></p>
 <br />
 <p>signed-in-cell: <span id='signed-in-cell'></span></p>
 <br />
 <p>user-id: <span id='user-id'></span></p>
-<br />
-<p>user-scopes: <span id='user-scopes'></span></p>
 <br />
 <p>auth-response: <span id='auth-response'></span></p>
 <br />
