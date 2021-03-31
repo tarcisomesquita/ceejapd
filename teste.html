@@ -13,29 +13,11 @@
 
 //https://myaccount.google.com/permissions
 //https://codebeautify.org/jsviewer
-/*
+
 var token = '';
 var usuario = ''; 
 
-    initSignIn = function() {
-      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
-      auth2.attachClickHandler(
-        document.getElementById('customBtn'), 
-        {},
-        function(googleUser) {
-          token = googleUser.getAuthResponse().id_token;
-          usuario = googleUser.getBasicProfile().getEmail();
-          document.getElementById('mail').innerText = "Usuário: " + usuario;
-          document.getElementById('customBtn').style.visibility = 'hidden';
-        }, 
-        function(error) {
-          usuario = JSON.stringify(error, undefined, 2);
-        }
-      );
-    }
-onSucess
-onFailure
-
+/*
 mostrar botão quando não logado
 ocultar botão quando não logado (validade do id_token, atualizar se menos de uma hora)
 date -I'seconds' --date '@1617166706' // descartar 3 últimos dígitos de expires_at
@@ -45,6 +27,8 @@ usuário logado mas não conectado ao app
 usuario deslogado e não conectado ao app
 
 log acesso com fetch
+
+guia anônima
 */
 
 var auth2;
@@ -56,6 +40,8 @@ var startApp = function() {
 
 var initSignIn = function() {
   auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
+  
+  auth2.attachClickHandler(document.getElementById('customBtn'), {}, onSucess, onFailure);
   
   auth2.isSignedIn.listen(signinChanged);
 
@@ -97,6 +83,17 @@ var updateGoogleUser = function () {
   }
 };
 
+var onSucess = function(googleUser) {
+  token = googleUser.getAuthResponse().id_token;
+  usuario = googleUser.getBasicProfile().getEmail();
+  document.getElementById('mail').innerText = usuario;
+  document.getElementById('customBtn').style.visibility = 'hidden';
+}
+
+var onFailure = function(error) {
+  usuario = JSON.stringify(error, undefined, 2);
+}
+
 function anote() {
   let info = "ceejapd/index.html" + 
              "\nusuario: " + usuario + 
@@ -117,6 +114,40 @@ function anote() {
       body: 'entry.667481942=' + escape(info),
     }
   );
+}
+
+// HTTP GET and POST have limit of 2048 characters.
+
+function avaliacao(){
+  if (token === '') {
+    window.alert('Precisa fazer login.');
+  }
+  else {
+    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+    document.getElementById('page').style.cursor = 'wait';
+    
+    let matricula = prompt('Digite o número da matrícula',);
+     
+    let s = document.createElement('script');
+    s.src = 'https://script.google.com/macros/s/AKfycbyDVDL2ALsqcTbuEQZMopBdp7vEOKwgFFfLBgCk14_BCjj2stOaK4kcbi92-GDgXCDk/exec?matricula=' + matricula + '&token=' + token;
+    document.body.appendChild(s);
+  }
+}
+
+function passaporte(){
+  if (token === '') {
+    window.alert('Precisa fazer login.');
+  }
+  else {
+    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+    document.getElementById('page').style.cursor = 'wait';
+    
+    let matricula = prompt('Digite o número da matrícula',);
+     
+    let s = document.createElement('script');
+    s.src = 'https://script.google.com/macros/s/AKfycbyn6PvKxfF4oF1tcr0zpQLILKi02ClCQmzBR3uSwTLqpqbeSXYrWy86TbRxR-hsJUta/exec?matricula=' + matricula + '&token=' + token;
+    document.body.appendChild(s);
+  }
 }
 
 </script>
@@ -197,17 +228,21 @@ pre {
 
 <br />
 
-<div id="customBtn" class="customBtn">Fazer login</div>
+<div id="blogin"><div id="customBtn" class="customBtn" style="float:left">Fazer login</div><p>(<b>em guia anônima, não funciona</b>)</p><br/></div>
+<p>Usuário: <span id="mail"></span></p>
+
 <br />
-<p>mail: <span id="mail"></span></p>
+
+<p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
+
+<p onclick="avaliacao()" class='link' style='color:#22BB22'>Pegar avaliação</p>
+
+<p onclick="passaporte()" class='link' style='color:#22BB22'>Ver notas (passaporte)</p>
+
+<p><a href="https://bit.ly/escolapaulo">Formulário de rematrícula</a></p>
+
 <br />
-<p>signed-in-cell: <span id='signed-in-cell'></span></p>
-<br />
-<p>user-id: <span id='user-id'></span></p>
-<br />
-<p>auth-response: <span id='auth-response'></span></p>
-<br />
-<p>googleUser: <span id='googleUser'></span></p>
+
 
 </div><!-- page -->
 
