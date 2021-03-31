@@ -76,7 +76,7 @@ var userChanged = function (user) {
 };
 
 var updateGoogleUser = function () {
-  if (googleUser) {
+  if (googleUser.getBasicProfile()) {
     //document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse()); // reloadAuthResponse | update
     
     token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
