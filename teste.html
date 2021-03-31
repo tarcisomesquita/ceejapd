@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta viewport='width=device-width'>
+
+<title>teste</title>
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script>
+//https://developers.google.com/identity/sign-in/web/sign-in
+//https://console.cloud.google.com/apis/credentials
+
+//https://myaccount.google.com/permissions
+//https://codebeautify.org/jsviewer
+/*
+var token = '';
+var usuario = ''; 
+var googleUser = {};
+
+function startApp() {
+  gapi.load(
+    'auth2',
+    function() {
+      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
+      auth2.attachClickHandler(
+        document.getElementById('customBtn'), 
+        {},
+        function(googleUser) {
+          token = googleUser.getAuthResponse().id_token;
+          usuario = googleUser.getBasicProfile().getEmail();
+          document.getElementById('mail').innerText = "Usuário: " + usuario;
+          document.getElementById('customBtn').style.visibility = 'hidden';
+        }, 
+        function(error) {
+          usuario = JSON.stringify(error, undefined, 2);
+        }
+      );
+    }
+  );
+}
+*/
+
+var auth2;
+var googleUser; // The current user.
+
+var appStart = function() {
+  gapi.load('auth2', initSigninV2);
+};
+
+var initSigninV2 = function() {
+  auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
+  
+  auth2.isSignedIn.listen(signinChanged); // Listen for sign-in state changes.
+
+  auth2.currentUser.listen(userChanged);  // Listen for changes to current user.
+  
+  // Sign in the user if they are currently signed in.
+  if (auth2.isSignedIn.get() == true) {
+    auth2.signIn();
+  }
+  
+  refreshValues(); // Start with the current live values.
+};
+
+var signinChanged = function (val) {
+  console.log('Signin state changed to ', val);
+  document.getElementById('signed-in-cell').innerText = val;
+};
+
+var userChanged = function (user) {
+  console.log('User now: ', user);
+  googleUser = user;
+  updateGoogleUser();
+  document.getElementById('curr-user-cell').innerText = JSON.stringify(user, undefined, 2);
+};
+
+var updateGoogleUser = function () {
+  if (googleUser) {
+    document.getElementById('user-id').innerText = googleUser.getId();
+    document.getElementById('user-scopes').innerText = googleUser.getGrantedScopes();
+    document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse(), undefined, 2);
+  }
+  else {
+    document.getElementById('user-id').innerText = '--';
+    document.getElementById('user-scopes').innerText = '--';
+    document.getElementById('auth-response').innerText = '--';
+  }
+};
+
+var refreshValues = function() {
+  if (auth2){
+    console.log('Refreshing values...');
+    
+    googleUser = auth2.currentUser.get();
+    
+    document.getElementById('curr-user-cell').innerText = JSON.stringify(googleUser, undefined, 2);
+    document.getElementById('signed-in-cell').innerText = auth2.isSignedIn.get();
+    
+    updateGoogleUser();
+  }
+}
+
+
+
+function anote() {
+  let info = "ceejapd/index.html" + 
+             "\nusuario: " + usuario + 
+             "\nuserAgent: " + navigator.userAgent + 
+             "\nscreen.width: " + screen.width + 
+             "\nscreen.height: " + screen.height + 
+             "\ninnerWidth: " + innerWidth + 
+             "\ninnerHeight: " + innerHeight + 
+             "\ndeviceMemory: " + navigator.deviceMemory + "GiB of RAM";
+
+  fetch(
+    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: 'entry.667481942=' + escape(info),
+    }
+  );
+}
+
+</script>
+
+<style>
+body {
+  height: 100%;
+  background-color: #FFFFFF;
+  font-family: 'Open Sans',sans-serif;
+  color: #2160DE;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: justify;
+  margin: 0px;
+  padding: 5mm;
+}
+
+a:link    {color:#2160DE; text-decoration:none;}      /* unvisited link  */
+a:visited {color:#2160DE; text-decoration:none;}      /* visited link    */
+a:hover   {color:#2160DE; text-decoration:underline;} /* mouse over link */
+a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
+
+pre {
+  color: #000000;
+}
+
+.erro {
+  text-align: center;
+  font-size: 14pt;
+  line-height: 20pt;
+  font-weight: bold;
+  
+  margin: 0px;
+  padding-top: 2cm;
+  padding-bottom: 2cm;
+  width: 100vw;
+  background-color: #FFFF77;
+  position: fixed;
+  top: 50%;
+}
+
+.link {
+  cursor:pointer
+}
+
+.link:hover, .link:active {
+  text-decoration:underline;
+}
+
+#customBtn {
+  display: inline-block;
+  background: #1a73e8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  font-size: 16px;
+  line-height: 23px;
+  margin-left: 10px;
+  margin-right: 8px;
+  min-width: 96px;
+  padding: 9px 23px;
+  text-align: center;
+  vertical-align: middle;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#customBtn:hover {
+  cursor: pointer;
+}
+</style>
+
+</head>
+
+<body onload='startApp()'>
+
+<div id="page">
+
+<br />
+
+<div id="customBtn" class="customBtn">Fazer login</div>
+<div id="mail"></div>
+<p id='signed-in-cell'></p>
+<p id='user-id'></p>
+<p id='user-scopes'></p>
+<p id='auth-response'></p>
+<p id=''></p>
+<p id=''></p>
+<p id=''></p>
+
+</div><!-- page -->
+
+</body>
+</html>
