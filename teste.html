@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste12</title>
+<title>teste13</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -18,17 +18,38 @@ var token = '';
 var usuario = ''; 
 
 /*
-mostrar botão quando não logado
-ocultar botão quando não logado (validade do id_token, atualizar se menos de uma hora)
+validade do id_token, atualizar se menos de uma hora
 date -I'seconds' --date '@1617166706' // descartar 3 últimos dígitos de expires_at
 Expira em uma hora
 
-usuário logado mas não conectado ao app
-usuario deslogado e não conectado ao app
-
 log acesso com fetch
 
-guia anônima
+usuário logado mas não conectado ao app
+
+usuario deslogado e não conectado ao app
+20:02:31.220 update googleUser false teste.html:97:13
+20:04:01.020 update googleUser true teste.html:84:13
+20:04:01.022 signin true teste.html:62:13
+20:04:02.869 login sucess teste.html:106:11
+20:04:02.871 update googleUser true teste.html:84:13
+20:04:34.622 update googleUser true teste.html:84:13
+20:04:34.626 signin false teste.html:69:13
+
+
+fazendo login em guia anônima:
+19:45:31.333 Cookie “G_ENABLED_IDPS” will be soon rejected because it has the “SameSite” attribute set to “None” or an invalid value, without the “secure” attribute. To know more about the “SameSite“ attribute, read https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite cb=gapi.loaded_0:578:21
+19:45:31.342 update googleUser false teste.html:97:13
+19:46:30.797 login sucess teste.html:106:11
+19:46:30.800 update googleUser true teste.html:84:13
+19:46:30.802 signin true teste.html:62:13
+
+19:54:31.446 update googleUser true teste.html:84:13
+19:54:31.448 usuario: sed.decourt@gmail.com teste.html:89:13
+19:54:31.449 token_id: undefined teste.html:90:13
+19:54:31.450
+Uncaught TypeError: document.getElementById(...) is null  teste.html:92:14
+19:54:31.452 signin false teste.html:69:13
+19:54:31.454 Uncaught TypeError: document.getElementById(...) is null teste.html:72:14
 */
 
 var auth2;
@@ -41,7 +62,8 @@ var startApp = function() {
 var initSignIn = function() {
   auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
   
-  auth2.attachClickHandler(document.getElementById('customBtn'), {}, onSucess, onFailure);
+//  auth2.attachClickHandler(document.getElementById('customBtn'), {}, onSucess, onFailure);
+  auth2.attachClickHandler(document.getElementById('customBtn'), {}, undefined, undefined);
   
   auth2.isSignedIn.listen(signinChanged);
 
@@ -54,7 +76,7 @@ var initSignIn = function() {
   
   googleUser = auth2.currentUser.get();
   
-  updateGoogleUser();
+  //updateGoogleUser();
 };
 
 var signinChanged = function (val) {
@@ -76,7 +98,7 @@ var signinChanged = function (val) {
 
 var userChanged = function (user) {
   googleUser = user;
-  updateGoogleUser();
+  //updateGoogleUser();
 };
 
 var updateGoogleUser = function () {
@@ -106,7 +128,7 @@ var onSucess = function(googleUser) {
   console.log('login sucess');
   token = googleUser.getAuthResponse().id_token;
   usuario = googleUser.getBasicProfile().getEmail();
-  console.log('logged in: ' + usuario);
+  console.log('usuario: ' + usuario);
   console.log('token_id: ' + token);
   
   document.getElementById('blogin').style.display = 'none'; // | "visible"
@@ -119,7 +141,7 @@ var onFailure = function(error) {
   console.log(error);
   token = '';
   usuario = '';
-  usuario = JSON.stringify(error, undefined, 2);
+  usuario = JSON.stringify(error);
   document.getElementById('blogin').style.display = 'block'; // | "hidden"
   document.getElementById('bmail').style.display = 'none'; // | "visible"
 }
