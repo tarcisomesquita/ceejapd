@@ -95,7 +95,7 @@ function passaporte(){
     let matricula = prompt('Digite o número da matrícula',);
      
     let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/' + passaporte_v '/exec?matricula=' + matricula + '&token=' + token;
+    s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&token=' + token;
     document.body.appendChild(s);
   }
 }
@@ -109,7 +109,7 @@ function relatorio(){
     document.getElementById('page').style.cursor = 'wait';
     
     let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/' + relatorio_v '/exec?token=' + token;
+    s.src = 'https://script.google.com/macros/s/' + relatorio_v + '/exec?token=' + token;
     document.body.appendChild(s);
   }
 }
