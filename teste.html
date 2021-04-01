@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste16</title>
+<title>teste17</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -26,30 +26,6 @@ log acesso com fetch
 
 usuário logado mas não conectado ao app
 
-usuario deslogado e não conectado ao app
-20:02:31.220 update googleUser false teste.html:97:13
-20:04:01.020 update googleUser true teste.html:84:13
-20:04:01.022 signin true teste.html:62:13
-20:04:02.869 login sucess teste.html:106:11
-20:04:02.871 update googleUser true teste.html:84:13
-20:04:34.622 update googleUser true teste.html:84:13
-20:04:34.626 signin false teste.html:69:13
-
-
-fazendo login em guia anônima:
-19:45:31.333 Cookie “G_ENABLED_IDPS” will be soon rejected because it has the “SameSite” attribute set to “None” or an invalid value, without the “secure” attribute. To know more about the “SameSite“ attribute, read https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite cb=gapi.loaded_0:578:21
-19:45:31.342 update googleUser false teste.html:97:13
-19:46:30.797 login sucess teste.html:106:11
-19:46:30.800 update googleUser true teste.html:84:13
-19:46:30.802 signin true teste.html:62:13
-
-19:54:31.446 update googleUser true teste.html:84:13
-19:54:31.448 usuario: sed.decourt@gmail.com teste.html:89:13
-19:54:31.449 token_id: undefined teste.html:90:13
-19:54:31.450
-Uncaught TypeError: document.getElementById(...) is null  teste.html:92:14
-19:54:31.452 signin false teste.html:69:13
-19:54:31.454 Uncaught TypeError: document.getElementById(...) is null teste.html:72:14
 */
 
 var auth2;
@@ -62,22 +38,17 @@ var startApp = function() {
 var initSignIn = function() {
   auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
   
-//  auth2.attachClickHandler(document.getElementById('customBtn'), {}, onSucess, onFailure);
   auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
   
   auth2.isSignedIn.listen(signinChanged);
 
-  //auth2.currentUser.listen(userChanged);
-  
-  // Sign in the user if they are currently signed in.
   if (auth2.isSignedIn.get() == true) {
     auth2.signIn(); // |  signOut()
   }
   
   googleUser = auth2.currentUser.get();
-  
-  //updateGoogleUser();
 };
+//googleUser.getAuthResponse(); // reloadAuthResponse | update
 
 var signinChanged = function (val) {
   if (val) {
@@ -89,6 +60,17 @@ var signinChanged = function (val) {
     document.getElementById('bmail').style.display = 'block';
     console.log('usuario: ' + usuario);
     console.log('token_id: ' + token);
+    
+    fetch(
+      "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: 'entry.667481942=' + escape('teste ' + usuario),
+      }
+    );
   }
   else {
     console.log('signin false');
@@ -98,62 +80,6 @@ var signinChanged = function (val) {
     document.getElementById('bmail').style.display = 'none';
   }
 };
-
-var userChanged = function (user) {
-  console.log('userChanged');
-  googleUser = user;
-  
-  token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
-  usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
-  console.log('usuario: ' + usuario);
-  console.log('token_id: ' + token);
-  //updateGoogleUser();
-};
-
-var updateGoogleUser = function () {
-  if (googleUser.getBasicProfile()) {
-    console.log('update googleUser true');
-    //document.getElementById('auth-response').innerText = JSON.stringify(googleUser.getAuthResponse()); // reloadAuthResponse | update
-    
-    token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
-    usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    console.log('usuario: ' + usuario);
-    console.log('token_id: ' + token);
-    
-    document.getElementById('blogin').style.display = 'none'; // | "visible"
-    document.getElementById('bmail').style.display = 'block'; // | "hidden"
-    document.getElementById('mail').innerText = usuario;
-  }
-  else {
-    console.log('update googleUser false');
-    token = '';
-    usuario = '';
-    document.getElementById('blogin').style.display = 'block'; // | "hidden"
-    document.getElementById('bmail').style.display = 'none';   // | "visible"
-  }
-};
-
-var onSucess = function(googleUser) {
-  console.log('login sucess');
-  token = googleUser.getAuthResponse().id_token;
-  usuario = googleUser.getBasicProfile().getEmail();
-  console.log('usuario: ' + usuario);
-  console.log('token_id: ' + token);
-  
-  document.getElementById('blogin').style.display = 'none'; // | "visible"
-  document.getElementById('bmail').style.display = 'block'; // | "hidden"
-  document.getElementById('mail').innerText = usuario;
-}
-
-var onFailure = function(error) {
-  console.log('login failure');
-  console.log(error);
-  token = '';
-  usuario = '';
-  usuario = JSON.stringify(error);
-  document.getElementById('blogin').style.display = 'block'; // | "hidden"
-  document.getElementById('bmail').style.display = 'none'; // | "visible"
-}
 
 function anote() {
   let info = "ceejapd/index.html" + 
@@ -290,7 +216,7 @@ pre {
 <br />
 
 <div id="customBtn" class="customBtn">Fazer login</div>
-<p id="bmail">Usuário: <span id="mail" style='color:#DD4433'></span></p>
+<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span></p>
 
 <br />
 
