@@ -56,8 +56,14 @@ var signinChanged = function (val) {
     document.getElementById('bmail').style.display = 'block';
     console.log('usuario: ' + usuario);
     console.log('token_id: ' + token);
-    token_update = window.setInterval(function() { googleUser.reloadAuthResponse(); console.log('expires_at: ' + googleUser.getAuthResponse().expires_at);}, 60000); // every 60 s
-    
+    token_update = window.setInterval(
+      function() {
+        googleUser.reloadAuthResponse();
+        token = googleUser.getAuthResponse().id_token;
+        console.log('token: ' + token);
+      },
+      60000
+    ); // every 60 s
   }
   else {
     console.log('signin false');
