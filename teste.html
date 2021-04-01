@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste17</title>
+<title>teste18</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -21,15 +21,11 @@ var usuario = '';
 validade do id_token, atualizar se menos de uma hora
 date -I'seconds' --date '@1617166706' // descartar 3 últimos dígitos de expires_at
 Expira em uma hora
-
-log acesso com fetch
-
-usuário logado mas não conectado ao app
-
 */
 
 var auth2;
 var googleUser;
+var token_update;
 
 var startApp = function() {
   gapi.load('auth2', initSignIn);
@@ -60,17 +56,8 @@ var signinChanged = function (val) {
     document.getElementById('bmail').style.display = 'block';
     console.log('usuario: ' + usuario);
     console.log('token_id: ' + token);
+    token_update = window.setInterval(function() { googleUser.update(); console.log('expires_at: ' + googleUser.getAuthResponse().expires_at);}, 120000); // every 60 s
     
-    fetch(
-      "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: 'entry.667481942=' + escape('teste ' + usuario),
-      }
-    );
   }
   else {
     console.log('signin false');
@@ -78,32 +65,10 @@ var signinChanged = function (val) {
     usuario = '';
     document.getElementById('customBtn').style.display = 'inline';
     document.getElementById('bmail').style.display = 'none';
+    window.clearInterval(token_update);
   }
 };
 
-function anote() {
-  let info = "ceejapd/index.html" + 
-             "\nusuario: " + usuario + 
-             "\nuserAgent: " + navigator.userAgent + 
-             "\nscreen.width: " + screen.width + 
-             "\nscreen.height: " + screen.height + 
-             "\ninnerWidth: " + innerWidth + 
-             "\ninnerHeight: " + innerHeight + 
-             "\ndeviceMemory: " + navigator.deviceMemory + "GiB of RAM";
-
-  fetch(
-    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: 'entry.667481942=' + escape(info),
-    }
-  );
-}
-
-// HTTP GET and POST have limit of 2048 characters.
 
 function avaliacao(){
   if (token === '') {
@@ -229,7 +194,6 @@ pre {
 <p><a href="https://bit.ly/escolapaulo">Formulário de rematrícula</a></p>
 
 <br />
-
 
 </div><!-- page -->
 
