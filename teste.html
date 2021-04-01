@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste20</title>
+<title>teste21</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -14,20 +14,12 @@
 //https://myaccount.google.com/permissions
 //https://codebeautify.org/jsviewer
 
-var token = '';
-var usuario = ''; 
-
-/*
-validade do id_token, atualizar se menos de uma hora
-date -I'seconds' --date '@1617166706' // descartar 3 últimos dígitos de expires_at
-Expira em uma hora
-*/
-
 var auth2;
 var googleUser;
 var token_update;
+var token = '';
+var usuario = ''; 
 var avaliacao_v = 'AKfycbxkzt9xb8_LU52WB5CNmH31hUSzY0QQpTo-vVzHMer5AHUotWQkupPj7lwumOiHNsev'; // v 6
-
 
 var startApp = function() {
   gapi.load('auth2', initSignIn);
@@ -46,12 +38,11 @@ var initSignIn = function() {
   
   googleUser = auth2.currentUser.get();
 };
-//googleUser.getAuthResponse(); // reloadAuthResponse | update
 
 var signinChanged = function (val) {
   if (val) {
     //console.log('signin true');
-    token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
+    token = googleUser.getAuthResponse().id_token;
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
