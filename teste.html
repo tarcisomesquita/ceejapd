@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta viewport='width=device-width'>
 
-<title>teste19</title>
+<title>teste20</title>
 
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
@@ -56,14 +56,8 @@ var signinChanged = function (val) {
     document.getElementById('bmail').style.display = 'block';
     console.log('usuario: ' + usuario);
     console.log('token_id: ' + token);
-    token_update = window.setInterval(
-      function() {
-        googleUser.reloadAuthResponse();
-        token = googleUser.getAuthResponse().id_token;
-        console.log('token: ' + token);
-      },
-      60000
-    ); // every 60 s
+    console.log('expires_in: ' + googleUser.getAuthResponse().expires_in);
+    token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 3400) * 1000); // every 60 s
   }
   else {
     console.log('signin false');
@@ -71,10 +65,16 @@ var signinChanged = function (val) {
     usuario = '';
     document.getElementById('customBtn').style.display = 'inline';
     document.getElementById('bmail').style.display = 'none';
-    window.clearInterval(token_update);
+    window.clearTimeout(token_update);
   }
 };
 
+var timmer = function {
+  googleUser.reloadAuthResponse();
+  token = googleUser.getAuthResponse().id_token;
+  console.log('token_id: ' + token);
+  token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 3400) * 1000); // every 60 s
+}
 
 function avaliacao(){
   if (token === '') {
