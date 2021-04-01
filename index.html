@@ -13,55 +13,58 @@
 
 //https://myaccount.google.com/permissions
 //https://codebeautify.org/jsviewer
+
 var token = '';
 var usuario = ''; 
-var googleUser = {};
 
-function startApp() {
-  gapi.load(
-    'auth2',
-    function() {
-      auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com'});
-      auth2.attachClickHandler(
-        document.getElementById('customBtn'), 
-        {},
-        function(googleUser) {
-          token = googleUser.getAuthResponse().id_token;
-          usuario = googleUser.getBasicProfile().getEmail();
-          document.getElementById('mail').innerText = "Usuário: " + usuario;
-          document.getElementById('customBtn').style.visibility = 'hidden';
-        }, 
-        function(error) {
-          usuario = JSON.stringify(error, undefined, 2);
-        }
-      );
-    }
-  );
-}
+/*
+validade do id_token, atualizar se menos de uma hora
+date -I'seconds' --date '@1617166706' // descartar 3 últimos dígitos de expires_at
+Expira em uma hora
+*/
 
-function anote() {
-  let info = "ceejapd/index.html" + 
-             "\nusuario: " + usuario + 
-             "\nuserAgent: " + navigator.userAgent + 
-             "\nscreen.width: " + screen.width + 
-             "\nscreen.height: " + screen.height + 
-             "\ninnerWidth: " + innerWidth + 
-             "\ninnerHeight: " + innerHeight + 
-             "\ndeviceMemory: " + navigator.deviceMemory + "GiB of RAM";
+var auth2;
+var googleUser;
 
-  fetch(
-    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: 'entry.667481942=' + escape(info),
-    }
-  );
-}
+var startApp = function() {
+  gapi.load('auth2', initSignIn);
+};
 
-// HTTP GET and POST have limit of 2048 characters.
+var initSignIn = function() {
+  auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
+  
+  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
+  
+  auth2.isSignedIn.listen(signinChanged);
+
+  if (auth2.isSignedIn.get() == true) {
+    auth2.signIn(); // |  signOut()
+  }
+  
+  googleUser = auth2.currentUser.get();
+};
+//googleUser.getAuthResponse(); // reloadAuthResponse | update
+
+var signinChanged = function (val) {
+  if (val) {
+    console.log('signin true');
+    token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
+    usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    document.getElementById('mail').innerText = usuario;
+    document.getElementById('customBtn').style.display = 'none';
+    document.getElementById('bmail').style.display = 'block';
+    console.log('usuario: ' + usuario);
+    console.log('token_id: ' + token);
+  }
+  else {
+    console.log('signin false');
+    token = '';
+    usuario = '';
+    document.getElementById('customBtn').style.display = 'inline';
+    document.getElementById('bmail').style.display = 'none';
+  }
+};
+
 
 function avaliacao(){
   if (token === '') {
@@ -95,25 +98,6 @@ function passaporte(){
   }
 }
 
-function mkboletim(){
-  window.open('https://script.google.com/macros/s/AKfycbzTyOey45kUt0KB8PHPrrfqxusv_u2ioOUTOd03w1hoC2WDJXGjgIo/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function requerimento_matricula(){
-  window.open('https://script.google.com/macros/s/AKfycbzrQWhUGKvd9nmujuxkMiih4xB85pllTm2cMoy6PDk_o9xypvDoQ04I/exec?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
-
-function relatorio_anual(){
-  window.open('https://script.google.com/macros/s/AKfycby4qN4l4bCo8FZn_xD2G8uCWqjSlPXQTynIc8HIN-MsUrDG1NUNRJLnrw/exec?token=' + token);
-}
-
-function permissoes(){
-  window.open('https://script.google.com/macros/s/AKfycbw5KAnRugIwei2GCKWWQr6wBk8-C4tBd26zp4mp9FI/dev?token=' + token);
-}
-
-function ps(){
-  window.open('https://ceejapd.blogspot.com/p/ps.html?matricula=' + document.getElementById('matricula').value + '&token=' + token);
-}
 </script>
 
 <style>
@@ -121,7 +105,7 @@ body {
   height: 100%;
   background-color: #FFFFFF;
   font-family: 'Open Sans',sans-serif;
-  color: #2160DE;
+  color: #000000;
   font-size: 16px;
   line-height: 23px;
   text-align: justify;
@@ -193,7 +177,7 @@ pre {
 <br />
 
 <div id="customBtn" class="customBtn">Fazer login</div>
-<div id="mail"></div>
+<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span></p>
 
 <br />
 
@@ -244,8 +228,6 @@ pre {
 <p><a href='https://tarcisomesquita.github.io/ceejapd/CEEJAs.html'>Outros CEEJAs</a></p>
 
 <br />
-
-<p><a href='https://tarcisomesquita.github.io/ceejapd/teste.html'>teste</a></p>
 
 </div><!-- page -->
 
