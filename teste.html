@@ -26,6 +26,8 @@ Expira em uma hora
 var auth2;
 var googleUser;
 var token_update;
+var avaliacao_v = 'AKfycbxkzt9xb8_LU52WB5CNmH31hUSzY0QQpTo-vVzHMer5AHUotWQkupPj7lwumOiHNsev'; // v 6
+
 
 var startApp = function() {
   gapi.load('auth2', initSignIn);
@@ -48,19 +50,18 @@ var initSignIn = function() {
 
 var signinChanged = function (val) {
   if (val) {
-    console.log('signin true');
+    //console.log('signin true');
     token = googleUser.getAuthResponse().id_token;                 // | expires_in | expires_at
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    console.log('usuario: ' + usuario);
-    console.log('token_id: ' + token);
-    console.log('expires_in: ' + googleUser.getAuthResponse().expires_in);
-    token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 3400) * 1000); // every 60 s
+    //console.log('usuario: ' + usuario);
+    //console.log('token_id: ' + token);
+    token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 600) * 1000);
   }
   else {
-    console.log('signin false');
+    //console.log('signin false');
     token = '';
     usuario = '';
     document.getElementById('customBtn').style.display = 'inline';
@@ -72,8 +73,8 @@ var signinChanged = function (val) {
 var timmer = function() {
   googleUser.reloadAuthResponse();
   token = googleUser.getAuthResponse().id_token;
-  console.log('token_id: ' + token);
-  token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 3400) * 1000); // every 60 s
+  //console.log('token_id: ' + token);
+  token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 600) * 1000);
 }
 
 function avaliacao(){
@@ -84,10 +85,8 @@ function avaliacao(){
     document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
     document.getElementById('page').style.cursor = 'wait';
     
-    let matricula = prompt('Digite o número da matrícula',);
-     
     let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/AKfycbyDVDL2ALsqcTbuEQZMopBdp7vEOKwgFFfLBgCk14_BCjj2stOaK4kcbi92-GDgXCDk/exec?matricula=' + matricula + '&token=' + token;
+    s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?token=' + token;
     document.body.appendChild(s);
   }
 }
