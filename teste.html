@@ -48,7 +48,7 @@ var signinChanged = function (val) {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     //console.log('usuario: ' + usuario);
-    //console.log('token_id: ' + token);
+    console.log('token_id: ' + token);
     token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 600) * 1000);
   }
   else {
