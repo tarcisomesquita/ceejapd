@@ -168,20 +168,23 @@ pre {
 }
 
 .container {
+  display: flex;
   position: absolute;
   top: 0px;
   left: 0px;
-  display: flex;
   width: 100vw;
   height: 100vh;
   background: #6C7A89;
-  flex-direction: row;
+  opacity: 0.3;
   justify-content: center;
   align-items: center
 }
 
 .box {
+  position: relative;
+  top: 10%;
   background: #FFFFFF;
+  margin: 30px;
 }
 </style>
 
@@ -208,7 +211,7 @@ pre {
 
 <br />
 
-<div class='container' style='opacity:0.3'>
+<div class='container'>
   <div class='box'>
     <input id="numbers" type="text" pattern="[0-9]{6}" maxlength="6"><input type="button" value="ok" onclick="alert(numbers.value)">
   </div>
