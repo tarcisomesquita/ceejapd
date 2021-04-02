@@ -73,7 +73,7 @@ var timmer = function() {
 
 function avaliacao(){
   if (token === '') {
-    aviso('Precisa fazer login.');
+    aviso('ERRO: Precisa fazer login.');
   }
   else {
     document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
@@ -87,7 +87,7 @@ function avaliacao(){
 
 function passaporte(){
   if (token === '') {
-    aviso('Precisa fazer login.');
+    aviso('ERRO: Precisa fazer login.');
   }
   else {
     document.getElementById('container').style.display = 'inline';
@@ -107,7 +107,7 @@ function passaporte_b() {
 
 function relatorio(){
   if (token === '') {
-    aviso('Precisa fazer login.');
+    aviso('ERRO: Precisa fazer login.');
   }
   else {
     document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
