@@ -100,7 +100,6 @@ function passaporte_b() {
   document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
   document.getElementById('page').style.cursor = 'wait';
   
-  matricula = document.getElementById('matricula_id').value;
   console.log(matricula);
   let s = document.createElement('script');
   s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&token=' + token;
@@ -296,12 +295,12 @@ pre {
     pattern="[0-9]{6}" 
     maxlength="6" 
     style="margin:5px"
-    onkeydown="if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){passaporte_b()}"
+    onkeydown="if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById('matricula_id').value; passaporte_b()}"
   >
   <input 
     type="button" 
     value="ok" 
-    onclick="if (/[0-9]{6}/.test(matricula_id.value)){passaporte_b()}"
+    onclick="if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById('matricula_id').value; passaporte_b()}"
   >
 </div>
 <div id='aviso' class='box'>
