@@ -87,10 +87,10 @@ function passaporte(){
     window.alert('Precisa fazer login.');
   }
   else {
-    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
-    document.getElementById('page').style.cursor = 'wait';
     
     let matricula = prompt('Digite o número da matrícula',);
+    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+    document.getElementById('page').style.cursor = 'wait';
      
     let s = document.createElement('script');
     s.src = 'https://script.google.com/macros/s/AKfycbyn6PvKxfF4oF1tcr0zpQLILKi02ClCQmzBR3uSwTLqpqbeSXYrWy86TbRxR-hsJUta/exec?matricula=' + matricula + '&token=' + token;
@@ -166,6 +166,22 @@ pre {
 #customBtn:hover {
   cursor: pointer;
 }
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: #6C7A89;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+  background: #FFFFFF;
+}
 </style>
 
 </head>
@@ -190,6 +206,12 @@ pre {
 <p><a href="https://bit.ly/escolapaulo">Formulário de rematrícula</a></p>
 
 <br />
+
+<div class='container' style='opacity:0.3'>
+  <div class='box'>
+    <input id="numbers" type="text" pattern="[0-9]{6}" maxlength="6"><input type="button" value="ok" onclick="alert(numbers.value)">
+  </div>
+</div>
 
 </div><!-- page -->
 
