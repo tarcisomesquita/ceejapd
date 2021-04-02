@@ -85,19 +85,23 @@ function avaliacao(){
 }
 
 function passaporte(){
-  if (token === '') {
-    window.alert('Precisa fazer login.');
+  if (! token === '') {
+    aviso('Precisa fazer login.');
   }
   else {
-    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
-    document.getElementById('page').style.cursor = 'wait';
-    
-    let matricula = prompt('Digite o número da matrícula',);
-     
-    let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&token=' + token;
-    document.body.appendChild(s);
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('box').style.display = 'inline';
+    document.getElementById('matricula').focus();
   }
+}
+
+function passaporte_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+   
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula.value + '&token=' + token;
+  document.body.appendChild(s);
 }
 
 function relatorio(){
@@ -114,6 +118,17 @@ function relatorio(){
   }
 }
 
+function aviso(mensagem) {
+  document.getElementById('container').style.display = 'inline';
+  document.getElementById('aviso').style.display = 'inline';
+  document.getElementById('mensagem').innerText = mensagem;
+  document.getElementById('aviso_button').focus();
+}
+
+function aviso_b() {
+  document.getElementById('container').style.display = 'none';
+  document.getElementById('aviso').style.display = 'none';
+}
 </script>
 
 <style>
@@ -182,6 +197,29 @@ pre {
 #customBtn:hover {
   cursor: pointer;
 }
+
+.container {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: #6C7A89;
+  opacity: 0.5;
+}
+
+.box {
+  display: none;
+  position: absolute;
+  top: 5%;
+  left: 30%;
+  background: #bbeeff;
+  opacity: 1;
+  padding: 30px;
+  border: 2px solid #AAAAAA;
+  text-align: center;
+}
 </style>
 
 </head>
@@ -244,6 +282,29 @@ pre {
 <p><a href='https://tarcisomesquita.github.io/ceejapd/CEEJAs.html'>Outros CEEJAs</a></p>
 
 <br />
+
+<div id='container' class='container'>
+</div>
+<div id='box' class='box'>
+  <p>Digite o número da matrícula:</p>
+  <input 
+    id="matricula" 
+    type="text" 
+    pattern="[0-9]{6}" 
+    maxlength="6" 
+    style="margin:5px"
+    onkeydown="if (event.keyCode == 13 && /[0-9]{6}/.test(matricula.value)){passaporte_b()}"
+  >
+  <input 
+    type="button" 
+    value="ok" 
+    onclick="if (/[0-9]{6}/.test(matricula.value)){passaporte_b()}"
+  >
+</div>
+<div id='aviso' class='box'>
+  <p id='mensagem'></p>
+  <input id='aviso_button' type="button" value="ok" onclick="aviso_b()">
+</div>
 
 </div><!-- page -->
 
