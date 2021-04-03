@@ -23,6 +23,7 @@ var matricula = '';
 var avaliacao_v = 'AKfycbzhSGwhiHU91u4KBuR3lc8Is1tyMIoAFVq38zPk6E9HSbowZI5yyZm5ef-0mbcvFW2G'; // v 14
 var passaporte_v = 'AKfycbwO0T7IwC-LQaPJCjT-n4DXverOxZunqLm49w7Wrwmu15F5Y2RsyU55kCCie8HjRrXXQg'; // v5
 var relatorio_v = 'AKfycbztJ0ILQ3eIzzioK-iG7ycG8kIQomntiJ2SPuTsnoDgB2TV9IKy3jMgN-AwXb0OgSxf'; // v 4
+var requerimento_v = 'AKfycbwna8b4z-CxVdeDy0tCuHEHZqp97pXan2mJWibl7yHm-no0Cg40h-iIe9ClawXHgCHxDg'; // v 1
 
 var startApp = function() {
   gapi.load('auth2', initSignIn);
@@ -93,6 +94,16 @@ function passaporte(){
     document.getElementById('container').style.display = 'inline';
     document.getElementById('box').style.display = 'inline';
     document.getElementById('matricula_id').focus();
+    
+    document.getElementById('matricula_id')
+      .setAttribute(
+        'onkeydown',
+        'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; passaporte_b()}';
+      
+    document.getElementById('matricula_button')
+      .setAttribute(
+        'onclick',
+        'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; passaporte_b()}'
   }
 }
 
@@ -102,6 +113,36 @@ function passaporte_b() {
   
   let s = document.createElement('script');
   s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&token=' + token;
+  document.body.appendChild(s);
+}
+
+function requerimento(){
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('box').style.display = 'inline';
+    document.getElementById('matricula_id').focus();
+    
+    document.getElementById('matricula_id')
+      .setAttribute(
+        'onkeydown',
+        'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; requerimento_b()}';
+      
+    document.getElementById('matricula_button')
+      .setAttribute(
+        'onclick',
+        'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; requerimento_b()}'
+  }
+}
+
+function requerimento_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + requerimento_v + '/exec?matricula=' + matricula + '&token=' + token;
   document.body.appendChild(s);
 }
 
@@ -264,7 +305,7 @@ pre {
 
 <p><a href="https://drive.google.com/drive/folders/18TxnjlmMWt7-ifq5xqS5ZYed9iPCggs7" style='color:#AA33AA'>Drive Secretaria</a></p>
 
-<p onclick="requerimento_matricula()" class='link' style='color:#DD4433'>Requerimento de matrícula</a></p>
+<p onclick="requerimento()" class='link' style='color:#DD4433'>Requerimento de matrícula</a></p>
 
 <p onclick="relatorio()" class='link' style='color:#DD4433'>Relatório anual</a></p>
 <!--
@@ -294,12 +335,11 @@ pre {
     pattern="[0-9]{6}" 
     maxlength="6" 
     style="margin:5px"
-    onkeydown="if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById('matricula_id').value; passaporte_b()}"
   >
   <input 
+    id="matricula_button" 
     type="button" 
     value="ok" 
-    onclick="if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById('matricula_id').value; passaporte_b()}"
   >
 </div>
 <div id='aviso' class='box'>
