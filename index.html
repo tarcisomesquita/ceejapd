@@ -95,15 +95,15 @@ function passaporte(){
     document.getElementById('box').style.display = 'inline';
     document.getElementById('matricula_id').focus();
     
-    document.getElementById('matricula_id')
-      .setAttribute(
-        'onkeydown',
-        'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; passaporte_b()}';
+    document.getElementById('matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; passaporte_b()}'
+    );
       
-    document.getElementById('matricula_button')
-      .setAttribute(
-        'onclick',
-        'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; passaporte_b()}'
+    document.getElementById('matricula_button').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; passaporte_b()}'
+    );
   }
 }
 
@@ -125,15 +125,15 @@ function requerimento(){
     document.getElementById('box').style.display = 'inline';
     document.getElementById('matricula_id').focus();
     
-    document.getElementById('matricula_id')
-      .setAttribute(
-        'onkeydown',
-        'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; requerimento_b()}';
+    document.getElementById('matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; requerimento_b()}'
+    );
       
-    document.getElementById('matricula_button')
-      .setAttribute(
-        'onclick',
-        'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; requerimento_b()}'
+    document.getElementById('matricula_button').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; requerimento_b()}'
+    );
   }
 }
 
