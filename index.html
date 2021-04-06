@@ -20,12 +20,15 @@ var token_update;
 var token = '';
 var usuario = '';
 var matricula = '';
+var dia_i = '';
+var dia_f = '';
 var avaliacao_v = 'AKfycbycymJfFkhifk1CpGwzHxzLcMeyvpdWpp-4FD8giLUPlT9ijEgoCBOe3ACIGxKljYWb'; // v 15
 var passaporte_v = 'AKfycby1jpyTzU46bspNfHg9bK-CceIhfyDbBzfbVf3EmowCtg6dHfdPBU4UJ8zXt9GM_dSI'; // v6
 var atendimento_v = 'AKfycbxIkr_q_884wnIOEqNo6U_oVPTNkBsNVtfS6ljck3H0uWQAVLsDhZijRaK6jACZSbyP3w'; // v1
 var boletim_v = 'AKfycby7nPKZfL-hnPMdGgwGZqrAP-oQPPSmWC4wEVvFGUr3zSbSxUx-TRRmiu84w3UT9cA'; // v8
 var relatorio_v = 'AKfycbztJ0ILQ3eIzzioK-iG7ycG8kIQomntiJ2SPuTsnoDgB2TV9IKy3jMgN-AwXb0OgSxf'; // v 4
 var requerimento_v = 'AKfycbxYxHZFDkvCPw3obJIoZfrKGjxzBmtfsaqGpzIeBCOzAU3Xb713aZAz14TqO6CHbtwe'; // v 1
+var boletim_file_v = 'AKfycbyitxPZdhGEXhm65B8409axmvb2cDpsll7ywvFpIeaRM8U975rp9s6W5CKWVd_RsMO2jA'; // v 1
 
 var startApp = function() {
   gapi.load('auth2', initSignIn);
@@ -99,7 +102,7 @@ function passaporte(){
     
     document.getElementById('matricula_id').setAttribute(
       'onkeydown',
-      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; passaporte_b()}'
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){document.getElementById("matricula_button").focus();}'
     );
       
     document.getElementById('matricula_button').setAttribute(
@@ -143,7 +146,7 @@ function boletim(){
     
     document.getElementById('matricula_id').setAttribute(
       'onkeydown',
-      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; boletim_b()}'
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){document.getElementById("matricula_button").focus()}'
     );
       
     document.getElementById('matricula_button').setAttribute(
@@ -162,7 +165,6 @@ function boletim_b() {
   document.body.appendChild(s);
 }
 
-
 function requerimento(){
   if (token === '') {
     aviso('ERRO: Precisa fazer login.');
@@ -174,7 +176,7 @@ function requerimento(){
     
     document.getElementById('matricula_id').setAttribute(
       'onkeydown',
-      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; requerimento_b()}'
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){document.getElementById("matricula_button").focus()}'
     );
       
     document.getElementById('matricula_button').setAttribute(
@@ -190,6 +192,41 @@ function requerimento_b() {
   
   let s = document.createElement('script');
   s.src = 'https://script.google.com/macros/s/' + requerimento_v + '/exec?matricula=' + matricula + '&token=' + token;
+  document.body.appendChild(s);
+}
+
+function boletim_file(){
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('dia_id').style.display = 'inline';
+    document.getElementById('dia_i_id').focus();
+    
+    document.getElementById('dia_i_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_i_id.value)){document.getElementById("dia_f_id").focus();}'
+    );
+
+    document.getElementById('dia_f_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_f_id.value)){document.getElementById("dia_button").focus();}'
+    );
+      
+    document.getElementById('dia_button').setAttribute(
+      'onclick',
+      'if (/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_i_id.value) && /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_f_id.value)){dia_i = document.getElementById("dia_i_id").value; dia_f = document.getElementById("dia_f_id").value; boletim_file_b()}'
+    );
+  }
+}
+
+function boletim_file_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + boletim_file_v + '/exec?dia_i=' + dia_i + '&dia_f=' + dia_f + '&token=' + token;
   document.body.appendChild(s);
 }
 
@@ -379,6 +416,29 @@ pre {
   >
   <input 
     id="matricula_button" 
+    type="button" 
+    value="ok" 
+  >
+</div>
+<div id='dia_id' class='box'>
+  <p>Digite o intervalo de dias (dd/mm/aaaa)</p>
+  <p>Início:<input 
+    id="dia_i_id" 
+    type="text" 
+    pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" 
+    maxlength="10" 
+    style="margin:5px"
+  ></p>
+  <p>Final:<input 
+    id="dia_f_id" 
+    type="text" 
+    pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" 
+    maxlength="10" 
+    style="margin:5px"
+  ></p>
+  <br />
+  <input 
+    id="dia_button" 
     type="button" 
     value="ok" 
   >
