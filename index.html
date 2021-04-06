@@ -22,6 +22,7 @@ var usuario = '';
 var matricula = '';
 var avaliacao_v = 'AKfycbycymJfFkhifk1CpGwzHxzLcMeyvpdWpp-4FD8giLUPlT9ijEgoCBOe3ACIGxKljYWb'; // v 15
 var passaporte_v = 'AKfycbwO0T7IwC-LQaPJCjT-n4DXverOxZunqLm49w7Wrwmu15F5Y2RsyU55kCCie8HjRrXXQg'; // v5
+var atendimento_v = 'AKfycbxIkr_q_884wnIOEqNo6U_oVPTNkBsNVtfS6ljck3H0uWQAVLsDhZijRaK6jACZSbyP3w'; // v1
 var boletim_v = 'AKfycbwBkkD8AAuEDslLerA8dD6ZC533eWMkCaIsUGbtElYc-hbPSIZTKOeJkkTcjS94iojc'; // v7
 var relatorio_v = 'AKfycbztJ0ILQ3eIzzioK-iG7ycG8kIQomntiJ2SPuTsnoDgB2TV9IKy3jMgN-AwXb0OgSxf'; // v 4
 var requerimento_v = 'AKfycbxYxHZFDkvCPw3obJIoZfrKGjxzBmtfsaqGpzIeBCOzAU3Xb713aZAz14TqO6CHbtwe'; // v 1
@@ -115,6 +116,20 @@ function passaporte_b() {
   let s = document.createElement('script');
   s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&token=' + token;
   document.body.appendChild(s);
+}
+
+function atendimento(){
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+    document.getElementById('page').style.cursor = 'wait';
+    
+    let s = document.createElement('script');
+    s.src = 'https://script.google.com/macros/s/' + atendimento_v + '/exec?token=' + token;
+    document.body.appendChild(s);
+  }
 }
 
 function boletim(){
@@ -319,17 +334,7 @@ pre {
 
 <br />
 
-<p><a href="https://bit.ly/PD_POR" style='color:#AA33AA'>Português</a></p>
-<p><a href="https://bit.ly/PD_ING" style='color:#AA33AA'>Ingles</a></p>
-<p><a href="https://bit.ly/PD_ART" style='color:#AA33AA'>Arte</a></p>
-<p><a href="https://bit.ly/PD_MAT" style='color:#AA33AA'>Matemática</a></p>
-<p><a href="https://bit.ly/PD_HIS" style='color:#AA33AA'>História</a></p>
-<p><a href="https://bit.ly/PD_GEO" style='color:#AA33AA'>Geografia</a></p>
-<p><a href="https://bit.ly/PD_FIL" style='color:#AA33AA'>Filosofia</a></p>
-<p><a href="https://bit.ly/PD_SOC" style='color:#AA33AA'>Sociologia</a></p>
-<p><a href="https://bit.ly/PD_BIO" style='color:#AA33AA'>Biologia</a></p>
-<p><a href="https://bit.ly/PD_QUI" style='color:#AA33AA'>Química</a></p>
-<p><a href="https://bit.ly/PD_FIS" style='color:#AA33AA'>Física</a></p>
+<p onclick="atendimento()" class='link' style='color:#DD6611'>Registros de atendimento</p>
 
 <p onclick="boletim()" class='link' style='color:#DD6611'>Gerar boletim</p>
 
