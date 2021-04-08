@@ -29,6 +29,7 @@ var boletim_v = 'AKfycby7nPKZfL-hnPMdGgwGZqrAP-oQPPSmWC4wEVvFGUr3zSbSxUx-TRRmiu8
 var relatorio_v = 'AKfycbztJ0ILQ3eIzzioK-iG7ycG8kIQomntiJ2SPuTsnoDgB2TV9IKy3jMgN-AwXb0OgSxf'; // v 4
 var requerimento_v = 'AKfycbxYxHZFDkvCPw3obJIoZfrKGjxzBmtfsaqGpzIeBCOzAU3Xb713aZAz14TqO6CHbtwe'; // v 1
 var boletim_file_v = 'AKfycbzHJ8d72DbcrNNkrknjfzXjmRlKYFfI_LyNLBz4KRcLUlj7wNANsQxsMjg8vPANGmSMjw'; // v 7
+var historico_v = 'AKfycbx7xSRrAsqtJJGT6C9h_k45x8V8Wavg043aHh4JqH1lFns946NtMT-TBxXihpnEXI2nBg'; // v 1
 
 var startApp = function() {
   gapi.load('auth2', initSignIn);
@@ -230,6 +231,36 @@ function boletim_file_b() {
   document.body.appendChild(s);
 }
 
+function historico(){
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('box').style.display = 'inline';
+    document.getElementById('matricula_id').focus();
+    
+    document.getElementById('matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){document.getElementById("matricula_button").focus()}'
+    );
+      
+    document.getElementById('matricula_button').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; historico_b()}'
+    );
+  }
+}
+
+function historico_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + historico_v + '/exec?matricula=' + matricula + '&token=' + token;
+  document.body.appendChild(s);
+}
+
 function relatorio(){
   if (token === '') {
     aviso('ERRO: Precisa fazer login.');
@@ -388,8 +419,10 @@ pre {
 <p onclick="boletim_file()" class='link' style='color:#DD4433'>Boletins para imprimir</a></p>
 
 <p onclick="relatorio()" class='link' style='color:#DD4433'>Relatório anual</a></p>
-<!--
-<p onclick="permissoes()" class='link' style='color:#DD4433'>Atualizar permissões</a></p>-->
+
+<p onclick="historico()" class='link' style='color:#DD4433'>Gerar historico</a></p>
+
+<!--<p onclick="permissoes()" class='link' style='color:#DD4433'>Atualizar permissões</a></p>-->
 
 <br />
 
