@@ -64,8 +64,8 @@ var signinChanged = function (val) {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     //console.log('usuario: ' + usuario);
-    //console.log('token_id: ' + token);
-    token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 600) * 1000);
+    console.log('token_id: ' + token);
+    token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
   }
   else {
     //console.log('signin false');
@@ -80,8 +80,8 @@ var signinChanged = function (val) {
 var timmer = function() {
   googleUser.reloadAuthResponse();
   token = googleUser.getAuthResponse().id_token;
-  //console.log('token_id: ' + token);
-  token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 600) * 1000);
+  console.log('token_id: ' + token);
+  token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
 }
 
 function avaliacao(){
