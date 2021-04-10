@@ -24,11 +24,14 @@ var dia_i = '';
 var dia_f = '';
 var whatsapp_antigo = '';
 var whatsapp_novo = '';
+var email_antigo = '';
+var email_novo = '';
 var avaliacao_v = 'AKfycbycymJfFkhifk1CpGwzHxzLcMeyvpdWpp-4FD8giLUPlT9ijEgoCBOe3ACIGxKljYWb'; // v 15
 var passaporte_v = 'AKfycby1jpyTzU46bspNfHg9bK-CceIhfyDbBzfbVf3EmowCtg6dHfdPBU4UJ8zXt9GM_dSI'; // v 6
 var atendimento_v = 'AKfycbxIkr_q_884wnIOEqNo6U_oVPTNkBsNVtfS6ljck3H0uWQAVLsDhZijRaK6jACZSbyP3w'; // v 1
 var boletim_v = 'AKfycby7nPKZfL-hnPMdGgwGZqrAP-oQPPSmWC4wEVvFGUr3zSbSxUx-TRRmiu84w3UT9cA'; // v 8
 var whatsapp_v = 'AKfycbypEHDq5skbHOlSsXqUuDkM152E1p0d9WWNtXW53LEqz3wbmJ722wGG0BHVqzPc1TZK'; // v 5
+var email_v = 'AKfycbxwtuCOzwJjWC4g0p4JNXT2yC3cwCplHJAOovDlBEWWvqHr17Ouwz3s2BzXLkirjz9PcA'; // v 1
 var requerimento_v = 'AKfycbxYxHZFDkvCPw3obJIoZfrKGjxzBmtfsaqGpzIeBCOzAU3Xb713aZAz14TqO6CHbtwe'; // v 1
 var boletim_file_v = 'AKfycbzHJ8d72DbcrNNkrknjfzXjmRlKYFfI_LyNLBz4KRcLUlj7wNANsQxsMjg8vPANGmSMjw'; // v 7
 var historico_v = 'AKfycbx7xSRrAsqtJJGT6C9h_k45x8V8Wavg043aHh4JqH1lFns946NtMT-TBxXihpnEXI2nBg'; // v 1
@@ -191,7 +194,6 @@ function whatsapp(){
 }
 
 function whatsapp_b() {
-  console.log('whatsapp_b');
   document.getElementById('container').style.display = 'inline';
   document.getElementById('whatsapp_id').style.display = 'inline';
   document.getElementById('whatsapp_antigo_id').focus();
@@ -213,12 +215,62 @@ function whatsapp_b() {
 }
 
 function whatsapp_c() {
-  console.log('whatsapp_c');
   document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Atualizando...</p>';
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
   s.src = 'https://script.google.com/macros/s/' + whatsapp_v + '/exec?matricula=' + matricula + '&whatsapp_antigo=' + whatsapp_antigo + '&whatsapp_novo=' + whatsapp_novo + '&token=' + token;
+  document.body.appendChild(s);
+}
+
+function email(){
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('box').style.display = 'inline';
+    document.getElementById('matricula_id').focus();
+    
+    document.getElementById('matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){document.getElementById("matricula_button").focus()}'
+    );
+      
+    document.getElementById('matricula_button').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(matricula_id.value)){matricula = document.getElementById("matricula_id").value; email_b()}'
+    );
+  }
+}
+
+function email_b() {
+  document.getElementById('container').style.display = 'inline';
+  document.getElementById('email_id').style.display = 'inline';
+  document.getElementById('email_antigo_id').focus();
+  
+  document.getElementById('email_antigo_id').setAttribute(
+    'onkeydown',
+    'if (event.keyCode == 13){document.getElementById("email_novo_id").focus();}'
+  );
+  
+  document.getElementById('email_novo_id').setAttribute(
+    'onkeydown',
+    'if (event.keyCode == 13){document.getElementById("email_button").focus();}'
+  );
+   
+  document.getElementById('email_button').setAttribute(
+    'onclick',
+    'email_antigo = escape(document.getElementById("email_antigo_id").value); email_novo = escape(document.getElementById("email_novo_id").value); email_c()}'
+  );
+}
+
+function email_c() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Atualizando...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + email_v + '/exec?matricula=' + matricula + '&email_antigo=' + email_antigo + '&email_novo=' + email_novo + '&token=' + token;
   document.body.appendChild(s);
 }
 
@@ -470,6 +522,8 @@ pre {
 
 <p onclick="whatsapp()" class='link' style='color:#DD6611'>Atualizar WhatsApp</p>
 
+<p onclick="email()" class='link' style='color:#DD6611'>Atualizar email</p>
+
 <br />
 
 <p><a href="https://drive.google.com/drive/folders/18TxnjlmMWt7-ifq5xqS5ZYed9iPCggs7" style='color:#AA33AA'>Drive Secretaria</a></p>
@@ -559,6 +613,25 @@ pre {
   <br />
   <input 
     id="whatsapp_button" 
+    type="button" 
+    value="ok" 
+  >
+</div>
+<div id='mail_id' class='box'>
+  <p>Digite o endereço de email</p>
+  <p>antigo:<input 
+    id="email_antigo_id" 
+    type="text" 
+    style="margin:5px"
+  ></p>
+  <p>novo:<input 
+    id="email_novo_id" 
+    type="text" 
+    style="margin:5px"
+  ></p>
+  <br />
+  <input 
+    id="email_button" 
     type="button" 
     value="ok" 
   >
