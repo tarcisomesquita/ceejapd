@@ -191,27 +191,29 @@ function whatsapp(){
 }
 
 function whatsapp_b() {
+  console.log('whatsapp_b');
   document.getElementById('container').style.display = 'inline';
   document.getElementById('whatsapp_id').style.display = 'inline';
   document.getElementById('whatsapp_antigo_id').focus();
   
   document.getElementById('whatsapp_antigo_id').setAttribute(
     'onkeydown',
-    'if (event.keyCode == 13 && /\([0-9]{2}\)[0-9]\.[0-9]{4}-[0-9]{4}/.test(whatsapp_antigo_id.value)){document.getElementById("whatsapp_novo_id").focus();}'
+    'if (event.keyCode == 13 && /\\([0-9]{2}\\)[0-9]\\.[0-9]{4}-[0-9]{4}/.test(whatsapp_antigo_id.value)){document.getElementById("whatsapp_novo_id").focus();}'
   );
   
   document.getElementById('whatsapp_novo_id').setAttribute(
     'onkeydown',
-    'if (event.keyCode == 13 && /\([0-9]{2}\)[0-9]\.[0-9]{4}-[0-9]{4}/.test(whatsapp_novo_id.value)){document.getElementById("whatsapp_button").focus();}'
+    'if (event.keyCode == 13 && /\\([0-9]{2}\\)[0-9]\\.[0-9]{4}-[0-9]{4}/.test(whatsapp_novo_id.value)){document.getElementById("whatsapp_button").focus();}'
   );
    
   document.getElementById('whatsapp_button').setAttribute(
     'onclick',
-    'if (/\([0-9]{2}\)[0-9]\.[0-9]{4}-[0-9]{4}/.test(whatsapp_antigo_id.value) && /\([0-9]{2}\)[0-9]\.[0-9]{4}-[0-9]{4}/.test(whatsapp_novo_id.value)){ whatsapp_antigo = escape(document.getElementById("whatsapp_antigo_id").value); whatsapp_novo = escape(document.getElementById("whatsapp_novo_id")); whatsapp_c()}'
+    'if (/\\([0-9]{2}\\)[0-9]\\.[0-9]{4}-[0-9]{4}/.test(whatsapp_antigo_id.value) && /\\([0-9]{2}\\)[0-9]\\.[0-9]{4}-[0-9]{4}/.test(whatsapp_novo_id.value)){ whatsapp_antigo = escape(document.getElementById("whatsapp_antigo_id").value); whatsapp_novo = escape(document.getElementById("whatsapp_novo_id")); whatsapp_c()}'
   );
 }
 
 function whatsapp_c() {
+  console.log('whatsapp_c');
   document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Atualizando...</p>';
   document.getElementById('page').style.cursor = 'wait';
   
