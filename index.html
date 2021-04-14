@@ -55,12 +55,12 @@ var initSignIn = function() {
   googleUser = auth2.currentUser.get();
 };
 
-async function sair() {
+function sair() {
   window.location.href = "https://accounts.google.com/Logout";
 //  auth2.signOut()
 };
 
-async function informe(mensagem) {
+function informe(mensagem) {
   document.getElementById("texto").value = 'ceejapd: ' + mensagem;
   document.forms.formlog2.submit();
 }
@@ -70,7 +70,7 @@ var signinChanged = function (val) {
     //console.log('signin true');
     token = googleUser.getAuthResponse().id_token;
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    await informe('LogIn: ' + usuario);
+    informe('LogIn: ' + usuario);
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
@@ -512,7 +512,7 @@ pre {
 
 <div id="customBtn" class="customBtn">Fazer login</div>
 <p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span>
-  <span onclick="await informe('Logout: ' + usuario); console.log('Logout'); await sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
+  <span onclick="informe('Logout: ' + usuario); console.log('Logout'); sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
 </p>
 
 <br />
