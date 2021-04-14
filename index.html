@@ -56,15 +56,27 @@ var initSignIn = function() {
 };
 
 var sair = function() {
-  window.location.href = "https://accounts.google.com/Logout?continue=https%3A%2F%2Ftarcisomesquita.github.io%2Fceejapd%2Findex.html";
+  informe('Logout: ' + usuario);
+  window.location.href = "https://accounts.google.com/Logout";
 //  auth2.signOut()
 };
+
+var informe = function(mensagem) {
+  fetch(
+    'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse',
+    {
+      method: 'POST',
+      payload: {'entry.667481942': 'ceejapd: ' + mensagem}
+    }
+  );
+}
 
 var signinChanged = function (val) {
   if (val) {
     //console.log('signin true');
     token = googleUser.getAuthResponse().id_token;
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    informe('LogIn: ' + usuario);
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
