@@ -55,6 +55,8 @@ var initSignIn = function() {
   googleUser = auth2.currentUser.get();
 };
 
+var sair = function() {auth2.signOut()};
+
 var signinChanged = function (val) {
   if (val) {
     //console.log('signin true');
@@ -500,7 +502,7 @@ pre {
 <br />
 
 <div id="customBtn" class="customBtn">Fazer login</div>
-<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span></p>
+<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span><br /><span onclick="sair()">Sair</span></p>
 
 <br />
 
