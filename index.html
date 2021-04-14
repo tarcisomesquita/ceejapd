@@ -28,6 +28,19 @@ var r = Array.apply(null, new Array(max)).map(function(_, i) {
 // map, filter
 var result = array.map(function(e) {return e.filter(function(f) {return f % 5 == 0})}); // 2 Dimensions
 
+
+
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// The size of the two-dimensional array must match the size of the range.
+var values = [
+[ "2.000", "1,000,000", "$2.99" ]
+];
+
+var range = sheet.getRange("B2:D2");
+range.setValues(values);
 */
 
 //https://developers.google.com/identity/sign-in/web/sign-in
