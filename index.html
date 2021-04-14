@@ -62,15 +62,8 @@ var sair = function() {
 };
 
 var informe = function(mensagem) {
-  fetch(
-    'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse',
-    {
-      method: 'POST',
-      mode: "cors",
-      credentials: "omit",
-      payload: {'entry.667481942': 'ceejapd: ' + mensagem}
-    }
-  );
+  document.getElementById("texto").value = 'ceejapd: ' + mensagem;
+  document.forms.formlog2.submit();
 }
 
 var signinChanged = function (val) {
@@ -661,6 +654,11 @@ pre {
   <p id='mensagem'></p>
   <input id='aviso_button' type="button" value="ok" onclick="aviso_b()">
 </div>
+
+<iframe id="hiddenFrame" name="hiddenFrame" style="visibility:hidden"></iframe>
+<form id="formlog2" enctype="application/x-www-form-urlencoded" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse" method="POST" target="hiddenFrame">
+<input id="texto" name="entry.667481942" type="hidden">
+</form>
 
 </div><!-- page -->
 
