@@ -66,6 +66,8 @@ var informe = function(mensagem) {
     'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse',
     {
       method: 'POST',
+      mode: "cors",
+      credentials: "omit",
       payload: {'entry.667481942': 'ceejapd: ' + mensagem}
     }
   );
