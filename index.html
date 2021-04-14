@@ -55,7 +55,10 @@ var initSignIn = function() {
   googleUser = auth2.currentUser.get();
 };
 
-var sair = function() {auth2.signOut()};
+var sair = function() {
+  window.location.href = "https://accounts.google.com/Logout";
+//  auth2.signOut()
+};
 
 var signinChanged = function (val) {
   if (val) {
@@ -502,8 +505,8 @@ pre {
 <br />
 
 <div id="customBtn" class="customBtn">Fazer login</div>
-<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span><br />
-  <span onclick="sair()" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; hover{cursor:pointer;}">Sair</span>
+<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span>
+  <span onclick="sair()" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
 </p>
 
 <br />
