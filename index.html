@@ -13,6 +13,22 @@
 //https://stackoverflow.com/questions/56663168/how-to-speed-up-the-search-data-in-sheet
 
 /*
+To speed up a script, read all data into an array with one command, perform any operations on the data in the array, and write the data out with one command.
+
+https://developers.google.com/apps-script/reference/cache/cache
+  function getRssFeed() {
+    var cache = CacheService.getScriptCache();
+    var cached = cache.get("rss-feed-contents");
+    if (cached != null) {
+      return cached;
+    }
+    // This fetch takes 20 seconds:
+    var result = UrlFetchApp.fetch("http://example.com/my-slow-rss-feed.xml");
+    var contents = result.getContentText();
+    cache.put("rss-feed-contents", contents, 1500); // cache for 25 minutes
+    return contents;
+  }
+
 
 var arr = [5, 6, 13, 0, 1, 18, 23];
 var even = arr.filter(v => v % 2 == 0);
