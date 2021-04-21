@@ -1,3 +1,16 @@
 https://cloud.google.com/shell/docs/quickstart
 
 https://cloud.google.com/build/docs/how-to
+
+  var row = ['New',
+    '',
+    response['Desk location'],
+    response['Employee name'],
+    response['Desk location'],
+    equipmentDetails,
+    response['email']];
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('Pending requests');
+  sheet.appendRow(row);
+  
+  
