@@ -14,3 +14,181 @@ https://cloud.google.com/build/docs/how-to
   sheet.appendRow(row);
   
   
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var pending = ss.getSheetByName('Pending requests');
+  var completed = ss.getSheetByName('Completed requests');
+  var rows = pending.getDataRange().getValues();
+  rows.forEach(function(row, index) {
+    var status = row[0];
+    if (status === 'Completed' || status == 'Cancelled') {
+      pending.deleteRow(index + 1);
+      completed.appendRow(row);
+      sendEquipmentRequestCompletedEmail_({
+        'Employee name': row[3],
+        'Desk location': row[4],
+        'email': row[6],
+      });
+    }
+  });
+
+function sendEquipmentRequestCompletedEmail_(request) {
+  var template = HtmlService.createTemplateFromFile('request-complete.html');
+  template.request = request;
+  var msg = template.evaluate();
+  MailApp.sendEmail({
+    to: request.email,
+    subject: 'Equipment request completed',
+    htmlBody: msg.getContent(),
+  });
+}
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>
+    An equipment request has been completed.
+    </p>
+    
+    <p>
+    Employee name: <?= request['Employee name'] ?><br/>
+    Desk location name: <?= request['Desk location'] ?><br/>
+    </p>
+  </body>
+</html>
+
+
+// new V8 method
+const newString = `This is how we do
+multi-line strings now.`;
+
+// old method
+const oldString = 'This is how we used\n'
++ 'to do multi-line strings.'; 
+
+let firstName = 'Ben';
+let lastName = 'Collins';
+console.log(`Full name is ${firstName} ${lastName}`);
+
+let letLambda = () => {}
+const constLambda = () => {}
+
+      var varAsyncLambda = async () => {}
+      let letAsyncLambda = async () => {}
+      const constAsyncLambda = async () => {}
+
+
+
+ 	
+
+// V8 runtime
+var data = {a: 12, b: false, c: 'blue'};
+var {a, c} = data;
+console.log(a, c);  // Outputs 12 "blue"
+
+
+var array = [1, 2, 3];
+var [x, y, z] = array;
+console.log(x, y, z);  // Outputs 1 2 3
+
+ 	
+
+// V8 runtime
+var obj = {a: 1, b: 2, c: 3};
+
+for (var key in obj) {  // OK in V8
+  var value = obj[key];
+  Logger.log("value = %s", value);
+}
+
+
+When migrating your script to V8, always use Date.prototype.getFullYear()
+
+
+for (var item in myArray) {
+  Logger.log(item);            // Logs 0, 1, 2, foo
+}
+
+ 	
+
+// V8 runtime (ECMAScript 6) custom iterator
+myArray[Symbol.iterator] = function() {
+  var currentIndex = 0;
+  var array = this;
+  
+  return {
+    next: function() {
+      if (currentIndex < array.length) {
+        return {
+          value: "[${currentIndex}]=" + array[currentIndex++],
+          done: false
+        };
+      } else {
+        return {done: true};
+      }
+    }
+  };
+}
+
+Logger.log("With V8 custom iterator:");
+// Must use for...of since
+//   for...in doesn't expect an iterable.
+for (var item of myArray) {
+  // Logs [0]=a, [1]=b, [2]=c
+  Logger.log(item);
+}
+
+
+can put one function per file
+
+// V8 runtime
+try {
+  doSomething();
+} catch (e) {
+  if (e instanceof TypeError) {
+    // Handle exception
+  }
+}
+
+
+<!DOCTYPE HTML>
+<meta charset="UTF-8">
+<title>Stack Trace Example</title>
+<body>
+<script>
+function trace() {
+  try {
+    throw new Error('myError');
+  }
+  catch(e) {
+    alert(e.stack);
+  }
+}
+function b() {
+  trace();
+}
+function a() {
+  b(3, 4, '\n\n', undefined, {});
+}
+a('first call, firstarg');
+</script>
+
+
+// V8 runtime
+var myGlobal = 5;
+
+function myFunction() {
+
+  // Logs an array that includes the names
+  // of Apps Script services
+  // (CalendarApp, GmailApp, etc.) in
+  // addition to myFunction and myGlobal.
+  console.log(Object.keys(this));
+
+  // Logs an array that includes the same
+  // values as above, and also includes
+  // ECMAScript built-ins like Math, Date,
+  // and Object.
+  console.log(
+    Object.getOwnPropertyNames(this));
+}
+
