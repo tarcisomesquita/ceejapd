@@ -2,18 +2,6 @@ https://cloud.google.com/shell/docs/quickstart
 
 https://cloud.google.com/build/docs/how-to
 
-  var row = ['New',
-    '',
-    response['Desk location'],
-    response['Employee name'],
-    response['Desk location'],
-    equipmentDetails,
-    response['email']];
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName('Pending requests');
-  sheet.appendRow(row);
-  
-  
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var pending = ss.getSheetByName('Pending requests');
   var completed = ss.getSheetByName('Completed requests');
@@ -29,7 +17,6 @@ https://cloud.google.com/build/docs/how-to
         'email': row[6],
       });
     }
-  });
 
 function sendEquipmentRequestCompletedEmail_(request) {
   var template = HtmlService.createTemplateFromFile('request-complete.html');
@@ -57,96 +44,12 @@ function sendEquipmentRequestCompletedEmail_(request) {
 </html>
 
 
-// new V8 method
-const newString = `This is how we do
-multi-line strings now.`;
+const myfunction = async () => {}
 
-// old method
-const oldString = 'This is how we used\n'
-+ 'to do multi-line strings.'; 
-
-let firstName = 'Ben';
-let lastName = 'Collins';
-console.log(`Full name is ${firstName} ${lastName}`);
-
-let letLambda = () => {}
-const constLambda = () => {}
-
-      var varAsyncLambda = async () => {}
-      let letAsyncLambda = async () => {}
-      const constAsyncLambda = async () => {}
-
-
-
- 	
-
-// V8 runtime
-var data = {a: 12, b: false, c: 'blue'};
-var {a, c} = data;
-console.log(a, c);  // Outputs 12 "blue"
-
-
-var array = [1, 2, 3];
-var [x, y, z] = array;
-console.log(x, y, z);  // Outputs 1 2 3
-
- 	
-
-// V8 runtime
-var obj = {a: 1, b: 2, c: 3};
-
-for (var key in obj) {  // OK in V8
-  var value = obj[key];
-  Logger.log("value = %s", value);
-}
-
-
-When migrating your script to V8, always use Date.prototype.getFullYear()
-
-
-for (var item in myArray) {
-  Logger.log(item);            // Logs 0, 1, 2, foo
-}
-
- 	
-
-// V8 runtime (ECMAScript 6) custom iterator
-myArray[Symbol.iterator] = function() {
-  var currentIndex = 0;
-  var array = this;
-  
-  return {
-    next: function() {
-      if (currentIndex < array.length) {
-        return {
-          value: "[${currentIndex}]=" + array[currentIndex++],
-          done: false
-        };
-      } else {
-        return {done: true};
-      }
-    }
-  };
-}
-
-Logger.log("With V8 custom iterator:");
-// Must use for...of since
 //   for...in doesn't expect an iterable.
 for (var item of myArray) {
   // Logs [0]=a, [1]=b, [2]=c
   Logger.log(item);
-}
-
-
-can put one function per file
-
-// V8 runtime
-try {
-  doSomething();
-} catch (e) {
-  if (e instanceof TypeError) {
-    // Handle exception
-  }
 }
 
 
@@ -191,4 +94,78 @@ function myFunction() {
   console.log(
     Object.getOwnPropertyNames(this));
 }
+
+
+//https://developers.google.com/apps-script/guides/web
+//https://stackoverflow.com/questions/tagged/google-apps-script
+//https://stackoverflow.com/questions/56663168/how-to-speed-up-the-search-data-in-sheet
+
+/*
+To speed up a script, read all data into an array with one command, perform any operations on the data in the array, and write the data out with one command.
+
+https://developers.google.com/apps-script/reference/cache/cache
+  function getRssFeed() {
+    var cache = CacheService.getScriptCache();
+    var cached = cache.get("rss-feed-contents");
+    if (cached != null) {
+      return cached;
+    }
+    // This fetch takes 20 seconds:
+    var result = UrlFetchApp.fetch("http://example.com/my-slow-rss-feed.xml");
+    var contents = result.getContentText();
+    cache.put("rss-feed-contents", contents, 1500); // cache for 25 minutes
+    return contents;
+  }
+
+
+var arr = [5, 6, 13, 0, 1, 18, 23];
+var even = arr.filter(v => v % 2 == 0);
+// [6, 0, 18]
+
+var double = arr.map(v => v * 2);
+// [10, 12, 26, 0, 2, 36, 46]
+
+const typedArray = new Uint8Array([1, 2, 3, 4]);
+const normalArray = Array.from(typedArray);
+
+
+
+
+
+
+var max = 1000;
+
+// Conventional method
+for (var i = 0; i < max; i++) {
+  // do something
+}
+
+// Proposed method
+var r = Array.apply(null, new Array(max)).map(function(_, i) {
+  // do something
+});
+
+// map, filter
+var result = array.map(function(e) {return e.filter(function(f) {return f % 5 == 0})}); // 2 Dimensions
+
+
+
+
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+var sheet = ss.getSheets()[0];
+
+// The size of the two-dimensional array must match the size of the range.
+var values = [
+[ "2.000", "1,000,000", "$2.99" ]
+];
+
+var range = sheet.getRange("B2:D2");
+range.setValues(values);
+*/
+
+//https://developers.google.com/identity/sign-in/web/sign-in
+//https://console.cloud.google.com/apis/credentials
+
+//https://myaccount.google.com/permissions
+//https://codebeautify.org/jsviewer
 
