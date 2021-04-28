@@ -64,7 +64,7 @@ var signinChanged = function (val) {
     //console.log('signin true');
     token = googleUser.getAuthResponse().id_token;
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    informe('LogIn: ' + usuario);
+    //informe('LogIn: ' + usuario);
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
