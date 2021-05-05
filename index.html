@@ -89,6 +89,40 @@ var timmer = function() {
   token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
 }
 
+function avaliacao2(){
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('avaliacao_id').style.display = 'inline';
+    document.getElementById('avaliacao_matricula_id').focus();
+    
+    document.getElementById('avaliacao_matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){document.getElementById("avaliacao_avaliacao_id").focus()}'
+    );
+      
+    document.getElementById('avaliacao_button_id').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(avaliacao_matricula_id.value)){matricula = document.getElementById("avaliacao_matricula_id").value; avaliacao2_b()}'
+    );
+  }
+}
+
+function avaliacao2_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Atualizando...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + whatsapp_v + '/exec?matricula=' + matricula + '&whatsapp_antigo=' + whatsapp_antigo + '&whatsapp_novo=' + whatsapp_novo + '&token=' + token;
+  s.onerror = function () {
+    document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+    informe('ERRO: load whatsapp');
+  };
+  document.body.appendChild(s);
+}
+
 function avaliacao(){
   if (token === '') {
     aviso('ERRO: Precisa fazer login.');
@@ -620,6 +654,30 @@ pre {
     value="ok" 
   >
 </div>
+<div id='avaliacao_id' class='box'>
+  <p>matrícula:<input 
+    id="avaliacao_matricula_id" 
+    type="text" 
+    pattern="[0-9]{6}" 
+    maxlength="6" 
+    style="margin:5px"
+  ></p>
+  <p>Avaliação:<select id='avaliacao_avaliacao_id' name='avaliacao_avaliacao_id' style='margin:5px'>
+    <option value='1A'>1A</option>
+    <option value='1B'>1B</option>
+    <option value='2A'>2A</option>
+    <option value='2B'>1B</option>
+    <option value='3A'>3A</option>
+    <option value='3B'>3B</option>
+  </select></p>
+  <br />
+  <input 
+    id="avaliacao_button_id" 
+    type="button" 
+    value="ok" 
+  >
+</div>
+
 <div id='dia_id' class='box'>
   <p>Digite o intervalo de dias (dd/mm/aaaa)</p>
   <p>Início:<input 
