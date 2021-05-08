@@ -21,7 +21,7 @@ var whatsapp_antigo = '';
 var whatsapp_novo = '';
 var email_antigo = '';
 var email_novo = '';
-var avaliacao_v = 'AKfycbxorwHwdd-7lanajgRwgzb3kVhlflvIrSf0P3yOawmRScIhZiRwFO_3zMEN3mDzsdmb'; // v 22
+var avaliacao_v = 'AKfycbxp7fHNGKudssrAC4chIt9SwYDfTPHHG1s5HY0C2jzms1ZeoTeAOzMD5tMyriGNiSNU'; // v 23
 var passaporte_v = 'AKfycbxAtaSr7YpW2lsKkzoT2MN-iA1UC5eXajLtt2gN-CIEZCpOuFo9yEGIEYNYCSnocj_X'; // v 11
 var atendimento_v = 'AKfycbxIkr_q_884wnIOEqNo6U_oVPTNkBsNVtfS6ljck3H0uWQAVLsDhZijRaK6jACZSbyP3w'; // v 1
 var boletim_v = 'AKfycbxCnqsgm-8gwuSnt1sCmyiXd0m52OZEXhLV1wLmIhw-7vqmjRh2Om6URMwU5KlIv_vS'; // v 19
@@ -70,7 +70,7 @@ var signinChanged = function (val) {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     //console.log('usuario: ' + usuario);
-    console.log('token_id: ' + token);
+    //console.log('token_id: ' + token);
     token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
   }
   else {
@@ -86,7 +86,7 @@ var signinChanged = function (val) {
 var timmer = function() {
   googleUser.reloadAuthResponse();
   token = googleUser.getAuthResponse().id_token;
-  console.log('token_id: ' + token);
+  //console.log('token_id: ' + token);
   token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
 }
 
