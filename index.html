@@ -14,13 +14,14 @@ var token_update;
 var token = '';
 var usuario = '';
 var matricula = '';
+var avaliacao_p = '';
 var dia_i = '';
 var dia_f = '';
 var whatsapp_antigo = '';
 var whatsapp_novo = '';
 var email_antigo = '';
 var email_novo = '';
-var avaliacao_v = 'AKfycbyEMxw8enZ_a2WK053yNz2TJqiwNCLKnJWdDpu1JrIRXV0HCA20synFLLmkIoNM0Y4w'; // v 18
+var avaliacao_v = 'AKfycbz6K1gWAV6SezwDEL9ktA-ypiEfSwToV6PVWE8TiZ9_OWRdOw1YDJ-xkNvNU2TMNOzy'; // v 20
 var passaporte_v = 'AKfycbxAtaSr7YpW2lsKkzoT2MN-iA1UC5eXajLtt2gN-CIEZCpOuFo9yEGIEYNYCSnocj_X'; // v 11
 var atendimento_v = 'AKfycbxIkr_q_884wnIOEqNo6U_oVPTNkBsNVtfS6ljck3H0uWQAVLsDhZijRaK6jACZSbyP3w'; // v 1
 var boletim_v = 'AKfycbxCnqsgm-8gwuSnt1sCmyiXd0m52OZEXhLV1wLmIhw-7vqmjRh2Om6URMwU5KlIv_vS'; // v 19
@@ -97,28 +98,33 @@ function avaliacao2(){
     document.getElementById('container').style.display = 'inline';
     document.getElementById('avaliacao_id').style.display = 'inline';
     document.getElementById('avaliacao_matricula_id').focus();
-    
+
     document.getElementById('avaliacao_matricula_id').setAttribute(
       'onkeydown',
-      'if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_id.value)){document.getElementById("avaliacao_avaliacao_id").focus()}'
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(avaliacao_matricula_id.value)){document.getElementById("avaliacao_avaliacao_id").focus()}'
     );
-      
+    
+    document.getElementById('avaliacao_avaliacao_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13){document.getElementById("avaliacao_button_id").focus()}'
+    );
+
     document.getElementById('avaliacao_button_id').setAttribute(
       'onclick',
-      'if (/[0-9]{6}/.test(avaliacao_matricula_id.value)){matricula = document.getElementById("avaliacao_matricula_id").value; avaliacao2_b()}'
+      'if (/[0-9]{6}/.test(avaliacao_matricula_id.value)){matricula = document.getElementById("avaliacao_matricula_id").value; avaliacao_p = document.getElementById("avaliacao_avaliacao_id").value; avaliacao2_b()}'
     );
   }
 }
 
 function avaliacao2_b() {
-  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Atualizando...</p>';
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + whatsapp_v + '/exec?matricula=' + matricula + '&whatsapp_antigo=' + whatsapp_antigo + '&whatsapp_novo=' + whatsapp_novo + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load whatsapp');
+    informe('ERRO: load avaliacao');
   };
   document.body.appendChild(s);
 }
@@ -654,7 +660,8 @@ pre {
     value="ok" 
   >
 </div>
-<div id='avaliacao_id' class='box'>
+
+<div id='avaliacao_id' class='box' style='text-align: left'>
   <p>matrícula:<input 
     id="avaliacao_matricula_id" 
     type="text" 
@@ -662,20 +669,20 @@ pre {
     maxlength="6" 
     style="margin:5px"
   ></p>
-  <p>Avaliação:<select id='avaliacao_avaliacao_id' name='avaliacao_avaliacao_id' style='margin:5px'>
+  <p>avaliação: <select id='avaliacao_avaliacao_id' style='margin:5px'>
     <option value='1A'>1A</option>
     <option value='1B'>1B</option>
     <option value='2A'>2A</option>
-    <option value='2B'>1B</option>
+    <option value='2B'>2B</option>
     <option value='3A'>3A</option>
     <option value='3B'>3B</option>
   </select></p>
-  <br />
-  <input 
+  <p>visualizar:<input 
     id="avaliacao_button_id" 
     type="button" 
     value="ok" 
-  >
+    style='margin:5px'
+  ></p>
 </div>
 
 <div id='dia_id' class='box'>
