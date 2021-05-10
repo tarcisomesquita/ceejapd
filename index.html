@@ -56,7 +56,7 @@ function sair() {
 };
 
 function informe(mensagem) {
-  document.getElementById("texto").value = 'ceejapd: ' + mensagem;
+  document.getElementById("texto").value = mensagem;
   document.forms.formlog2.submit();
 }
 
@@ -124,7 +124,7 @@ function avaliacao2_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao');
   };
   document.body.appendChild(s);
 }
@@ -141,7 +141,7 @@ function avaliacao(){
     s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: load avaliacao');
+      informe('ERRO: ceejapd: load avaliacao');
     };
     document.body.appendChild(s);
   }
@@ -176,7 +176,7 @@ function passaporte_b() {
   s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load passaporte');
+    informe('ERRO: ceejapd: load passaporte');
   };
   document.body.appendChild(s);
 }
@@ -193,7 +193,7 @@ function atendimento(){
     s.src = 'https://script.google.com/macros/s/' + atendimento_v + '/exec?token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: load atendimento');
+      informe('ERRO: ceejapd: load atendimento');
     };
     document.body.appendChild(s);
   }
@@ -228,7 +228,7 @@ function boletim_b() {
   s.src = 'https://script.google.com/macros/s/' + boletim_v + '/exec?matricula=' + matricula + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load boletim');
+    informe('ERRO: ceejapd: load boletim');
   };
   document.body.appendChild(s);
 }
@@ -283,7 +283,7 @@ function whatsapp_c() {
   s.src = 'https://script.google.com/macros/s/' + whatsapp_v + '/exec?matricula=' + matricula + '&whatsapp_antigo=' + whatsapp_antigo + '&whatsapp_novo=' + whatsapp_novo + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load whatsapp');
+    informe('ERRO: ceejapd: load whatsapp');
   };
   document.body.appendChild(s);
 }
@@ -338,7 +338,7 @@ function email_c() {
   s.src = 'https://script.google.com/macros/s/' + email_v + '/exec?matricula=' + matricula + '&email_antigo=' + email_antigo + '&email_novo=' + email_novo + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load email');
+    informe('ERRO: ceejapd: load email');
   };
   document.body.appendChild(s);
 }
@@ -372,7 +372,7 @@ function requerimento_b() {
   s.src = 'https://script.google.com/macros/s/' + requerimento_v + '/exec?matricula=' + matricula + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load email');
+    informe('ERRO: ceejapd: load email');
   };
   document.body.appendChild(s);
 }
@@ -411,7 +411,7 @@ function boletim_file_b() {
   s.src = 'https://script.google.com/macros/s/' + boletim_file_v + '/exec?dia_i=' + dia_i + '&dia_f=' + dia_f + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load boletim_file');
+    informe('ERRO: ceejapd: load boletim_file');
   };
   document.body.appendChild(s);
 }
@@ -445,7 +445,7 @@ function historico_b() {
   s.src = 'https://script.google.com/macros/s/' + historico_v + '/exec?matricula=' + matricula + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: load historico');
+    informe('ERRO: ceejapd: load historico');
   };
   document.body.appendChild(s);
 }
@@ -462,7 +462,7 @@ function relatorio(){
     s.src = 'https://script.google.com/macros/s/' + relatorio_v + '/exec?token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: load relatorio');
+      informe('ERRO: ceejapd: load relatorio');
     };
     document.body.appendChild(s);
   }
@@ -756,16 +756,16 @@ pre {
   <input id='aviso_button' type="button" value="ok" onclick="aviso_b()">
 </div>
 
-<iframe id="hiddenFrame" name="hiddenFrame" style="visibility:hidden"></iframe>
-<form id="formlog2" enctype="application/x-www-form-urlencoded" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse" method="POST" target="hiddenFrame">
-<input id="texto" name="entry.667481942" type="hidden">
-</form>
 <footer style='font-family:"sans-serif"; font-size:10px;'>
 Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.pt_BR"><img alt="Licença Creative Commons" style="border-width:0" src="https://tarcisomesquita.github.io/me/CC-BY.png" /></a><br />Esta obra está licenciada com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.pt_BR">Creative Commons Atribuição 4.0 Internacional</a>
 <footer>
 </div><!-- page -->
 
+<iframe id="hiddenFrame" name="hiddenFrame" style="visibility:hidden"></iframe>
+<form id="formlog2" enctype="application/x-www-form-urlencoded" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse" method="POST" target="hiddenFrame">
+<input id="texto" name="entry.667481942" type="hidden">
+</form>
 
 </body>
 </html>
