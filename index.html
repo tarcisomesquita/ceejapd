@@ -21,6 +21,7 @@ var whatsapp_antigo = '';
 var whatsapp_novo = '';
 var email_antigo = '';
 var email_novo = '';
+var avaliacao_filosofia = 'AKfycbyX8-L4bYU55LS1KMC_G8vY5GUFkNjzLs7hNfCOUZ7zoI5NOQPbXKZB6-jkh-S0geLDPQ'; // v 2
 var avaliacao_v = 'AKfycbw_K2Vk9-L6h30CctmuTBHnc85-Cuhyv7GbYQiWru7mqh6ClIbXciNNKmVmwRTXsihM'; // v 40
 var passaporte_v = 'AKfycbxAtaSr7YpW2lsKkzoT2MN-iA1UC5eXajLtt2gN-CIEZCpOuFo9yEGIEYNYCSnocj_X'; // v 11
 var atendimento_v = 'AKfycbxVBUkORXNY4uw8GnPuK46yKX68usQDFjQlhsu1ZLokfBzLNmvBTgfmrKfz6hkvJT8mcA'; // v 2
@@ -122,6 +123,45 @@ function avaliacao2_b() {
   
   let s = document.createElement('script');
   s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.onerror = function () {
+    document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+    informe('ERRO: ceejapd: load avaliacao');
+  };
+  document.body.appendChild(s);
+}
+
+function avaliacao_fil() {
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('avaliacao_id').style.display = 'inline';
+    document.getElementById('avaliacao_matricula_id').focus();
+
+    document.getElementById('avaliacao_matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(avaliacao_matricula_id.value)){document.getElementById("avaliacao_avaliacao_id").focus()}'
+    );
+    
+    document.getElementById('avaliacao_avaliacao_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13){document.getElementById("avaliacao_button_id").focus()}'
+    );
+
+    document.getElementById('avaliacao_button_id').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(avaliacao_matricula_id.value)){matricula = document.getElementById("avaliacao_matricula_id").value; avaliacao_p = document.getElementById("avaliacao_avaliacao_id").value; avaliacao_fil_b()}'
+    );
+  }
+}
+
+function avaliacao_fil_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_filosofia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao');
@@ -596,6 +636,8 @@ pre {
 <p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
 
 <p onclick="avaliacao2()" class='link' style='color:#22BB22'>Pegar avaliação de Física</p>
+
+<p onclick="avaliacao_fil()" class='link' style='color:#22BB22'>Pegar avaliação de Filosofia</p>
 
 <p onclick="passaporte()" class='link' style='color:#22BB22'>Ver notas (passaporte)</p>
 
