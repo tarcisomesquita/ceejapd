@@ -21,6 +21,7 @@ var whatsapp_antigo = '';
 var whatsapp_novo = '';
 var email_antigo = '';
 var email_novo = '';
+var avaliacao_geografia = 'AKfycbym-Z-KsZHRvwk1KQAyFGfR8G3LzHN2j1Xx9krw1wdcc8vpVH4fyUIpRVnn74k0MRQU'; // v 1
 var avaliacao_filosofia = 'AKfycbxMh54InnsOCqW4TEgkIncviDXJ8TjR9anLFYlB35CPOV68ARQovVq95NJ_bpNOB3rg2w'; // v 5
 var avaliacao_v = 'AKfycbw_K2Vk9-L6h30CctmuTBHnc85-Cuhyv7GbYQiWru7mqh6ClIbXciNNKmVmwRTXsihM'; // v 40
 var passaporte_v = 'AKfycbxAtaSr7YpW2lsKkzoT2MN-iA1UC5eXajLtt2gN-CIEZCpOuFo9yEGIEYNYCSnocj_X'; // v 11
@@ -168,6 +169,46 @@ function avaliacao_fil_b() {
   };
   document.body.appendChild(s);
 }
+
+function avaliacao_geo() {
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('avaliacao_a_id').style.display = 'inline';
+    document.getElementById('avaliacao_a_matricula_id').focus();
+
+    document.getElementById('avaliacao_a_matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(avaliacao_a_matricula_id.value)){document.getElementById("avaliacao_a_avaliacao_id").focus()}'
+    );
+    
+    document.getElementById('avaliacao_a_avaliacao_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13){document.getElementById("avaliacao_a_button_id").focus()}'
+    );
+
+    document.getElementById('avaliacao_a_button_id').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(avaliacao_a_matricula_id.value)){matricula = document.getElementById("avaliacao_a_matricula_id").value; avaliacao_p = document.getElementById("avaliacao_a_avaliacao_id").value; avaliacao_geo_b()}'
+    );
+  }
+}
+
+function avaliacao_geo_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.onerror = function () {
+    document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+    informe('ERRO: ceejapd: load avaliacao');
+  };
+  document.body.appendChild(s);
+}
+
 
 function avaliacao(){
   if (token === '') {
@@ -639,6 +680,8 @@ pre {
 
 <p onclick="avaliacao_fil()" class='link' style='color:#22BB22'>Pegar avaliação de Filosofia</p>
 
+<p onclick="avaliacao_geo()" class='link' style='color:#22BB22'>Pegar avaliação de Geografia</p>
+
 <p onclick="passaporte()" class='link' style='color:#22BB22'>Ver notas (passaporte)</p>
 
 <p><a href="https://bit.ly/escolapaulo">Formulário de matrícula</a></p>
@@ -721,6 +764,29 @@ pre {
   </select></p>
   <p>visualizar:<input 
     id="avaliacao_button_id" 
+    type="button" 
+    value="ok" 
+    style='margin:5px'
+  ></p>
+  <p>Terá <span style='color:#ff0000; font-weight:bold'>2 horas</span> para fazer</p>
+</div>
+
+
+<div id='avaliacao_a_id' class='box' style='text-align: left'>
+  <p>matrícula:<input 
+    id="avaliacao_a_matricula_id" 
+    type="text" 
+    pattern="[0-9]{6}" 
+    maxlength="6" 
+    style="margin:5px"
+  ></p>
+  <p>avaliação: <select id='avaliacao_a_avaliacao_id' style='margin:5px'>
+    <option value='1A'>1A</option>
+    <option value='2A'>2A</option>
+    <option value='3A'>3A</option>
+  </select></p>
+  <p>visualizar:<input 
+    id="avaliacao_a_button_id" 
     type="button" 
     value="ok" 
     style='margin:5px'
