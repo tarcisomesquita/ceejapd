@@ -25,6 +25,7 @@ var avaliacao_biologia = 'AKfycbxq1PBwI7foMl18n6alKzEGk_wCGrxeOhbsWWQ_4FMAOEpJvS
 var avaliacao_quimica = 'AKfycby482wf01AUOmY6FDt6cAE-KUAF-plIMyND_A1wAm8GQHnSPbsD_FSb00SUrvNJau6h4w'; // v 5
 var avaliacao_sociologia = 'AKfycbwzvENsMD9XDQ-adfYWZPW2oTzH8qt5-FpJDMZE73A_YjUnl17PGWyMbXr41S0HpD9r'; // v 5
 var avaliacao_geografia = 'AKfycbyMDEJ04KGXm2wq8hOVmm7esBquuBpSsn_4aw1hd3g_-Pi2MY6YtD8SztPJRuNDo3zS'; // v 5
+var avaliacao_geografia_ef = 'AKfycbz6MitrZ_UUBNQrpnElniTIrr_InqrwZsBZpdU8yDV-k29qZkwyGagT-5RyLZxb7AeZwg'; // v 1
 var avaliacao_filosofia = 'AKfycbyrwJf5jKTlgv5c2aqQ_pg2f1tKcqajqXjO1Bl01PQHYreYc42ZhhzQE_HRskKSw4-P7w'; // v 11
 var avaliacao_v = 'AKfycbxcOij4yGGldzC1avEX27AihvRLEultPYrgLJvkzTPAcrb4BMREGsbQKjkolThM7AhJ'; // v 43
 var passaporte_v = 'AKfycbyIwHeoXzeizDbXqKuF9cTM4yp8v4PiiyQmKbkMKJDHS1QrXs0cuVZWHwf-M9lEiRkG'; // v 16
@@ -205,6 +206,45 @@ function avaliacao_geo_b() {
   
   let s = document.createElement('script');
   s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.onerror = function () {
+    document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+    informe('ERRO: ceejapd: load avaliacao');
+  };
+  document.body.appendChild(s);
+}
+
+function avaliacao_geo_ef() {
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.');
+  }
+  else {
+    document.getElementById('container').style.display = 'inline';
+    document.getElementById('avaliacao_a_ef_id').style.display = 'inline';
+    document.getElementById('avaliacao_a_ef_matricula_id').focus();
+
+    document.getElementById('avaliacao_a_ef_matricula_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13 && /[0-9]{6}/.test(avaliacao_a_ef_matricula_id.value)){document.getElementById("avaliacao_a_ef_avaliacao_id").focus()}'
+    );
+    
+    document.getElementById('avaliacao_a_ef_avaliacao_id').setAttribute(
+      'onkeydown',
+      'if (event.keyCode == 13){document.getElementById("avaliacao_a_ef_button_id").focus()}'
+    );
+
+    document.getElementById('avaliacao_a_ef_button_id').setAttribute(
+      'onclick',
+      'if (/[0-9]{6}/.test(avaliacao_a_ef_matricula_id.value)){matricula = document.getElementById("avaliacao_a_ef_matricula_id").value; avaliacao_p = document.getElementById("avaliacao_a_ef_avaliacao_id").value; avaliacao_geo_ef_b()}'
+    );
+  }
+}
+
+function avaliacao_geo_ef_b() {
+  document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+  document.getElementById('page').style.cursor = 'wait';
+  
+  let s = document.createElement('script');
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia_ef + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao');
@@ -928,6 +968,30 @@ table {
   ></p>
   <p>Terá <span style='color:#ff0000; font-weight:bold'>2 horas</span> para fazer</p>
 </div>
+
+<div id='avaliacao_a_ef_id' class='box' style='text-align: left'>
+  <p>matrícula:<input 
+    id="avaliacao_a_ef_matricula_id" 
+    type="text" 
+    pattern="[0-9]{6}" 
+    maxlength="6" 
+    style="margin:5px"
+  ></p>
+  <p>avaliação: <select id='avaliacao_a_ef_avaliacao_id' style='margin:5px'>
+    <option value='1A'>1A</option>
+    <option value='2A'>2A</option>
+    <option value='3A'>3A</option>
+    <option value='4A'>3A</option>
+  </select></p>
+  <p>visualizar:<input 
+    id="avaliacao_a_ef_button_id" 
+    type="button" 
+    value="ok" 
+    style='margin:5px'
+  ></p>
+  <p>Terá <span style='color:#ff0000; font-weight:bold'>2 horas</span> para fazer</p>
+</div>
+
 
 <div id='dia_id' class='box'>
   <p>Digite o intervalo de dias (dd/mm/aaaa)</p>
