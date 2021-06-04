@@ -1077,5 +1077,14 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 <input id="texto" name="entry.667481942" type="hidden">
 </form>
 
+<script>
+let agora = new Date();
+let dia = agora.getDay();
+let hora = agora.getUTChours() - 3;
+
+if ((dia == 6 || dia == 0) || (hora < 8 || hora > 21)) {
+  document.getElementById('page').innerHTML = '<p class="erro">Volte no horário de funcionamento da escola.</p>';
+}
+</script>
 </body>
 </html>
