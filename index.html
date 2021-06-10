@@ -581,7 +581,7 @@ function email_c() {
   s.src = 'https://script.google.com/macros/s/' + email_v + '/exec?matricula=' + matricula + '&email_antigo=' + email_antigo + '&email_novo=' + email_novo + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load email');
+    informe('ERRO: ceejapd: load email: ' + usuario + ': ' + matricula + ': ' + email_antigo + ': ' + email_novo);
   };
   document.body.appendChild(s);
 }
@@ -615,7 +615,7 @@ function requerimento_b() {
   s.src = 'https://script.google.com/macros/s/' + requerimento_v + '/exec?matricula=' + matricula + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load email');
+    informe('ERRO: ceejapd: load requerimento: ' + usuario + ': ' + matricula);
   };
   document.body.appendChild(s);
 }
