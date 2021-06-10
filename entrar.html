@@ -27,9 +27,9 @@ function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   var profile = googleUser.getBasicProfile();
   
-  informe(`login2: ${profile.getEmail()}`);
+  informe('login2: ' + profile.getEmail());
   
-  window.location.href="https://tarcisomesquita.github.io/ceejapd/index.html"
+  setTimeout(function(){ window.location.href="https://tarcisomesquita.github.io/ceejapd/index.html"; }, 3000);
 }
 </script>
 </body>
