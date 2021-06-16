@@ -131,7 +131,7 @@ function avaliacao_fis_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao FIS ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -170,7 +170,7 @@ function avaliacao_fil_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_filosofia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao FIL ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -209,7 +209,7 @@ function avaliacao_geo_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao GEO EM ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -248,7 +248,7 @@ function avaliacao_geo_ef_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia_ef + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao GEO EF ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -287,7 +287,7 @@ function avaliacao_bio_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_biologia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao BIO ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -326,7 +326,7 @@ function avaliacao_soc_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_sociologia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao SOC ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -365,7 +365,7 @@ function avaliacao_qui_b() {
   s.src = 'https://script.google.com/macros/s/' + avaliacao_quimica + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load avaliacao');
+    informe('ERRO: ceejapd: load avaliacao QUI ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -383,7 +383,7 @@ function avaliacao(){
     s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: ceejapd: load avaliacao');
+      informe('ERRO: ceejapd: load avaliacao FIS ' + usuario);
     };
     document.body.appendChild(s);
   }
@@ -526,7 +526,7 @@ function whatsapp_c() {
   s.src = 'https://script.google.com/macros/s/' + whatsapp_v + '/exec?matricula=' + matricula + '&whatsapp_antigo=' + whatsapp_antigo + '&whatsapp_novo=' + whatsapp_novo + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load whatsapp');
+    informe('ERRO: ceejapd: load whatsapp ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -654,7 +654,7 @@ function boletim_file_b() {
   s.src = 'https://script.google.com/macros/s/' + boletim_file_v + '/exec?dia_i=' + dia_i + '&dia_f=' + dia_f + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load boletim_file');
+    informe('ERRO: ceejapd: load boletim_file ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -835,7 +835,7 @@ table {
 
 <br />
 
-<div id="customBtn" class="customBtn" onclick="informe('login: ' + navigator.userAgent)">Fazer login</div>
+<div id="customBtn" class="customBtn">Fazer login</div>
 <p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span>
   <span onclick="informe('Logout: ' + usuario); console.log('Logout'); sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
 </p>
