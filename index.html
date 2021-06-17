@@ -76,10 +76,10 @@ var signinChanged = function (val) {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    informe("login: " + usuario + " : " + navigator.userAgent);
+    //informe("login: " + usuario + " : " + navigator.userAgent);
     //console.log('usuario: ' + usuario);
     //console.log('token_id: ' + token);
-    token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
+    //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
   }
   else {
     //console.log('signin false');
