@@ -40,8 +40,31 @@ var boletim_file_v = 'AKfycbzHJ8d72DbcrNNkrknjfzXjmRlKYFfI_LyNLBz4KRcLUlj7wNANsQ
 var historico_v = 'AKfycbwGhUQ6D3scPw7PHgynssHZ8yUohgjys_kaCwCODB-G8cqKP5SSKc41BgcEiCkyrVxW'; // v 2
 var relatorio_v = 'AKfycbztJ0ILQ3eIzzioK-iG7ycG8kIQomntiJ2SPuTsnoDgB2TV9IKy3jMgN-AwXb0OgSxf'; // v 4
 
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+token = getCookie("ceejapd");
+
 var startApp = function() {
-  gapi.load('auth2', initSignIn);
+  if (token === "") {
+    gapi.load('auth2', initSignIn);
+  }
+  else {
+    gapi.load('auth2', initSignIn);
+    //usuario = getCookie("usuario");
+    //document.getElementById('mail').innerText = usuario;
+    //document.getElementById('customBtn').style.display = 'none';
+    //document.getElementById('bmail').style.display = 'block';
+  }
 };
 
 var initSignIn = function() {
@@ -59,6 +82,7 @@ var initSignIn = function() {
 };
 
 function sair() {
+  document.cookie = "ceejapd=;usuario=;expires=1970-01-01T00:00:00.000Z;path=/;";
   window.location.href = "https://accounts.google.com/Logout";
 //  auth2.signOut()
 };
