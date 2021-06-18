@@ -165,7 +165,7 @@ function avaliacao_fis_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/dev?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/dev?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao FIS ' + usuario);
