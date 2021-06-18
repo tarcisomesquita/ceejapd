@@ -99,7 +99,7 @@ var signinChanged = function (val) {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    //informe("login: " + usuario + " : " + navigator.userAgent);
+    informe("login: " + usuario + " : " + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
     //console.log('usuario: ' + usuario);
     //console.log('token_id: ' + token);
     //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
@@ -1111,9 +1111,9 @@ let agora = new Date();
 let dia = agora.getDay();
 let hora = agora.getUTCHours() - 3;
 
-if ((dia == 6 || dia == 0) || (hora < 8 || hora > 21)) {
-  document.getElementById('page').innerHTML = '<p class="erro">Volte no horário de funcionamento da escola.</p>';
-}
+//if ((dia == 6 || dia == 0) || (hora < 8 || hora > 21)) {
+//  document.getElementById('page').innerHTML = '<p class="erro">Volte no horário de funcionamento da escola.</p>';
+//}
 </script>
 </body>
 </html>
