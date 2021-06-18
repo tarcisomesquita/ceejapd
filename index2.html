@@ -91,7 +91,8 @@ var initSignIn = function() {
 };
 
 function sair() {
-  document.cookie = "ceejapd=;usuario=;expires=1970-01-01T00:00:00.000Z;path=/;";
+  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/;";
+  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/;";
   window.location.href = "https://accounts.google.com/Logout";
 //  auth2.signOut()
 };
