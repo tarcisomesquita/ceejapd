@@ -1142,7 +1142,7 @@ fetch('https://worldtimeapi.org/api/America/Sao_Paulo').then(function(response) 
       let hora = agora.getUTCHours() - 3;
       let diff = agora.getTime() - Date.parse(json.utc_datetime);
       if (diff < -600000 || 600000 < diff) {
-        informe("diff maior que 10 min");
+        informe('usuário: ' + usuario + 'diff maior que 10 min');
       }
       informe('usuário: ' + usuario + ' | ip: ' + json.client_ip);
     });
