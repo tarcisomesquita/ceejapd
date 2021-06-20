@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv='cache-control' content='no-store'>
+<meta viewport='width=device-width'>
+
+<title>teste</title>
+
+<!-- <script src="https://apis.google.com/js/api:client.js"></script> -->
+<script>
+var token = '';
+var usuario = '';
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+token = getCookie("ceejapd");
+usuario = getCookie("usuario");
+
+console.log('ceejapd: ' + token + " usuario: " + usuario + ' Cookies: ' + document.cookie);
+
+document.cookie = "ceejapd=7EGIGFJHAGH;expires=2021-12-25T00:00:00.000Z;path=/;";
+document.cookie = "usuario=teste@gmail.com;expires=2021-12-25T00:00:00.000Z;path=/;";
+
+token = getCookie("ceejapd");
+usuario = getCookie("usuario");
+
+console.log('ceejapd: ' + token + " usuario: " + usuario + ' Cookies: ' + document.cookie);
+
+</script>
+</head>
+<body>
+</body>
+</html>
