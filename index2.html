@@ -29,7 +29,7 @@ var avaliacao_sociologia = 'AKfycbwzvENsMD9XDQ-adfYWZPW2oTzH8qt5-FpJDMZE73A_YjUn
 var avaliacao_geografia = 'AKfycbyJFQ7iec_sh7_XZeA-gF0nkTw7PiUvQvKS380qnTMM9mOXFoeEqCRy0SEgMkdnRECo'; // v 6
 var avaliacao_geografia_ef = 'AKfycbzthdOscLem4IFwNr-YXC3lXJHwfAwvNY5pHFmisS2okGVcGQdA4fkybn9LGf9YzNFSGw'; // v 4
 var avaliacao_filosofia = 'AKfycbyAYJCudXEC-SB_78lmNkwu1-Toi5yy02slPzbCa4w4r3IOzm9A_iwtctWVklknx-jJ'; // v 12
-var avaliacao_v = 'AKfycbyHwKehvsmFCQdY-ldV_e3bkUh0S6NwqG5R-_DZCkk'; // v 1
+var avaliacao_v = 'AKfycbyDkCnxE3h5Zm-NHBFbl0MmBUQCYoMnLpYGRG_1764ncXeFsjAqhON-NHPumgnLb6c6'; // cookie
 var passaporte_v = 'AKfycbzbuGwt49ViSelYTycGpz7fYXkCvYbCs6hACZ3LrGk1dDb6gDxNkpQkM9LeUJ4VNNJx'; // v 17
 var atendimento_v = 'AKfycbyGl9ytAKW4l37JrGDvZae7QebPK4qUHNptVO2yfXrFR8hfStUG6pHXy4miqpwM2_xb'; // v 3
 var boletim_v = 'AKfycbxFF0q33HU2ar_vu4U0AhuMz3k0eIeRnQDxxBTbkkU2rWDnsJt8tgWJmIainwOe1giH'; // v 26
@@ -169,7 +169,7 @@ function avaliacao_fis_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/dev?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao FIS ' + usuario);
