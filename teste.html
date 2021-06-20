@@ -12,7 +12,14 @@ fetch('https://worldtimeapi.org/api/America/Sao_Paulo').then(function(response) 
   var contentType = response.headers.get("content-type");
   if(contentType && contentType.indexOf("application/json") !== -1) {
     return response.json().then(function(json) {
-      console.log(json);
+      let agora = new Date();
+      let dia = agora.getDay();
+      let hora = agora.getUTCHours() - 3;
+      let diff = agora.getTime() - Date.parse(utc_datetime);
+      if (-600000 < diff || diff > 600000) {
+        console.log("diff maior que 10 min");
+      }
+      console.log('client_ip: ' + json.client_ip + ' | utc_datetime: ' + utc_datetime);
     });
   } else {
     console.log("Oops, we haven't got JSON!");
