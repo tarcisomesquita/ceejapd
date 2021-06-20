@@ -1131,6 +1131,26 @@ let hora = agora.getUTCHours() - 3;
 //if ((dia == 6 || dia == 0) || (hora < 8 || hora > 21)) {
 //  document.getElementById('page').innerHTML = '<p class="erro">Volte no horário de funcionamento da escola.</p>';
 //}
+
+/*
+fetch('https://worldtimeapi.org/api/America/Sao_Paulo').then(function(response) {
+  var contentType = response.headers.get("content-type");
+  if(contentType && contentType.indexOf("application/json") !== -1) {
+    return response.json().then(function(json) {
+      let agora = new Date();
+      let dia = agora.getDay();
+      let hora = agora.getUTCHours() - 3;
+      let diff = agora.getTime() - Date.parse(json.utc_datetime);
+      if (diff < -600000 || 600000 < diff) {
+        informe("diff maior que 10 min");
+      }
+      informe('usuário: ' + usuario + ' | ip: ' + json.client_ip);
+    });
+  } else {
+    informe('ERRO: Not got JSON | usuário: ' + usuario);
+  }
+});
+*/
 </script>
 </body>
 </html>
