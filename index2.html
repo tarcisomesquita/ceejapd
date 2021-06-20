@@ -40,6 +40,19 @@ var boletim_file_v = 'AKfycbzHJ8d72DbcrNNkrknjfzXjmRlKYFfI_LyNLBz4KRcLUlj7wNANsQ
 var historico_v = 'AKfycbwGhUQ6D3scPw7PHgynssHZ8yUohgjys_kaCwCODB-G8cqKP5SSKc41BgcEiCkyrVxW'; // v 2
 var relatorio_v = 'AKfycbztJ0ILQ3eIzzioK-iG7ycG8kIQomntiJ2SPuTsnoDgB2TV9IKy3jMgN-AwXb0OgSxf'; // v 4
 
+function informe(mensagem) {
+  document.getElementById("texto").value = mensagem;
+  document.forms.formlog2.submit();
+}
+
+function sair() {
+  informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/;";
+  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/;";
+  window.location.href = "https://accounts.google.com/Logout";
+//  auth2.signOut()
+};
+
 function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
@@ -69,14 +82,14 @@ if (token === '') {
 }
 
 var startApp = function() {
-  if (token === "") {
+  if (token === '') {
     gapi.load('auth2', initSignIn);
   }
   else {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    console.log('l by c');
+    informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
 
@@ -94,19 +107,6 @@ var initSignIn = function() {
   googleUser = auth2.currentUser.get();
 };
 
-function sair() {
-  informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
-  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/;";
-  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/;";
-  window.location.href = "https://accounts.google.com/Logout";
-//  auth2.signOut()
-};
-
-function informe(mensagem) {
-  document.getElementById("texto").value = mensagem;
-  document.forms.formlog2.submit();
-}
-
 var signinChanged = function (val) {
   if (val) {
     //console.log('signin true');
@@ -116,7 +116,7 @@ var signinChanged = function (val) {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    informe("login: " + usuario + " : " + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
     //console.log('usuario: ' + usuario);
     //console.log('token_id: ' + token);
     //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
