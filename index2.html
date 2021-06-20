@@ -59,7 +59,6 @@ usuario = getCookie("usuario");
 console.log('usuario: ' + usuario + ' token: ' + token);
 
 if (token === '') {
-console.log('AQUI');
   let s = document.createElement('script');
   s.src = 'https://apis.google.com/js/api:client.js';
   s.onerror = function () {
