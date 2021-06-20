@@ -7,7 +7,7 @@
 
 <title>CEEJA Paulo Decourt</title>
 
-<script src="https://apis.google.com/js/api:client.js"></script>
+<!-- <script src="https://apis.google.com/js/api:client.js"></script> -->
 <script>
 //alert('Este sistema deixará de funcionar fora do horário da escola.');
 var auth2;
@@ -62,7 +62,7 @@ if (token === '') {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load api ' + usuario);
   };
-  //document.head.appendChild(s);
+  document.head.appendChild(s);
 }
 
 var startApp = function() {
