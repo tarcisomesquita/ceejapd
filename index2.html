@@ -1108,9 +1108,9 @@ let agora = new Date();
 let dia = agora.getDay();
 let hora = agora.getUTCHours() - 3;
 
-//if ((dia == 6 || dia == 0) || (hora < 8 || hora > 21)) {
-//  document.getElementById('page').innerHTML = '<p class="erro">Volte no horário de funcionamento da escola.</p>';
-//}
+if ((dia == 6 || dia == 0) || (hora < 8 || hora > 21)) {
+  document.getElementById('page').innerHTML = '<p class="erro">Volte no horário de funcionamento da escola.</p>';
+}
 
 /*
 fetch('https://worldtimeapi.org/api/America/Sao_Paulo').then(function(response) {
