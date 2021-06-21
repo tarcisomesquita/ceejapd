@@ -8,7 +8,7 @@
 
 <title>CEEJA Paulo Decourt</title>
 
-<script src="https://apis.google.com/js/api:client.js"></script>
+<!-- <script src="https://apis.google.com/js/api:client.js"></script> -->
 <script>
 //alert('Este sistema deixará de funcionar fora do horário da escola.');
 var auth2;
@@ -24,28 +24,41 @@ var whatsapp_antigo = '';
 var whatsapp_novo = '';
 var email_antigo = '';
 var email_novo = '';
-var avaliacao_biologia = 'AKfycbztXo0RhmYR8Mq7NtjgPMhMCfhFde6MLCh392nTtS4yChkRcQ0PF6b7l_SGNu5bbnJ2Yw'; // v 4
-var avaliacao_quimica = 'AKfycbwRuzoDnUzry5N1xUg9eleb2uNja2sNBR2XJQ-zKqpMXkbgfhL_9Cm1BJZDgkbJciTaMQ'; // v 6
-var avaliacao_sociologia = 'AKfycbwzvENsMD9XDQ-adfYWZPW2oTzH8qt5-FpJDMZE73A_YjUnl17PGWyMbXr41S0HpD9r'; // v 5
-var avaliacao_geografia = 'AKfycbyJFQ7iec_sh7_XZeA-gF0nkTw7PiUvQvKS380qnTMM9mOXFoeEqCRy0SEgMkdnRECo'; // v 6
-var avaliacao_geografia_ef = 'AKfycbzthdOscLem4IFwNr-YXC3lXJHwfAwvNY5pHFmisS2okGVcGQdA4fkybn9LGf9YzNFSGw'; // v 4
-var avaliacao_filosofia = 'AKfycbyAYJCudXEC-SB_78lmNkwu1-Toi5yy02slPzbCa4w4r3IOzm9A_iwtctWVklknx-jJ'; // v 12
-var avaliacao_v = 'AKfycbwTT-BKZGBQ4NhkkuJBiF8SYrzsUlcuqgSvV7KN6PnnR-g4KbGa5wCTzJT8VTSZbjmd'; // v 1
-var passaporte_v = 'AKfycbzbuGwt49ViSelYTycGpz7fYXkCvYbCs6hACZ3LrGk1dDb6gDxNkpQkM9LeUJ4VNNJx'; // v 17
-var atendimento_v = 'AKfycbyGl9ytAKW4l37JrGDvZae7QebPK4qUHNptVO2yfXrFR8hfStUG6pHXy4miqpwM2_xb'; // v 3
-var boletim_v = 'AKfycbxFF0q33HU2ar_vu4U0AhuMz3k0eIeRnQDxxBTbkkU2rWDnsJt8tgWJmIainwOe1giH'; // v 26
-var whatsapp_v = 'AKfycbypEHDq5skbHOlSsXqUuDkM152E1p0d9WWNtXW53LEqz3wbmJ722wGG0BHVqzPc1TZK'; // v 5
-var email_v = 'AKfycbzHRXK5DOQ5JLxGvYFkoK8x2qWaSe4JtUpOQm4fmGISMaPPosznywPRvwMXxSECrdlBaA'; // v 2
-var requerimento_v = 'AKfycbw5DlwDHRCCbr-Kj9rLVRfiDJ84SsxavVpSvKyedMhe7YhuEIZ35JWKrOkg28QxlVpm'; // v 2
-var boletim_file_v = 'AKfycbzHJ8d72DbcrNNkrknjfzXjmRlKYFfI_LyNLBz4KRcLUlj7wNANsQxsMjg8vPANGmSMjw'; // v 7
+var avaliacao_geografia_ef = 'AKfycbzjgr_LHUPtWSIycRdAXhIYyq4j-G8uWNk_6mXFuQQml84BKkzkurUrTRFpTvZyOju8'; // cookie1
+var avaliacao_geografia = 'AKfycbzjetbHZo1RM9zKjS_caYom6fT8KpFu8MW-MnDWN7iaLOVRZfCpezbIE8Go0AIdnONA'; // cookie
+var avaliacao_filosofia = 'AKfycbwbOLUvuJuDWQlFK3hcaYR3AEd3eTBWX1Puk2hlGIt--u7Vcg_0Idq7CMxx8ALTBVzAPQ'; // cookie
+var avaliacao_sociologia = 'AKfycbyvDbCoPn0CW0na4C9MjF1swRXZ25Rn8BNRfLjKN6w2Oaq6FeKUjqWadGr6gBVsstTG'; // cookie
+var avaliacao_biologia = 'AKfycbwLj-r0yki9rO7Ti0Su2KN8NL0DabXPdLZQ6uhsrYmmAvgfaeU2VoeOYINlLISVRHZb4w'; // cookie
+var avaliacao_quimica = 'AKfycbzUaJ2AQUjwFRefbFjriHxqcsIOp7d-VdLTpjCFC9YY5XwSio6DT6pEXDmTwFAkl0pZSw'; // cookie3
+var avaliacao_fisica = 'AKfycbx9fTM_LdAH7YP72A58zvXOCeJbeNM1WP3NJplw_1i6uF9hdnglHD10ndm2BwBG9o6y'; // cookie3
+var passaporte_v = 'AKfycbyW8l7Ur0b0pg16Zxd93u_dv3xQhLTDkaGcJ7-ycmfC6FwIffM1FNicD3Veo5S26DBjCg'; // cookie1
+var atendimento_v = 'AKfycbxe43C73a0aZ1vU62ZU2gj4IZh2-2Yg7WSnu5kx5hxyCwK0ZHWO-p3_vXEY6HNwWQg7JQ'; // cookie
+var boletim_v = 'AKfycbypYC1ksgfw3dvSNvsHzuuaKzqqGkyAAacJ0ySHG0zpiGm3LLQSI7dKSOWqbtZzIwzj'; // cookie
+var whatsapp_v = 'AKfycbyHPPo8uJ9m72E1-OjLPw1Z-zG5isy_7Rhiw-JIYapBKL2LdaYENKn04E5PtRUwLJB9'; // cookie
+var email_v = 'AKfycbx4PWKk8rfmpL9CuwEdlApN5e67VGDS1aanSzWJALT2jTExVgJy0upYs9cwQHQvjQyjEw'; // cookie2
+var boletim_file_v = 'AKfycbyRo9yWLCj30JT61wkip9_spS6oAWUvOHSaCasaSzXZCGzcGKMtB0uGPYvlH-YMj-Ek4w'; // cookie4
+var requerimento_v = 'AKfycbyqwx3Q5n9-svYjswgCJ18eFStpkm2iXzqFyQp6uObdwFCclADbsbj5whCCVLYeKSGD'; // cookie5
+var relatorio_v = 'AKfycbzEMNAnhexSsPCFBOEoIL3kB-UtOT38TEUivRB64-LdwvrqQDa-YdSLKLPlqI-lSCDm'; // cookie6
 var historico_v = 'AKfycbwGhUQ6D3scPw7PHgynssHZ8yUohgjys_kaCwCODB-G8cqKP5SSKc41BgcEiCkyrVxW'; // v 2
-var relatorio_v = 'AKfycbztJ0ILQ3eIzzioK-iG7ycG8kIQomntiJ2SPuTsnoDgB2TV9IKy3jMgN-AwXb0OgSxf'; // v 4
+function informe(mensagem) {
+  document.getElementById("texto").value = mensagem;
+  document.forms.formlog2.submit();
+}
+
+function sair() {
+  informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/;";
+  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/;";
+  window.location.href = "https://accounts.google.com/Logout";
+//  auth2.signOut()
+};
 
 function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
   for(let i = 0; i < ca.length; i++) {
     let c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1);
     if (c.indexOf(name) == 0) {
       return c.substring(name.length, c.length);
     }
@@ -54,22 +67,34 @@ function getCookie(cname) {
 }
 
 token = getCookie("ceejapd");
+usuario = getCookie("usuario");
+
+console.log('usuario: ' + usuario + ' token: ' + token);
+
+if (token === '') {
+  let s = document.createElement('script');
+  s.src = 'https://apis.google.com/js/api:client.js';
+  s.onerror = function () {
+    document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+    informe('ERRO: ceejapd: load api ' + usuario);
+  };
+  document.head.appendChild(s);
+}
 
 var startApp = function() {
-  if (token === "") {
+  if (token === '') {
     gapi.load('auth2', initSignIn);
   }
   else {
-    gapi.load('auth2', initSignIn);
-    //usuario = getCookie("usuario");
-    //document.getElementById('mail').innerText = usuario;
-    //document.getElementById('customBtn').style.display = 'none';
-    //document.getElementById('bmail').style.display = 'block';
+    document.getElementById('mail').innerText = usuario;
+    document.getElementById('customBtn').style.display = 'none';
+    document.getElementById('bmail').style.display = 'block';
+    informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
 
 var initSignIn = function() {
-  auth2 = gapi.auth2.init({client_id: '330234016508-6d6d97vqrtofusi7f85c9t1iu6nmtced.apps.googleusercontent.com', scope:'profile email'});
+  auth2 = gapi.auth2.init({client_id: '1035420078946-91kc8sj0pl3akqt2r6nd710p13kdr7bk.apps.googleusercontent.com', scope:'profile email'});
   
   auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
   
@@ -82,17 +107,6 @@ var initSignIn = function() {
   googleUser = auth2.currentUser.get();
 };
 
-function sair() {
-  document.cookie = "ceejapd=;usuario=;expires=1970-01-01T00:00:00.000Z;path=/;";
-  window.location.href = "https://accounts.google.com/Logout";
-//  auth2.signOut()
-};
-
-function informe(mensagem) {
-  document.getElementById("texto").value = mensagem;
-  document.forms.formlog2.submit();
-}
-
 var signinChanged = function (val) {
   if (val) {
     //console.log('signin true');
@@ -102,7 +116,7 @@ var signinChanged = function (val) {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    //informe("login: " + usuario + " : " + navigator.userAgent);
+    informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
     //console.log('usuario: ' + usuario);
     //console.log('token_id: ' + token);
     //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
@@ -155,7 +169,7 @@ function avaliacao_fis_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_fisica + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao FIS ' + usuario);
@@ -194,7 +208,7 @@ function avaliacao_fil_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_filosofia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_filosofia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao FIL ' + usuario);
@@ -233,7 +247,7 @@ function avaliacao_geo_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao GEO EM ' + usuario);
@@ -272,7 +286,7 @@ function avaliacao_geo_ef_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia_ef + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_geografia_ef + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao GEO EF ' + usuario);
@@ -311,7 +325,7 @@ function avaliacao_bio_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_biologia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_biologia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao BIO ' + usuario);
@@ -350,7 +364,7 @@ function avaliacao_soc_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_sociologia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_sociologia + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao SOC ' + usuario);
@@ -389,31 +403,12 @@ function avaliacao_qui_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + avaliacao_quimica + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + avaliacao_quimica + '/exec?matricula=' + matricula + '&avaliacao=' + avaliacao_p + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load avaliacao QUI ' + usuario);
   };
   document.body.appendChild(s);
-}
-
-
-function avaliacao(){
-  if (token === '') {
-    aviso('ERRO: Precisa fazer login.');
-  }
-  else {
-    document.getElementById('page').innerHTML = '<p class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
-    document.getElementById('page').style.cursor = 'wait';
-    
-    let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/' + avaliacao_v + '/exec?token=' + token;
-    s.onerror = function () {
-      document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: ceejapd: load avaliacao FIS ' + usuario);
-    };
-    document.body.appendChild(s);
-  }
 }
 
 function passaporte(){
@@ -442,7 +437,7 @@ function passaporte_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load passaporte');
@@ -459,7 +454,7 @@ function atendimento(){
     document.getElementById('page').style.cursor = 'wait';
     
     let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/' + atendimento_v + '/exec?token=' + token;
+    s.src = 'https://script.google.com/macros/s/' + atendimento_v + '/exec?usuario=' + usuario + '&token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
       informe('ERRO: ceejapd: load atendimento');
@@ -494,7 +489,7 @@ function boletim_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + boletim_v + '/exec?matricula=' + matricula + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + boletim_v + '/exec?matricula=' + matricula + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load boletim');
@@ -550,7 +545,7 @@ function whatsapp_c() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + whatsapp_v + '/exec?matricula=' + matricula + '&whatsapp_antigo=' + whatsapp_antigo + '&whatsapp_novo=' + whatsapp_novo + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + whatsapp_v + '/exec?matricula=' + matricula + '&whatsapp_antigo=' + whatsapp_antigo + '&whatsapp_novo=' + whatsapp_novo + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load whatsapp ' + usuario);
@@ -605,7 +600,7 @@ function email_c() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + email_v + '/exec?matricula=' + matricula + '&email_antigo=' + email_antigo + '&email_novo=' + email_novo + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + email_v + '/exec?matricula=' + matricula + '&email_antigo=' + email_antigo + '&email_novo=' + email_novo + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load email: ' + usuario + ': ' + matricula + ': ' + email_antigo + ': ' + email_novo);
@@ -639,7 +634,7 @@ function requerimento_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + requerimento_v + '/exec?matricula=' + matricula + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + requerimento_v + '/exec?matricula=' + matricula + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load requerimento: ' + usuario + ': ' + matricula);
@@ -678,7 +673,7 @@ function boletim_file_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + boletim_file_v + '/exec?dia_i=' + dia_i + '&dia_f=' + dia_f + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + boletim_file_v + '/exec?dia_i=' + dia_i + '&dia_f=' + dia_f + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load boletim_file ' + usuario);
@@ -712,7 +707,7 @@ function historico_b() {
   document.getElementById('page').style.cursor = 'wait';
   
   let s = document.createElement('script');
-  s.src = 'https://script.google.com/macros/s/' + historico_v + '/exec?matricula=' + matricula + '&token=' + token;
+  s.src = 'https://script.google.com/macros/s/' + historico_v + '/exec?matricula=' + matricula + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
     informe('ERRO: ceejapd: load historico');
@@ -729,7 +724,7 @@ function relatorio(){
     document.getElementById('page').style.cursor = 'wait';
     
     let s = document.createElement('script');
-    s.src = 'https://script.google.com/macros/s/' + relatorio_v + '/exec?token=' + token;
+    s.src = 'https://script.google.com/macros/s/' + relatorio_v + '/exec?usuario=' + usuario + '&token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
       informe('ERRO: ceejapd: load relatorio');
@@ -864,7 +859,7 @@ table {
 
 <div id="customBtn" class="customBtn">Fazer login</div>
 <p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span>
-  <span onclick="informe('Logout: ' + usuario); console.log('Logout'); sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
+  <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
 </p>
 
 <br />
@@ -917,7 +912,7 @@ table {
 
 <p onclick="relatorio()" class='link' style='color:#DD4433'>Relatório anual</a></p>
 
-<p onclick="historico()" class='link' style='color:#DD4433'>Gerar histórico</a></p>
+<!--<p onclick="historico()" class='link' style='color:#DD4433'>Gerar histórico</a></p>-->
 
 <!--<p onclick="permissoes()" class='link' style='color:#DD4433'>Atualizar permissões</a></p>-->
 
@@ -1117,6 +1112,26 @@ let hora = agora.getUTCHours() - 3;
 if ((dia == 6 || dia == 0) || (hora < 8 || hora > 21)) {
   document.getElementById('page').innerHTML = '<p class="erro">Volte no horário de funcionamento da escola.</p>';
 }
+
+/*
+fetch('https://worldtimeapi.org/api/America/Sao_Paulo').then(function(response) {
+  var contentType = response.headers.get("content-type");
+  if(contentType && contentType.indexOf("application/json") !== -1) {
+    return response.json().then(function(json) {
+      let agora = new Date();
+      let dia = agora.getDay();
+      let hora = agora.getUTCHours() - 3;
+      let diff = agora.getTime() - Date.parse(json.utc_datetime);
+      if (diff < -600000 || 600000 < diff) {
+        informe('usuário: ' + usuario + 'diff maior que 10 min');
+      }
+      informe('usuário: ' + usuario + ' | ip: ' + json.client_ip);
+    });
+  } else {
+    informe('ERRO: Not got JSON | usuário: ' + usuario);
+  }
+});
+*/
 </script>
 </body>
 </html>
