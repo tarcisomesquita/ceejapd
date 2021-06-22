@@ -1,0 +1,44 @@
+L=(X P T 6 I K E M Ç 3 L B U O 4 W C 5 G Y N 7 J H 9 A Z 1 2 R Q V 8 F D S)
+
+N=$(echo '192/64' | bc -l | cut -d'.' -f1)
+echo ${L[$N]}
+
+echo '<label>&nbsp;</label><div id="Q054340"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td><span style="position: relative; margin: 0px; padding: 0px; display: block; width: 64px; height: 62px; background-image: url(&quot;https://ncaescola.blob.core.windows.net/escola/CodeForm_SED.jpg&quot;); background-position: -448px 0px;"></span></td><td><span style="position: relative; margin: 0px; padding: 0px; display: block; width: 64px; height: 62px; background-image: url(&quot;https://ncaescola.blob.core.windows.net/escola/CodeForm_SED.jpg&quot;); background-position: -2240px 0px;"></span></td><td><span style="position: relative; margin: 0px; padding: 0px; display: block; width: 64px; height: 62px; background-image: url(&quot;https://ncaescola.blob.core.windows.net/escola/CodeForm_SED.jpg&quot;); background-position: -192px 0px;"></span></td><td><span style="position: relative; margin: 0px; padding: 0px; display: block; width: 64px; height: 62px; background-image: url(&quot;https://ncaescola.blob.core.windows.net/escola/CodeForm_SED.jpg&quot;); background-position: -1408px 0px;"></span></td><td><span style="position: relative; margin: 0px; padding: 0px; display: block; width: 64px; height: 62px; background-image: url(&quot;https://ncaescola.blob.core.windows.net/escola/CodeForm_SED.jpg&quot;); background-position: -704px 0px;"></span></td></tr></tbody></table></div>' | sed 's/[<>]/\n/g' | grep CodeForm_SED.jpg | cut -c225- | sed 's/^\([0-9]\+\).*$/\1/' | (while read; do N=$(echo "${REPLY}/64" | bc -l | cut -d'.' -f1); echo ${L[$N]}; done)
+
+
+
+L=(X P T 6 I K E M Ç 3 L B U O 4 W C 5 G Y N 7 J H 9 A Z 1 2 R Q V 8 F D S)
+
+while read; do echo $(echo "${REPLY}" | sed 's/[<>]/\n/g' | grep CodeForm_SED.jpg | cut -c225- | sed 's/^\([0-9]\+\).*$/\1/' | (while read; do N=$(echo "${REPLY}/64" | bc -l | cut -d'.' -f1); echo ${L[$N]}; done)) | sed 's/ //g'; done
+
+sleep 4
+
+# seleciona
+xdotool mousemove 901 406
+xdotool mousedown 1; sleep 0.5;
+
+xdotool mousemove 561 482
+xdotool mouseup 1; sleep 0.5;
+
+xdotool mousemove 553 433
+xdotool click 3; sleep 1;
+
+xdotool mousemove 645 524; sleep 0.5
+xdotool click 1; sleep 1
+
+xdotool key Control_L+c; sleep 0.5
+xdotool key Control_L+w; sleep 0.5
+xdotool key Alt_L+Tab  ; sleep 0.5
+xdotool key Control_L+Shift_L+v; sleep 0.5
+xdotool key KP_Enter; sleep 0.5
+
+xdotool mousemove 54 701
+xdotool mousedown 1; sleep 0.5;
+xdotool mousemove 2 700
+xdotool mouseup 1; sleep 0.5;
+xdotool key Control_L+Shift_L+c; sleep 0.5
+
+xdotool key Alt_L+Tab  ; sleep 0.5
+xdotool mousemove 587 385
+xdotool click 1; sleep 0.5
+xdotool key Control_L+v; sleep 0.5
