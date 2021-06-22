@@ -31,7 +31,7 @@ var avaliacao_sociologia = 'AKfycbyvDbCoPn0CW0na4C9MjF1swRXZ25Rn8BNRfLjKN6w2Oaq6
 var avaliacao_biologia = 'AKfycbwLj-r0yki9rO7Ti0Su2KN8NL0DabXPdLZQ6uhsrYmmAvgfaeU2VoeOYINlLISVRHZb4w'; // cookie
 var avaliacao_quimica = 'AKfycbzUaJ2AQUjwFRefbFjriHxqcsIOp7d-VdLTpjCFC9YY5XwSio6DT6pEXDmTwFAkl0pZSw'; // cookie3
 var avaliacao_fisica = 'AKfycbx9fTM_LdAH7YP72A58zvXOCeJbeNM1WP3NJplw_1i6uF9hdnglHD10ndm2BwBG9o6y'; // cookie3
-var passaporte_v = 'AKfycbyW8l7Ur0b0pg16Zxd93u_dv3xQhLTDkaGcJ7-ycmfC6FwIffM1FNicD3Veo5S26DBjCg'; // cookie1
+var passaporte_v = 'AKfycbySGALZP3BLbJraSFhU-44eyHErkZSkXpnFMDM82MtebJvdGDO12q0QlpOxviVn4EnxxQ'; // grupo_values
 var atendimento_v = 'AKfycbxe43C73a0aZ1vU62ZU2gj4IZh2-2Yg7WSnu5kx5hxyCwK0ZHWO-p3_vXEY6HNwWQg7JQ'; // cookie
 var boletim_v = 'AKfycbypYC1ksgfw3dvSNvsHzuuaKzqqGkyAAacJ0ySHG0zpiGm3LLQSI7dKSOWqbtZzIwzj'; // cookie
 var whatsapp_v = 'AKfycbyHPPo8uJ9m72E1-OjLPw1Z-zG5isy_7Rhiw-JIYapBKL2LdaYENKn04E5PtRUwLJB9'; // cookie
@@ -438,7 +438,7 @@ function passaporte_b() {
   s.src = 'https://script.google.com/macros/s/' + passaporte_v + '/exec?matricula=' + matricula + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load passaporte');
+    informe('ERRO: ceejapd: load passaporte ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -455,7 +455,7 @@ function atendimento(){
     s.src = 'https://script.google.com/macros/s/' + atendimento_v + '/exec?usuario=' + usuario + '&token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: ceejapd: load atendimento');
+      informe('ERRO: ceejapd: load atendimento ' + usuario);
     };
     document.body.appendChild(s);
   }
@@ -490,7 +490,7 @@ function boletim_b() {
   s.src = 'https://script.google.com/macros/s/' + boletim_v + '/exec?matricula=' + matricula + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load boletim');
+    informe('ERRO: ceejapd: load boletim ' + usuario);
   };
   document.body.appendChild(s);
   //informe(navigator.userAgent);
@@ -708,7 +708,7 @@ function historico_b() {
   s.src = 'https://script.google.com/macros/s/' + historico_v + '/exec?matricula=' + matricula + '&usuario=' + usuario + '&token=' + token;
   s.onerror = function () {
     document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-    informe('ERRO: ceejapd: load historico');
+    informe('ERRO: ceejapd: load historico ' + usuario);
   };
   document.body.appendChild(s);
 }
@@ -725,7 +725,7 @@ function relatorio(){
     s.src = 'https://script.google.com/macros/s/' + relatorio_v + '/exec?usuario=' + usuario + '&token=' + token;
     s.onerror = function () {
       document.getElementById('page').innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: ceejapd: load relatorio');
+      informe('ERRO: ceejapd: load relatorio ' + usuario);
     };
     document.body.appendChild(s);
   }
