@@ -86,6 +86,10 @@ var startApp = function() {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
+    
+    document.cookie = `ceejapd=${token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+    document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+    
     informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
