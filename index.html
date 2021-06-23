@@ -82,7 +82,7 @@ if (token === '') {
 }
 
 var startApp = function() {
-  informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
 
   if (token === '') {
     gapi.load('auth2', initSignIn);
