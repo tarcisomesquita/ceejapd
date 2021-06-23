@@ -53,8 +53,6 @@ function sair() {
 //  auth2.signOut()
 };
 
-informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
-
 function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
@@ -84,6 +82,8 @@ if (token === '') {
 }
 
 var startApp = function() {
+  informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+
   if (token === '') {
     gapi.load('auth2', initSignIn);
   }
