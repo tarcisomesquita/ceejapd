@@ -120,8 +120,8 @@ function sair() {
   //informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
   document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
-  //window.location.href = "https://accounts.google.com/Logout";
-  auth2.signOut();
+  window.location.href = "https://accounts.google.com/Logout";
+  //auth2.signOut();
 };
 
 var timmer = function() {
