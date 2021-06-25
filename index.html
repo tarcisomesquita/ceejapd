@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!--<meta http-equiv='cache-control' content='no-store'>-->
+<meta http-equiv='cache-control' content='no-store'>
 <meta name="google-site-verification" content="C40H-ZockeIOzCLX0YFj61hDmisnQJgoOENN-QbIh0k" />
 <meta viewport='width=device-width'>
 
@@ -70,7 +70,7 @@ if (token === '') {
 }
   
 var startApp = function() {
-  informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
+  //informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
   if (token === '') {
     gapi.load('auth2', initSignIn);
   }
@@ -78,7 +78,7 @@ var startApp = function() {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    //informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
 
@@ -104,7 +104,7 @@ var signinChanged = function (val) {
     document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    //informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
     //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
   }
   else {
@@ -117,7 +117,7 @@ var signinChanged = function (val) {
 };
 
 function sair() {
-  informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  //informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
   document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
   //window.location.href = "https://accounts.google.com/Logout";
