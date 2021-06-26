@@ -13,7 +13,6 @@
 //alert('Este sistema deixará de funcionar fora do horário da escola.');
 var auth2;
 var googleUser;
-var token_update;
 var token = '';
 var usuario = '';
 var matricula = '';
@@ -105,7 +104,6 @@ var signinChanged = function (val) {
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
     //informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
-    //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
   }
   else {
     token = '';
@@ -128,7 +126,6 @@ var timmer = function() {
   googleUser.reloadAuthResponse();
   token = googleUser.getAuthResponse().id_token;
   //console.log('token_id: ' + token);
-  //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
 }
 
 function avaliacao_fis(){
