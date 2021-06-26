@@ -26,6 +26,7 @@ function informe(mensagem) {
 function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   var profile = googleUser.getBasicProfile();
+  console.log(googleUser.getAuthResponse().id_token);
   
   informe('entrar: ' + profile.getEmail());
   
