@@ -77,7 +77,7 @@ var startApp = function() {
   else {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
-    document.getElementById('bmail').innerText = usuario;
+    document.getElementById('mail').innerText = usuario;
     //informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
@@ -101,17 +101,17 @@ var signinChanged = function (val) {
     token = googleUser.getAuthResponse().id_token;
     usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
     
-    document.getElementById('mail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
+    document.getElementById('mail').innerText = usuario;
     //informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
     //token_update = window.setTimeout(timmer, (googleUser.getAuthResponse().expires_in - 1200) * 1000);
   }
   else {
     token = '';
     usuario = '';
-    document.getElementById('customBtn').style.display = 'inline';
     document.getElementById('bmail').style.display = 'none';
+    document.getElementById('customBtn').style.display = 'inline';
     window.clearTimeout(token_update);
   }
 };
