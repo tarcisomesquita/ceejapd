@@ -75,7 +75,7 @@ var startApp = function() {
     gapi.load('auth2', initSignIn);
   }
   else {
-    document.getElementById('mail').innerText = usuario;
+    document.getElementById('bmail').innerText = usuario;
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     //informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
