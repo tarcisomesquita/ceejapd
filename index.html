@@ -71,14 +71,13 @@ if (token === '') {
 function recarregar() {
   if (document.getElementById('customBtn').style.display != 'none') {
     informe('recarregar: ' + usuario + ': aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
-    setTimeout(recarregar, 30000);
     window.location.href = "https://tarcisomesquita.github.io/ceejapd/index.html";
   }
 }
   
 var startApp = function() {
   //informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
-  //setTimeout(recarregar, 5000);
+  setTimeout(recarregar, 20000);
   
   if (token === '') {
     gapi.load('auth2', initSignIn);
