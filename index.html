@@ -67,9 +67,19 @@ if (token === '') {
   s.src = 'https://apis.google.com/js/api:client.js';
   document.head.appendChild(s);
 }
+
+function recarregar() {
+  if (document.getElementById('customBtn').style.display != 'none';) {
+    informe('recarregar: ' + usuario + ': aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    setTimeout(recarregar, 5000);
+    window.location.href = "https://tarcisomesquita.github.io/ceejapd/index.html";
+  }
+}
   
 var startApp = function() {
   //informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
+  setTimeout(recarregar, 5000);
+  
   if (token === '') {
     gapi.load('auth2', initSignIn);
   }
@@ -110,7 +120,6 @@ var signinChanged = function (val) {
     usuario = '';
     document.getElementById('bmail').style.display = 'none';
     document.getElementById('customBtn').style.display = 'inline';
-    window.clearTimeout(token_update);
   }
 };
 
