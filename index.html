@@ -70,13 +70,13 @@ if (token === '') {
 
 function recarregar() {
   if (document.getElementById('customBtn').style.display != 'none') {
-    informe('recarregar: ' + usuario + ': aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    //informe('recarregar: ' + usuario + ': aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
     window.location.href = "https://tarcisomesquita.github.io/ceejapd/index.html";
   }
 }
   
 var startApp = function() {
-  informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
+  //informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
   //setTimeout(recarregar, 20000);
   
   if (token === '') {
@@ -86,7 +86,7 @@ var startApp = function() {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    //informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
 
@@ -112,7 +112,7 @@ var signinChanged = function (val) {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    //informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
   else {
     token = '';
@@ -123,7 +123,7 @@ var signinChanged = function (val) {
 };
 
 function sair() {
-  informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  //informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
   document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
   window.location.href = "https://accounts.google.com/Logout";
