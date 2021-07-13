@@ -100,14 +100,12 @@ var initSignIn = function() {
   if (auth2.isSignedIn.get() == true) {
     auth2.signIn(); // |  signOut()
   }
-  
-  googleUser = auth2.currentUser.get();
 };
 
-var signinChanged = function (val) {
+var signinChanged = function(val) {
   if (val) {
-    token = googleUser.getAuthResponse().id_token;
-    usuario = googleUser.getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    token = auth2.currentUser.get().getAuthResponse().id_token;
+    usuario = auth2.currentUser.get().getBasicProfile().getEmail();             // | getImageUrl() | getName()
     
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
@@ -129,11 +127,6 @@ function sair() {
   window.location.href = "https://accounts.google.com/Logout";
   //auth2.signOut();
 };
-
-var timmer = function() {
-  googleUser.reloadAuthResponse();
-  token = googleUser.getAuthResponse().id_token;
-}
 
 function avaliacao_fis(){
   if (token === '') {
