@@ -860,7 +860,7 @@ table {
 <p><a href="https://youtube.com/channel/UCxd2y8b5DYrjH4yTHOwzxKg/videos">Dicas no Youtube</a></p>
 
 <p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
-<!--
+
 <p onclick="avaliacao_geo_ef()" class='link' style='color:#22BB22'>Pegar avaliação de Geografia - Ensino Fundamental</p>
 
 <p onclick="avaliacao_geo()" class='link' style='color:#22BB22'>Pegar avaliação de Geografia - Ensino Médio</p>
@@ -874,7 +874,7 @@ table {
 <p onclick="avaliacao_qui()" class='link' style='color:#22BB22'>Pegar avaliação de Química</p>
 
 <p onclick="avaliacao_fis()" class='link' style='color:#22BB22'>Pegar avaliação de Física</p>
--->
+
 <br>
 
 <p onclick="passaporte()" class='link' style='color:#22BB22'>Ver notas (passaporte)</p>
@@ -1098,7 +1098,6 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 </form>
 
 <script>
-/*
 let agora = new Date();
 let dia_s = agora.getDay();
 let hora = agora.getUTCHours() - 3;
@@ -1107,12 +1106,12 @@ let dia_m = agora.getDate();
 if ((dia_s == 6 || dia_s == 0) || (dia_s == 5 && hora > 22)) {
   document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos finais de semana.</p>';
 }
-else if (dia_m == 9 || (dia_m == 8 && hora > 22)) {
-  document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos feriados.</p>';
-}
+//else if (dia_m == 9 || (dia_m == 8 && hora > 22)) {
+//  document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos feriados.</p>';
+//}
 
 
-
+/*
 fetch('https://worldtimeapi.org/api/America/Sao_Paulo').then(function(response) {
   var contentType = response.headers.get("content-type");
   if(contentType && contentType.indexOf("application/json") !== -1) {
