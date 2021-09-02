@@ -1109,9 +1109,10 @@ let dia_m = agora.getDate();
 if ((dia_s == 6 || dia_s == 0) || (dia_s == 5 && hora > 22)) {
   document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos finais de semana.</p>';
 }
-//else if (dia_m == 9 || (dia_m == 8 && hora > 22)) {
-//  document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos feriados.</p>';
-//}
+else if (dia_m == 6 || dia_m == 7) {
+   //  || (dia_m == 5 && hora > 22)
+  document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos feriados.</p>';
+}
 
 
 /*
