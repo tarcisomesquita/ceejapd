@@ -17,6 +17,9 @@ var token = '';
 var usuario = '';
 var matricula = '';
 var avaliacao_p = '';
+var matricula = '212223';
+var disciplina = '';
+var avaliacao = ''; 
 var dia_i = '';
 var dia_f = '';
 var whatsapp_antigo = '';
@@ -859,6 +862,8 @@ table {
 
 <br />
 
+<p onclick="agenda()" class='link' style='color:#DD4433'>Agendar atendimento presencial</a></p>
+ 
 <p><a href="https://youtube.com/channel/UCxd2y8b5DYrjH4yTHOwzxKg/videos">Dicas no Youtube</a></p>
 
 <p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
@@ -1084,6 +1089,46 @@ table {
     value="ok" 
   >
 </div>
+
+<div id='agenda_id' class='box' style='text-align: left'>
+  <p>matrícula:<input 
+    id="matricula_agenda_id" 
+    type="text" 
+    pattern="[0-9]{6}" 
+    maxlength="6" 
+    style="margin:5px"
+  ></p>
+  <p>disciplina: <select id='disciplina_agenda_id' style='margin:5px'>
+    <option value='Selecione'>Selecione</option>
+    <option value='POR'>Português</option>
+    <option value='ING'>Inglês</option>
+    <option value='ART'>Arte</option>
+    <option value='MAT'>Matemática</option>
+    <option value='HIS'>História</option>
+    <option value='GEO'>Geografia</option>
+    <option value='FIL'>Filosofia</option>
+    <option value='SOC'>Sociologia</option>
+    <option value='BIO'>Biologia</option>
+    <option value='QUI'>Química</option>
+    <option value='FIS'>Física</option>
+  </select></p>
+  <p>avaliação: <select id='avaliacao_agenda_id' style='margin:5px'>
+    <option value='Selecione'>Selecione</option>
+    <option value='1A'>1A</option>
+    <option value='1B'>1B</option>
+    <option value='2A'>2A</option>
+    <option value='2B'>2B</option>
+    <option value='3A'>3A</option>
+    <option value='3B'>3B</option>
+  </select></p>
+  <p>ver agenda:<input 
+    id="button_agenda_id" 
+    type="button" 
+    value="ok" 
+    style='margin:5px'
+  ></p>
+</div>
+
 <div id='aviso' class='box'>
   <p id='mensagem'></p>
   <input id='aviso_button' type="button" value="ok" onclick="aviso_b()">
@@ -1110,11 +1155,12 @@ let dia_m = agora.getDate();
 if ((dia_s == 6 || dia_s == 0) || (dia_s == 5 && hora > 22)) {
   document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos finais de semana.</p>';
 }
+/*
 else if (dia_m == 6 || dia_m == 7) {
    //  || (dia_m == 5 && hora > 22)
   document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos feriados.</p>';
 }
-
+*/
 
 /*
 fetch('https://worldtimeapi.org/api/America/Sao_Paulo').then(function(response) {
