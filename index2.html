@@ -862,7 +862,7 @@ table {
 
 <br />
 
-<p onclick="agenda()" class='link' style='color:#DD4433'>Agendar atendimento presencial</a></p>
+<p id="agenda_p" onclick="agenda()" class='link' style='color:#DD4433'>Agendar atendimento presencial</a></p>
  
 <p><a href="https://youtube.com/channel/UCxd2y8b5DYrjH4yTHOwzxKg/videos">Dicas no Youtube</a></p>
 
@@ -1147,6 +1147,11 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 </form>
 
 <script>
+setInterval(function() {
+  if (document.getElementById(spam_id).style.backgroundColor === '#DD4433') document.getElementById(spam_id).style.backgroundColor = '#2160DE';
+  else document.getElementById(spam_id).style.backgroundColor = '#DD4433';
+}, 1000);
+  
 let agora = new Date();
 let dia_s = agora.getDay();
 let hora = agora.getUTCHours() - 3;
