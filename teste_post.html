@@ -10,6 +10,7 @@
 
 <body>
 <div>
+<p>teste 1</p>
 </div>
 
 <script>
@@ -18,7 +19,8 @@ fetch("https://script.google.com/macros/s/AKfycbyMAua6-jO71OgIa_EEouz2W7Dy_yQJuN
   mode: "cors",
   credentials: "omit",
   headers: {
-    "Content-Type": "text/plain;charset=utf-8"
+    "Content-Type": "text/plain;charset=utf-8",
+    "Access-Control-Allow-Origin": "*"
   },
   body: '{"linha":"212", "matricula":"2131231"}'
 })
