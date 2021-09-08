@@ -107,6 +107,7 @@ var signinChanged = function(val) {
   if (val) {
     token = auth2.currentUser.get().getAuthResponse().id_token;
     usuario = auth2.currentUser.get().getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    console.log('usuario: ' + usuario + ' token: ' + token);
     
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
