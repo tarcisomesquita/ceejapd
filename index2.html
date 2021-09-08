@@ -188,18 +188,21 @@ function agenda(){
       page.innerHTML = '<p class="erro">Aguarde 1 minuto. Baixando a agenda ...</p>';
       page.style.cursor = 'wait';
       
-      let s = document.createElement('script');
-      s.src = 'https://script.google.com/macros/s/AKfycbxkDXz36yLBlo1jBaQO19dOMGllQYLwBa8i25b5VX8/dev' + 
-        '?matricula=' + matricula + 
-        '&disciplina=' + disciplina + 
-        '&avaliacao=' + avaliacao + 
-        '&usuario=' + usuario + 
-        '&token=' + token;
-      s.onerror = function () {
-        page.innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+      fetch("https://script.google.com/macros/s/AKfycbzOzwkI7CCcxwrKqz6k0aqOiTNTF8AO07aWJTlBnIAj0g7n6fHglZDguec3vhzIWhiY/exec", {
+        method: "POST",
+        mode: "cors",
+        credentials: "omit",
+        headers: {
+          "Content-Type": "text/plain"
+        },
+        body: `{"tipo":"1", "matricula":"${matricula}", "disciplina":"${disciplina}", "avaliacao":"${avaliacao}", "usuario":"${usuario}", "token":"${token}"}`
+      })
+      .then(response => response.text())
+      .then(value => console.log(value));
+      
+//      s.onerror = function () {
+//        page.innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
         //informe('ERRO: ceejapd: load agenda ' + usuario);
-      };
-      document.body.appendChild(s);
     }
   }
 }
@@ -1222,7 +1225,7 @@ let piscar = setInterval(function() {
   else document.getElementById('agenda_p').style.color = 'rgb(221, 68, 51)';
 }, 500);
 
-setTimeout(clearInterval(piscar), 15000); // 15 s 
+setTimeout(function () { clearInterval(piscar);}, 15000); // 15 s 
 
 let agora = new Date();
 let dia_s = agora.getDay();
