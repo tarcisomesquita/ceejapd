@@ -136,6 +136,76 @@ function sair() {
   //auth2.signOut();
 };
 
+function agenda(){
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+  }
+  else {
+    container.style.display = 'inline';
+    agenda_id.style.display = 'inline';
+    matricula_agenda_id.value = matricula; 
+    disciplina_agenda_id.value = 'Selecione';
+    avaliacao_agenda_id.value = 'Selecione';
+    avaliacao_agenda_id.innerHTML = "";
+    
+    matricula_agenda_id.focus();
+
+    matricula_agenda_id.onkeydown = function () {
+      if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_agenda_id.value)){
+        matricula = matricula_agenda_id.value;
+        disciplina_agenda_id.focus()
+      }
+    }
+    
+    disciplina_agenda_id.onchange = function () {
+      if (disciplina_agenda_id.value === 'Selecione') disciplina_agenda_id.focus();
+      else {
+        disciplina = disciplina_agenda_id.value;
+        avaliacao_agenda_id.innerHTML = "\n    <option value=\"Selecione\">Selecione</option>\n" + 
+  "    <option value=\"1A\">1A</option>\n" + 
+  "    <option value=\"1B\">1B</option>\n" + 
+  "    <option value=\"2A\">2A</option>\n" + 
+  "    <option value=\"2B\">2B</option>\n" + 
+  "    <option value=\"3A\">3A</option>\n" + 
+  "    <option value=\"3B\">3B</option>\n  ";
+        avaliacao_agenda_id.focus();
+      }
+    }
+    
+    avaliacao_agenda_id.onchange = function () {
+      if (avaliacao_agenda_id.value === 'Selecione') avaliacao_agenda_id.focus();
+      else {
+        avaliacao = avaliacao_agenda_id.value;
+        button_agenda_id.focus();
+      }
+    }
+    
+    button_agenda_id.onclick = function () {
+      if (! /[0-9]{6}/.test(matricula_agenda_id.value)){ matricula_agenda_id.focus(); return; }
+      if (disciplina_agenda_id.value === 'Selecione') { disciplina_agenda_id.focus(); return; }
+      if (avaliacao_agenda_id.value === 'Selecione') { avaliacao_agenda_id.focus(); return; }
+      
+      page.innerHTML = '<p class="erro">Aguarde 1 minuto. Baixando a agenda ...</p>';
+      page.style.cursor = 'wait';
+      
+      let s = document.createElement('script');
+      s.src = 'https://script.google.com/macros/s/AKfycbxkDXz36yLBlo1jBaQO19dOMGllQYLwBa8i25b5VX8/dev' + 
+        '?matricula=' + matricula + 
+        '&disciplina=' + disciplina + 
+        '&avaliacao=' + avaliacao + 
+        '&usuario=' + usuario + 
+        '&token=' + token;
+      s.onerror = function () {
+        page.innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+        //informe('ERRO: ceejapd: load agenda ' + usuario);
+      };
+      document.body.appendChild(s);
+    }
+  }
+}
+
+
+
 function avaliacao_fis(){
   if (token === '') {
     aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
@@ -1148,8 +1218,8 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 
 <script>
 setInterval(function() {
-  if (document.getElementById('agenda_p').style.backgroundColor === '#DD4433') document.getElementById('agenda_p').style.backgroundColor = '#2160DE';
-  else document.getElementById('agenda_p').style.backgroundColor = '#DD4433';
+  if (document.getElementById('agenda_p').style.color === 'rgb(221, 68, 51)') document.getElementById('agenda_p').style.color = 'rgb(33, 96, 222)';
+  else document.getElementById('agenda_p').style.color = 'rgb(221, 68, 51)';
 }, 1000);
   
 let agora = new Date();
