@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta viewport='width=device-width'>
+
+<title>teste post</title>
+
+</head>
+
+<body>
+<div>
+</div>
+
+<script>
+fetch("https://script.google.com/macros/s/AKfycbyMAua6-jO71OgIa_EEouz2W7Dy_yQJuNPL0h57hlY/dev", {
+  method: "POST",
+  mode: "cors",
+  credentials: "omit",
+  headers: {
+    "Content-Type": "text/plain;charset=utf-8"
+  },
+  body: '{"linha":"212", "matricula":"2131231"}'
+})
+.then(response => response.json())
+.then(data => {
+  console.log(JSON.stringify(data));
+})
+.catch((error) => {
+  console.error("Error:", error);
+});
+
+</script>
+</body>
+</html>
+
