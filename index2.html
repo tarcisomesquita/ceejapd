@@ -1217,11 +1217,13 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 </form>
 
 <script>
-setInterval(function() {
+let piscar = setInterval(function() {
   if (document.getElementById('agenda_p').style.color === 'rgb(221, 68, 51)') document.getElementById('agenda_p').style.color = 'rgb(33, 96, 222)';
   else document.getElementById('agenda_p').style.color = 'rgb(221, 68, 51)';
-}, 1000);
-  
+}, 500);
+
+setTimeout(clearInterval(piscar), 15000); // 15 s 
+
 let agora = new Date();
 let dia_s = agora.getDay();
 let hora = agora.getUTCHours() - 3;
