@@ -145,14 +145,41 @@ function agenda(){
   container.style.display = 'inline';
   agenda_id.style.display = 'inline';
   matricula_agenda_id.value = matricula; 
+  disciplina_agenda_id.innerHTML = '';
   disciplina_agenda_id.value = 'Selecione';
-  avaliacao_agenda_id.value = 'Selecione';
   avaliacao_agenda_id.innerHTML = '';
+  avaliacao_agenda_id.value = 'Selecione';
   
   matricula_agenda_id.focus();
   matricula_agenda_id.onkeydown = function () {
     if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_agenda_id.value)){
       matricula = matricula_agenda_id.value;
+      if (matricula.charAt(2) === '1') {
+        disciplina_agenda_id.innerHTML = '\n' +
+          '    <option value="Selecione">Selecione</option>\n' + 
+          '    <option value="POR">Português</option>\n' + 
+          '    <option value="ING">Inglês</option>\n' + 
+          '    <option value="ART">Arte</option>\n' + 
+          '    <option value="MAT">Matemática</option>\n' + 
+          '    <option value="HIS">História</option>\n' + 
+          '    <option value="GEO">Geografia</option>\n' + 
+          '    <option value="BIO">Ciências</option>\n';
+      }
+      else {
+        disciplina_agenda_id.innerHTML = '\n' +
+          '    <option value="Selecione">Selecione</option>\n' + 
+          '    <option value="POR">Português</option>\n' + 
+          '    <option value="ING">Inglês</option>\n' + 
+          '    <option value="ART">Arte</option>\n' + 
+          '    <option value="MAT">Matemática</option>\n' + 
+          '    <option value="HIS">História</option>\n' + 
+          '    <option value="GEO">Geografia</option>\n' + 
+          '    <option value="FIL">Filosofia</option>\n' + 
+          '    <option value="SOC">Sociologia</option>\n' + 
+          '    <option value="BIO">Biologia</option>\n' + 
+          '    <option value="QUI">Química</option>\n' + 
+          '    <option value="FIS">Física</option>\n';
+      }        
       disciplina_agenda_id.focus()
     }
   }
