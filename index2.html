@@ -143,7 +143,7 @@ function fetch_erro(mensagem) {
   
   let p0 = document.createElement('p');
   p0.setAttribute('class','erro');
-  p0.innerHTML = '${mensagem}';
+  p0.innerHTML = mensagem;
   document.getElementsByTagName('body')[0].appendChild(p0);
 }
 
@@ -312,7 +312,7 @@ function agenda(){
       headers: {
         "Content-Type": "text/plain"
       },
-      body: '{"tipo":"1", "matricula":"' + matricula + '", "disciplina":"", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
+      body: '{"tipo":"1", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
     .then(value => fetch_resposta(value));
