@@ -305,7 +305,7 @@ function agenda(){
     page.innerHTML = '<p class="erro">Aguarde 1 minuto. Baixando a agenda ...</p>';
     page.style.cursor = 'wait';
     
-    fetch(`https://script.google.com/macros/s/${agenda_v}/exec`, {
+    fetch('https://script.google.com/macros/s/' + agenda_v + '/exec', {
       method: "POST",
       mode: "cors",
       credentials: "omit",
