@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +26,7 @@ var whatsapp_antigo = '';
 var whatsapp_novo = '';
 var email_antigo = '';
 var email_novo = '';
-var agenda_v = 'AKfycbzLCDGB4xxkcUsr2dwPWXS6GmskzODRZne2hvNTj5eOJx48xncVKYtBtpcENH6Gdpsa'; // 4
+var agenda_v = 'AKfycbzTxQC3tOI0U8t768AHLuYNmRcFXh9Smij0e7Hu6yX5lT5i-wC2HcsPR89pU7Xl-8Cq'; // 5
 var avaliacao_geografia_ef = 'AKfycbxdCBVVf0o3lFuQT86-rplljz5nQevmGZBROVsVpzyEfYgw1pxhUegqPf6GfXuDEdICfw'; // credencial
 var avaliacao_geografia = 'AKfycbyqoYKvHcSdbvmzA2YyWMkKV41EjgsN3aC4Po2-uHmCg58NvTQ-b-_ytVcgYAOzPoeZ'; // credencial
 var avaliacao_filosofia = 'AKfycbxbLkZ35b7XITG2xTUfmcmwX--m9cod7ZYdu9SEjDqlj5uZzFupBvdc7zC22cdQ2AEZ7A'; // credencial
@@ -178,6 +177,12 @@ function fetch_resposta(resposta) {
     document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     console.log(document.cookie);
   }
+  
+  // AQUI
+  agenda_div.style.display = 'inline';
+  dia_mes.innerText = '28/08';
+  dia_semana.innerText = 'quinta-feira';
+
 }
 
 function agenda(){
@@ -336,11 +341,13 @@ function agenda(){
       body: '{"tipo":"1", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
-    .then(value => fetch_resposta(value));
-    
-//      s.onerror = function () {
-//        page.innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-        //informe('ERRO: ceejapd: load agenda ' + usuario);
+    .then(value => fetch_resposta(value))
+    .catch((error) => {
+      console.error("Error:", error);
+      page.innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+      page.style.cursor = 'auto';
+      informe('ERRO: ceejapd: load agenda: ' + usuario + ': ' + error);
+    });
   }
 }
 
@@ -393,7 +400,7 @@ function avaliacao_fil() {
     document.getElementById('container').style.display = 'inline';
     document.getElementById('avaliacao_id').style.display = 'inline';
     document.getElementById('avaliacao_matricula_id').focus();
-
+    
     document.getElementById('avaliacao_matricula_id').setAttribute(
       'onkeydown',
       'if (event.keyCode == 13 && /[0-9]{6}/.test(avaliacao_matricula_id.value)){document.getElementById("avaliacao_avaliacao_id").focus()}'
@@ -403,7 +410,7 @@ function avaliacao_fil() {
       'onkeydown',
       'if (event.keyCode == 13){document.getElementById("avaliacao_button_id").focus()}'
     );
-
+    
     document.getElementById('avaliacao_button_id').setAttribute(
       'onclick',
       'if (/[0-9]{6}/.test(avaliacao_matricula_id.value)){matricula = document.getElementById("avaliacao_matricula_id").value; avaliacao_p = document.getElementById("avaliacao_avaliacao_id").value; avaliacao_fil_b()}'
