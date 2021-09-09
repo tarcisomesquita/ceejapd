@@ -312,7 +312,7 @@ function agenda(){
       headers: {
         "Content-Type": "text/plain"
       },
-      body: `{"tipo":"1", "matricula":"${matricula}", "disciplina":"", "avaliacao":"${avaliacao}", "usuario":"${usuario}", "token":"${token}"}`
+      body: '{"tipo":"1", "matricula":"' + matricula + '", "disciplina":"", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
 //      body: `{"tipo":"1", "matricula":"${matricula}", "disciplina":"${disciplina}", "avaliacao":"${avaliacao}", "usuario":"${usuario}", "token":"${token}"}`
     })
     .then(response => response.text())
