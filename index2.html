@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,7 @@ var whatsapp_antigo = '';
 var whatsapp_novo = '';
 var email_antigo = '';
 var email_novo = '';
+var agenda_v = 'AKfycbxXL5LFlgFNtz1wUpIKUwFlaEgFOG3rczZpu4YRTCuwhOkb9hSAoFBysumqHWl4N53I'; // 3
 var avaliacao_geografia_ef = 'AKfycbxdCBVVf0o3lFuQT86-rplljz5nQevmGZBROVsVpzyEfYgw1pxhUegqPf6GfXuDEdICfw'; // credencial
 var avaliacao_geografia = 'AKfycbyqoYKvHcSdbvmzA2YyWMkKV41EjgsN3aC4Po2-uHmCg58NvTQ-b-_ytVcgYAOzPoeZ'; // credencial
 var avaliacao_filosofia = 'AKfycbxbLkZ35b7XITG2xTUfmcmwX--m9cod7ZYdu9SEjDqlj5uZzFupBvdc7zC22cdQ2AEZ7A'; // credencial
@@ -135,6 +137,27 @@ function sair() {
   
   //auth2.signOut();
 };
+
+function fetch_erro(mensagem) {
+  document.getElementById('page').remove();
+  
+  let p0 = document.createElement('p');
+  p0.setAttribute('class','erro');
+  p0.innerHTML = '${mensagem}';
+  document.getElementsByTagName('body')[0].appendChild(p0);
+}
+
+function fetch_resposta(resposta) {
+  console.log(resposta);
+  
+  let resposta_obj = JSON.parse(resposta);
+  if (resposta_obj.erro !== '') fetch_erro(resposta_obj.erro);
+  if (resposta_obj.token !== '') {
+    document.cookie = `ceejapd=${resposta_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+    document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+    console.log(document.cookie);`;
+  }
+}
 
 function agenda(){
   if (token === '') {
@@ -282,17 +305,18 @@ function agenda(){
     page.innerHTML = '<p class="erro">Aguarde 1 minuto. Baixando a agenda ...</p>';
     page.style.cursor = 'wait';
     
-    fetch("https://script.google.com/macros/s/AKfycbzOzwkI7CCcxwrKqz6k0aqOiTNTF8AO07aWJTlBnIAj0g7n6fHglZDguec3vhzIWhiY/exec", {
+    fetch(`https://script.google.com/macros/s/${agenda_v}/exec`, {
       method: "POST",
       mode: "cors",
       credentials: "omit",
       headers: {
         "Content-Type": "text/plain"
       },
-      body: `{"tipo":"1", "matricula":"${matricula}", "disciplina":"${disciplina}", "avaliacao":"${avaliacao}", "usuario":"${usuario}", "token":"${token}"}`
+      body: `{"tipo":"1", "matricula":"${matricula}", "disciplina":"", "avaliacao":"${avaliacao}", "usuario":"${usuario}", "token":"${token}"}`
+//      body: `{"tipo":"1", "matricula":"${matricula}", "disciplina":"${disciplina}", "avaliacao":"${avaliacao}", "usuario":"${usuario}", "token":"${token}"}`
     })
     .then(response => response.text())
-    .then(value => console.log(value));
+    .then(value => fetch_resposta(value));
     
 //      s.onerror = function () {
 //        page.innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
