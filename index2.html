@@ -212,7 +212,7 @@ function agenda(){
     if (matricula.charAt(2) === '1') {
       if (disciplina === 'POR' || disciplina === 'MAT') {
         avaliacao_agenda_id.innerHTML = '\n' +
-          '    <option value="Selecione">Selecione</option>\n" + 
+          '    <option value="Selecione">Selecione</option>\n' + 
           '    <option value="1A">1A</option>\n' + 
           '    <option value="1B">1B</option>\n' + 
           '    <option value="2A">2A</option>\n' + 
@@ -225,7 +225,7 @@ function agenda(){
       }
       else {
         avaliacao_agenda_id.innerHTML = '\n' +
-          '    <option value="Selecione">Selecione</option>\n" + 
+          '    <option value="Selecione">Selecione</option>\n' + 
           '    <option value="1A">1A</option>\n' + 
           '    <option value="2A">2A</option>\n' + 
           '    <option value="3A">3A</option>\n' + 
@@ -243,7 +243,7 @@ function agenda(){
         disciplina === 'QUI'
       ) {
         avaliacao_agenda_id.innerHTML = '\n' +
-          '    <option value="Selecione">Selecione</option>\n" + 
+          '    <option value="Selecione">Selecione</option>\n' + 
           '    <option value="1A">1A</option>\n' + 
           '    <option value="2A">2A</option>\n' + 
           '    <option value="3A">3A</option>\n';
@@ -252,15 +252,15 @@ function agenda(){
       }
       else {
         avaliacao_agenda_id.innerHTML = '\n' + 
-          '    <option value="Selecione\">Selecione</option>\n' + 
+          '    <option value="Selecione">Selecione</option>\n' + 
           '    <option value="1A">1A</option>\n' + 
           '    <option value="1B">1B</option>\n' + 
           '    <option value="2A">2A</option>\n' + 
           '    <option value="2B">2B</option>\n' + 
           '    <option value="3A">3A</option>\n' + 
           '    <option value="3B">3B</option>\n';
-        if (disciplina === 'POR') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + "    <option value=\"R\">R</option>\n";
-        if (disciplina === 'ING') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + "    <option value=\"3C\">3C</option>\n";
+        if (disciplina === 'POR') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + '    <option value="R">R</option>\n';
+        if (disciplina === 'ING') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + '    <option value="3C">3C</option>\n';
       }
     }
     avaliacao_agenda_id.value = 'Selecione';
