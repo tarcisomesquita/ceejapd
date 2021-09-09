@@ -146,48 +146,95 @@ function agenda(){
   agenda_id.style.display = 'inline';
   matricula_agenda_id.value = matricula; 
   disciplina_agenda_id.innerHTML = '';
-  disciplina_agenda_id.value = 'Selecione';
   avaliacao_agenda_id.innerHTML = '';
-  avaliacao_agenda_id.value = 'Selecione';
   
   matricula_agenda_id.focus();
+  
   matricula_agenda_id.onkeydown = function () {
-    if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_agenda_id.value)){
+    if (event.keyCode == 13 && /^[0-9]{6}$/.test(matricula_agenda_id.value)){
       matricula = matricula_agenda_id.value;
-      if (matricula.charAt(2) === '1') {
-        disciplina_agenda_id.innerHTML = '\n' +
-          '    <option value="Selecione">Selecione</option>\n' + 
-          '    <option value="POR">Português</option>\n' + 
-          '    <option value="ING">Inglês</option>\n' + 
-          '    <option value="ART">Arte</option>\n' + 
-          '    <option value="MAT">Matemática</option>\n' + 
-          '    <option value="HIS">História</option>\n' + 
-          '    <option value="GEO">Geografia</option>\n' + 
-          '    <option value="BIO">Ciências</option>\n';
-      }
-      else {
-        disciplina_agenda_id.innerHTML = '\n' +
-          '    <option value="Selecione">Selecione</option>\n' + 
-          '    <option value="POR">Português</option>\n' + 
-          '    <option value="ING">Inglês</option>\n' + 
-          '    <option value="ART">Arte</option>\n' + 
-          '    <option value="MAT">Matemática</option>\n' + 
-          '    <option value="HIS">História</option>\n' + 
-          '    <option value="GEO">Geografia</option>\n' + 
-          '    <option value="FIL">Filosofia</option>\n' + 
-          '    <option value="SOC">Sociologia</option>\n' + 
-          '    <option value="BIO">Biologia</option>\n' + 
-          '    <option value="QUI">Química</option>\n' + 
-          '    <option value="FIS">Física</option>\n';
-      }        
-      disciplina_agenda_id.focus()
+      disciplina_agenda_id.focus();
     }
+  }
+  
+  disciplina_agenda_id.onfocus = function () {
+    if (disciplina_agenda_id.innerHTML !== '') return;
+    
+    if (! /^[0-9]{6}$/.test(matricula_agenda_id.value)) {
+      matricula_agenda_id.focus();
+      return;
+    }
+    
+    if (matricula.charAt(2) === '1') {
+      disciplina_agenda_id.innerHTML = '\n' +
+        '    <option value="Selecione">Selecione</option>\n' + 
+        '    <option value="POR">Português</option>\n' + 
+        '    <option value="ING">Inglês</option>\n' + 
+        '    <option value="ART">Arte</option>\n' + 
+        '    <option value="MAT">Matemática</option>\n' + 
+        '    <option value="HIS">História</option>\n' + 
+        '    <option value="GEO">Geografia</option>\n' + 
+        '    <option value="BIO">Ciências</option>\n';
+    }
+    else {
+      disciplina_agenda_id.innerHTML = '\n' +
+        '    <option value="Selecione">Selecione</option>\n' + 
+        '    <option value="POR">Português</option>\n' + 
+        '    <option value="ING">Inglês</option>\n' + 
+        '    <option value="ART">Arte</option>\n' + 
+        '    <option value="MAT">Matemática</option>\n' + 
+        '    <option value="HIS">História</option>\n' + 
+        '    <option value="GEO">Geografia</option>\n' + 
+        '    <option value="FIL">Filosofia</option>\n' + 
+        '    <option value="SOC">Sociologia</option>\n' + 
+        '    <option value="BIO">Biologia</option>\n' + 
+        '    <option value="QUI">Química</option>\n' + 
+        '    <option value="FIS">Física</option>\n';
+    }
+    disciplina_agenda_id.value = 'Selecione';
   }
   
   disciplina_agenda_id.onchange = function () {
     if (disciplina_agenda_id.value === 'Selecione') disciplina_agenda_id.focus();
     else {
       disciplina = disciplina_agenda_id.value;
+    }
+  }
+  
+  avaliacao_agenda_id.onfocus = function () {
+    if (avaliacao_agenda_id.innerHTML !== '') return;
+    
+    if (! /^[A-Z]{3}$/.test(disciplina_agenda_id.value)) {
+      disciplina_agenda_id.focus();
+      return;
+    }
+    
+    if (matricula.charAt(2) === '1') {
+      if (disciplina === 'POR' || disciplina === 'MAT') {
+        avaliacao_agenda_id.innerHTML = '\n' +
+          '    <option value="Selecione">Selecione</option>\n" + 
+          '    <option value="1A">1A</option>\n' + 
+          '    <option value="1B">1B</option>\n' + 
+          '    <option value="2A">2A</option>\n' + 
+          '    <option value="2B">2B</option>\n' + 
+          '    <option value="3A">3A</option>\n'' + 
+          '    <option value="3B">3B</option>\n'' + 
+          '    <option value="4A">4A</option>\n'' + 
+          '    <option value="4B">4B</option>\n';
+        if (disciplina === 'POR') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + '    <option value="R">R</option>\n';
+      }
+      else {
+        avaliacao_agenda_id.innerHTML = '\n' +
+          '    <option value="Selecione">Selecione</option>\n" + 
+          '    <option value="1A">1A</option>\n' + 
+          '    <option value="2A">2A</option>\n' + 
+          '    <option value="3A">3A</option>\n' + 
+          '    <option value="4A">4A</option>\n';
+        if (disciplina === 'BIO') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + '    <option value="4B">4B</option>\n';
+        if (disciplina === 'ART' || disciplina === 'ING') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + '    <option value="5A">5A</option>\n';
+      }
+    }
+    else {
       if (
         disciplina === 'ART' ||
         disciplina === 'GEO' ||
@@ -195,29 +242,28 @@ function agenda(){
         disciplina === 'BIO' ||
         disciplina === 'QUI'
       ) {
-        avaliacao_agenda_id.innerHTML = "\n" +
-          "    <option value=\"Selecione\">Selecione</option>\n" + 
-          "    <option value=\"1A\">1A</option>\n" + 
-          "    <option value=\"2A\">2A</option>\n" + 
-          "    <option value=\"3A\">3A</option>\n";
-        if (disciplina === 'BIO') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + "    <option value=\"3B\">3B</option>\n";
-        if (disciplina === 'ART') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + "    <option value=\"4A\">4A</option>\n";
-        avaliacao_agenda_id.focus();
+        avaliacao_agenda_id.innerHTML = '\n' +
+          '    <option value="Selecione">Selecione</option>\n" + 
+          '    <option value="1A">1A</option>\n' + 
+          '    <option value="2A">2A</option>\n' + 
+          '    <option value="3A">3A</option>\n';
+        if (disciplina === 'BIO') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + '    <option value="3B">3B</option>\n';
+        if (disciplina === 'ART') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + '    <option value="4A">4A</option>\n';
       }
       else {
-        avaliacao_agenda_id.innerHTML = "\n" + 
-          "    <option value=\"Selecione\">Selecione</option>\n" + 
-          "    <option value=\"1A\">1A</option>\n" + 
-          "    <option value=\"1B\">1B</option>\n" + 
-          "    <option value=\"2A\">2A</option>\n" + 
-          "    <option value=\"2B\">2B</option>\n" + 
-          "    <option value=\"3A\">3A</option>\n" + 
-          "    <option value=\"3B\">3B</option>\n  ";
+        avaliacao_agenda_id.innerHTML = '\n' + 
+          '    <option value="Selecione\">Selecione</option>\n' + 
+          '    <option value="1A">1A</option>\n' + 
+          '    <option value="1B">1B</option>\n' + 
+          '    <option value="2A">2A</option>\n' + 
+          '    <option value="2B">2B</option>\n' + 
+          '    <option value="3A">3A</option>\n' + 
+          '    <option value="3B">3B</option>\n';
         if (disciplina === 'POR') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + "    <option value=\"R\">R</option>\n";
         if (disciplina === 'ING') avaliacao_agenda_id.innerHTML = avaliacao_agenda_id.innerHTML + "    <option value=\"3C\">3C</option>\n";
-        avaliacao_agenda_id.focus();
       }
     }
+    avaliacao_agenda_id.value = 'Selecione';
   }
   
   avaliacao_agenda_id.onchange = function () {
@@ -230,8 +276,8 @@ function agenda(){
   
   button_agenda_id.onclick = function () {
     if (! /[0-9]{6}/.test(matricula_agenda_id.value)){ matricula_agenda_id.focus(); return; }
-    if (disciplina_agenda_id.value === 'Selecione') { disciplina_agenda_id.focus(); return; }
-    if (avaliacao_agenda_id.value === 'Selecione') { avaliacao_agenda_id.focus(); return; }
+    if (disciplina_agenda_id.value === 'Selecione' || disciplina_agenda_id.value === '') { disciplina_agenda_id.focus(); return; }
+    if (avaliacao_agenda_id.value === 'Selecione' || avaliacao_agenda_id.value === '') { avaliacao_agenda_id.focus(); return; }
     
     page.innerHTML = '<p class="erro">Aguarde 1 minuto. Baixando a agenda ...</p>';
     page.style.cursor = 'wait';
