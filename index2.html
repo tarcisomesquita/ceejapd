@@ -159,7 +159,7 @@ function fetch_resposta(resposta) {
 }
 
 function fetch_erro(mensagem) {
-  document.getElementById('page').remove();
+  //document.getElementById('page').remove();
   
   let p0 = document.createElement('p');
   p0.setAttribute('class','erro');
@@ -171,7 +171,7 @@ function fetch_resposta(resposta) {
   console.log(resposta);
   
   let resposta_obj = JSON.parse(resposta);
-  if (resposta_obj.erro !== '') fetch_erro(resposta_obj.erro);
+  if (resposta_obj.erro !== '') {fetch_erro(resposta_obj.erro); return;}
   if (resposta_obj.token !== '') {
     document.cookie = `ceejapd=${resposta_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
@@ -179,7 +179,7 @@ function fetch_resposta(resposta) {
   }
   
   // AQUI
-  agenda_div.style.display = 'inline';
+  document.getElementById('agenda_div).style.display = 'inline';
   dia_mes.innerText = '28/08';
   dia_semana.innerText = 'quinta-feira';
 
