@@ -180,9 +180,40 @@ function fetch_resposta(resposta) {
   // AQUI
   document.getElementById('page').remove();
   document.getElementById('agenda_div').style.display = 'inline';
-  dia_mes.innerText = '28/08';
-  dia_semana.innerText = 'quinta-feira';
+  
+  for (let i = 0; i < h_ids.length; i++) {
+    document.getElementById(h_ids[i]).setAttribute("onclick","marcar('" + h_ids[i] + "')");
+  }
+  
+  document.getElementById("botao").setAttribute("onclick","enviar_escolha()");
+  
+  //dia_mes.innerText = '28/08';
+  //dia_semana.innerText = 'quinta-feira';
 
+}
+
+let h_ids = ['h08', 'h09', 'h10', 'h11', 'h13', 'h14', 'h15', 'h16', 'h17', 'h18', 'h19', 'h20'];
+
+function marcar(h_id) {
+  for (let i = 0; i < h_ids.length; i++) {
+    if (document.getElementById(h_ids[i]).style.backgroundColor === "yellow") document.getElementById(h_ids[i]).style.backgroundColor = "white";
+  }
+  
+  document.getElementById(h_id).style.backgroundColor = "yellow";
+}
+
+function enviar_escolha() {
+  document.getElementById("botao").style.visibility = "hidden";
+  
+  let horario = '';
+  for (let i = 0; i < h_ids.length; i++) {
+    if (document.getElementById(h_ids[i]).style.backgroundColor === "yellow") { horario = h_ids[i]; break; };
+  }
+  
+  document.getElementById("saida").innerHTML = "Aguarde. Marcando na agenda...";
+  document.getElementById("saida").style.visibility = "visible";
+  
+  return;
 }
 
 function agenda(){
@@ -1360,7 +1391,7 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 </div><!-- page -->
 
 <div id="agenda_div" style="display:none">
-<p style="text-align:center; margin:auto; color:#FF0000"">clique para escolher</p><br>
+<p style="text-align:center; margin:auto; color:#FF0000">clique para escolher</p><br>
 <table style="text-align:center; margin:auto">
 <tr><th><span class="link" id="agenda_dia_menos" onclick="agenda_dia_diminuir()">&nbsp;&nbsp;&#x1F844;&nbsp;&nbsp;</span> <span id="dia_mes">27/08</span> <span class="link" id="agenda_dia_mais" onclick="agenda_dia_aumentar()">&nbsp;&nbsp;&#x1F846;&nbsp;&nbsp;</span><br><span id="dia_semana">terça-feira</span></th></tr>
 <tr><td id="h08">08:00 às 09:00</td></tr>
