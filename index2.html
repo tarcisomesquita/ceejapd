@@ -1117,6 +1117,7 @@ table {
 
 <p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
 
+<div id="avaliacoes">
 <p onclick="avaliacao_geo_ef()" class='link' style='color:#22BB22'>Pegar avaliação de Geografia - Ensino Fundamental</p>
 
 <p onclick="avaliacao_geo()" class='link' style='color:#22BB22'>Pegar avaliação de Geografia - Ensino Médio</p>
@@ -1130,6 +1131,7 @@ table {
 <p onclick="avaliacao_qui()" class='link' style='color:#22BB22'>Pegar avaliação de Química</p>
 
 <p onclick="avaliacao_fis()" class='link' style='color:#22BB22'>Pegar avaliação de Física</p>
+</div> <!--  id="avaliacoes" -->
 
 <br>
 
@@ -1434,7 +1436,8 @@ let hora = agora.getUTCHours() - 3;
 let dia_m = agora.getDate();
 
 if ((dia_s == 6 || dia_s == 0) || (dia_s == 5 && hora > 22)) {
-  document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos finais de semana.</p>';
+  avaliacoes.style.display = 'none';
+  //document.getElementById('page').innerHTML = '<p class="erro">A escola não atende nos finais de semana.</p>';
 }
 /*
 else if (dia_m == 6 || dia_m == 7) {
