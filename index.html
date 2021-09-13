@@ -1431,14 +1431,19 @@ function fetch_resposta() {
     for (let j=0; j < h_ids.length; j++) {
       let nao_tem = (disciplinas_ausentes[resp_obj.agenda[i].dia_semana])[h_ids[j]];
       if (nao_tem.indexOf(disciplina) != -1) resp_obj.agenda[i].horario[h_ids[j]] = '#AAAAAA';
-   }
-   
-   if (disciplina === 'QUI' && resp_obj.agenda[i].dia_mes === '17/09') {
-     resp_obj.agenda[i].horario['h10'] = '#AAAAAA';
-     resp_obj.agenda[i].horario['h11'] = '#AAAAAA';
-   }
+    }
+    
+    if (disciplina === 'QUI' && resp_obj.agenda[i].dia_mes === '17/09') {
+      resp_obj.agenda[i].horario['h10'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h11'] = '#AAAAAA';
+    }
+    
+    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '15/09') {
+      resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
+    }
   }
-
+  
   if (dia_s > 0 && dia_s < 6) {
     let hora_str = ds.substring(11,13);
     for (let i=0; i < h_ids.length; i++) {
