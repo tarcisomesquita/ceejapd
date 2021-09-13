@@ -1324,10 +1324,11 @@ function enviar_escolha() {
       },
       body: '{"tipo":"2", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '", "escolha":{"dia":"' + dia_e + '","hora":"' + hora_e + '"}, "escolha_old":{"dia":"' + dia_old + '","hora":"' + hora_old + '"}}'
     })
-    .then(response => response.text())
-    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
+//    .then(response => response.text())
+//    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
+    .then(response => {resp_obj = response.json(); console.log(resp_obj); fetch_resposta();})
     .catch((error) => {
-      console.error("Error:", error);
+      console.error("Catch2:", error);
       page.innerHTML = '<p class="erro">Aguarde. Marcando na agenda...</p>';
       page.style.cursor = 'auto';
       informe('ERRO: ceejapd: load agenda_escolha: ' + usuario + ': ' + error);
@@ -1634,10 +1635,11 @@ agenda.onclick = () => {
       },
       body: '{"tipo":"1", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
-    .then(response => response.text())
-    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
+//    .then(response => response.text())
+//    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
+    .then(response => {resp_obj = response.json(); console.log(resp_obj); fetch_resposta();})
     .catch((error) => {
-      console.error("Catch:", error);
+      console.error("Catch1:", error);
       document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
       informe('ERRO: ceejapd: load agenda: ' + usuario + ': ' + error);
     });
