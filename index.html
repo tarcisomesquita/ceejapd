@@ -1191,7 +1191,7 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 <tr><td id="h19">19:00 às 20:00</td></tr>
 <tr><td id="h20">20:00 às 21:00</td></tr>
 </table>
-<p style="text-align:center"><button id="botao" style="padding: 14px 40px; background-color:#008CBA; border: 2px solid #f44336; border-radius: 8px; color:white; font-size:20px; font-weight:bold">enviar</button></p>
+<p style="text-align:center"><button id="botao2" style="padding: 14px 40px; background-color:#008CBA; border: 2px solid #f44336; border-radius: 8px; color:white; font-size:20px; font-weight:bold">enviar</button></p>
 </div>
 
 <iframe id="hiddenFrame" name="hiddenFrame" style="display:none"></iframe>
@@ -1306,7 +1306,7 @@ function enviar_escolha() {
     return;
   }
   else {
-    botao.style.visibility = "hidden";
+    botao2.style.visibility = "hidden";
     agenda_div.remove();
     
     let div0 = document.createElement('div');
@@ -1410,7 +1410,7 @@ function fetch_resposta() {
     document.getElementById(h_ids[i]).setAttribute("onclick","marcar('" + h_ids[i] + "')");
   }
   
-  document.getElementById("botao").setAttribute("onclick","enviar_escolha()");
+  document.getElementById("botao2").setAttribute("onclick","enviar_escolha()");
   
   let hoje = ds.substring(0,5);
   
