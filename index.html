@@ -1411,7 +1411,7 @@ function fetch_resposta() {
   
   document.getElementById("botao").setAttribute("onclick","enviar_escolha()");
   
-  let hoje = agora.toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"}).substring(0,5);
+  let hoje = ds.substring(0,5);
   
   if ((dia_s == 6 || dia_s == 0) || (dia_s == 5 && hora > 22)) {
     n_min = 5;
@@ -1439,7 +1439,7 @@ function fetch_resposta() {
   }
 
   if (dia_s > 0 && dia_s < 6) {
-    let hora_str = agora.toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"}).substring(11,13);
+    let hora_str = ds.substring(11,13);
     for (let i=0; i < h_ids.length; i++) {
       if (h_ids[i] === `h${hora_str}`) {
         for (let j=0; j < (i + 2) && j < h_ids.length; j++) {
@@ -1464,9 +1464,10 @@ function fetch_resposta() {
   set_cores();
 }
 
-let agora = new Date();
+let ds = (new Date()).toLocaleString("pt-BR", {"timeZone": "America/Sao_Paulo"});
+let agora = new Date(Date.parse(ds.replace(/^([0-9]{2})\/([0-9]{2})\/([0-9]{4}) (.*)/, "$3-$2-$1T$4.000Z"))); // Data with timezone
 let dia_s = agora.getDay();
-let hora = agora.getUTCHours() - 3;
+let hora = agora.getUTCHours();
 let dia_m = agora.getDate();
 
 let n_min = 0;
