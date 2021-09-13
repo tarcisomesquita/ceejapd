@@ -1637,7 +1637,7 @@ agenda.onclick = () => {
     .then(response => response.text())
     .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
     .catch((error) => {
-      console.error("Error:", error);
+      console.error("Catch:", error);
       document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
       informe('ERRO: ceejapd: load agenda: ' + usuario + ': ' + error);
     });
