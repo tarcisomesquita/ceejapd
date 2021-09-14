@@ -1442,6 +1442,16 @@ function fetch_resposta() {
       resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
       resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
     }
+    
+    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '22/09') {
+      resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
+    }
+    
+    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '29/09') {
+      resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
+    }
   }
   
   if (dia_s > 0 && dia_s < 6) {
