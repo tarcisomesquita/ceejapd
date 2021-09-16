@@ -1171,7 +1171,7 @@ table {
 </div>
 
 <div id='busca_mat' class='box'>
-  <p>Nome completo:<input 
+  <p>Parte do nome:<input 
     id="busca_mat_nome" 
     type="text" 
     pattern="\([a-zA-Z ]" 
@@ -1730,7 +1730,7 @@ busca_matricula.onclick = () => {
       headers: {
         "Content-Type": "text/plain"
       },
-      body: '{"nome":"' + busca_mat_nome.replace(/'/g, '').value.toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
+      body: '{"nome":"' + String(busca_mat_nome.value).replace(/'/g, '').value.toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
     .then(value => { resp_busca_mat_obj = JSON.parse(value); console.log(resp_busca_mat_obj); resposta_busca_mat();})
