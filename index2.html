@@ -1686,6 +1686,7 @@ agenda.onclick = () => {
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 function resposta_busca_mat() {
+  if (resp_obj.erro !== '') {fetch_erro(resp_obj.erro); return;}
   if (resp_obj.token !== '') {
     document.cookie = `ceejapd=${resp_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
@@ -1694,10 +1695,9 @@ function resposta_busca_mat() {
   
   page.remove();
   
-  let p0 = document.createElement('p');
-  p0.setAttribute('class','erro');
-  p0.innerHTML = resp_busca_mat_obj.msg;
-  document.getElementsByTagName('body')[0].appendChild(p0);
+  let pre0 = document.createElement('pre');
+  pre0.innerHTML = resp_busca_mat_obj.resultado;
+  document.getElementsByTagName('body')[0].appendChild(pre0);
 }
 
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
