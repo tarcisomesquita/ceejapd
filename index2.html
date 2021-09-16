@@ -1174,7 +1174,8 @@ table {
     id="busca_mat_nome" 
     type="text" 
     pattern="\([a-zA-Z ]" 
-    maxlength="50" 
+    maxlength="50"
+    minlength="7"
     style="margin:5px"
   ></p>
   <input 
@@ -1716,7 +1717,11 @@ busca_matricula.onclick = () => {
   }
   
   busca_mat_button.onclick = function () {
-    if (! /^[a-zA-Z ]+$/.test(busca_mat_nome.value)) return;
+    if (
+      ! /^[a-zA-Z ]+$/.test(busca_mat_nome.value) || 
+      busca_mat_nome.value.length < 6 || 
+      busca_mat_nome.value.length > 50 
+    ) return;
     
     fetch('https://script.google.com/macros/s/' + busca_matricula_v + '/exec', {
       method: "POST",
