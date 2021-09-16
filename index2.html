@@ -1686,9 +1686,9 @@ agenda.onclick = () => {
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 function resposta_busca_mat() {
-  if (resp_obj.erro !== '') {fetch_erro(resp_obj.erro); return;}
-  if (resp_obj.token !== '') {
-    document.cookie = `ceejapd=${resp_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+  if (resp_busca_mat_obj.erro !== '') {fetch_erro(resp_busca_mat_obj.erro); return;}
+  if (resp_busca_mat_obj.token !== '') {
+    document.cookie = `ceejapd=${resp_busca_mat_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     console.log(document.cookie);
   }
@@ -1714,7 +1714,7 @@ busca_matricula.onclick = () => {
   busca_mat_nome.focus();
   
   busca_mat_nome.onkeyup = function () {
-    if (event.keyCode == 13) button_agenda_id.focus();
+    if (event.keyCode == 13) busca_mat_button.focus();
   }
   
   busca_mat_button.onclick = function () {
