@@ -1719,6 +1719,9 @@ busca_matricula.onclick = () => {
     ) {busca_mat_nome.focus(); return;}
     
     let nome = busca_mat_nome.value;
+    
+    busca_mat_button.style.display = 'none';
+    
     fetch('https://script.google.com/macros/s/' + busca_matricula_v + '/exec', {
       method: "POST",
       mode: "cors",
