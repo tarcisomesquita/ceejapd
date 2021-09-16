@@ -1723,6 +1723,7 @@ busca_matricula.onclick = () => {
       busca_mat_nome.value.length > 50 
     ) {busca_mat_nome.focus(); return;}
     
+    let nome = busca_mat_nome.value;
     fetch('https://script.google.com/macros/s/' + busca_matricula_v + '/exec', {
       method: "POST",
       mode: "cors",
@@ -1730,7 +1731,7 @@ busca_matricula.onclick = () => {
       headers: {
         "Content-Type": "text/plain"
       },
-      body: '{"nome":"' + String(busca_mat_nome.value).replace(/'/g, '').value.toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
+      body: '{"nome":"' + nome.replace(/'/g, '').toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
     .then(value => { resp_busca_mat_obj = JSON.parse(value); console.log(resp_busca_mat_obj); resposta_busca_mat();})
