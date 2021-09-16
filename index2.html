@@ -920,10 +920,6 @@ table {
 
 <br>
 
-<p id='busca_matricula' class='link' style='color:#22BB22'>Consultar número de matrícula</p>
-
-<br>
-
 <p><a href="https://bit.ly/escolapaulo">Formulário de matrícula</a></p>
 
 <p><a href="https://www.google.com/maps/dir//-22.856400368690867,-47.04246102053969/">Rota para CEEJA Paulo Decourt</a></p>
@@ -937,6 +933,10 @@ table {
 <p onclick="whatsapp()" class='link' style='color:#DD6611'>Atualizar WhatsApp</p>
 
 <p onclick="email()" class='link' style='color:#DD6611'>Atualizar email</p>
+
+<br>
+
+<p id='busca_matricula' class='link' style='color:#DD6611'>Consultar número de matrícula</p>
 
 <br />
 
@@ -1739,6 +1739,7 @@ busca_matricula.onclick = () => {
       document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
       informe('ERRO: ceejapd: busca_matricula: ' + usuario + ': ' + error);
     });
+  }
 }
   
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
