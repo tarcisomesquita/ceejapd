@@ -37,12 +37,14 @@ var atendimento_v = 'AKfycbyKKTNS-d5wx9grlacAHFJM7Oep6SzGeGlJ3JGPju5l1MlK6NomHsC
 var boletim_v = 'AKfycbxxvEX2eLWROYhrz2cR_UPII4HkEmkUKMBIZAcgNDGo9z77BLPpMgfIFO6Q64ub9UMJ'; // credencial
 var whatsapp_v = 'AKfycbwnk2Pc3vJESKDOs01QTpfvlNaKN2wqdh1s0ZJ-1PeFfDhk6QIhJCkpy78wPlTPKMhg'; // credencial
 var email_v = 'AKfycby2n6SHByOSMQtfR8VdsfSO1pxpmu2MRVhgSiu1TFqQgiaumbylsx6-PWrF2SE8cPLu_w'; // credencial
+var busca_matricula_v = 'AKfycbxPXMAjqqbRP8lRJT8OVNvjR1b665CquviI8uyv2Ret3xiFWsDG_etDkTUibFiaZnEP'; // new line
 var boletim_file_v = 'AKfycbw791wnSKWm2bowxTL09ncbtmGSSi2u8KAF7HtthoW4YBWH3VsE5_IoWYpOES23tOMYWg'; // credencial
 var requerimento_v = 'AKfycbw01a-ltp7zdlkYh0I2Qbzs0keon0-HANr0MFp2PgYGr0PA2NSpVK9TOpI1bzUDcjyY'; // credencial
 //var requerimento_v = 'AKfycbwR9G5fBvkrs4LqzS5v1ZEY0Dh11sdXJOkINEpaH1P41i1aXkJdMcapqzKw0ifCSVFr'; // copia
 var relatorio_v = 'AKfycbxL5pRkx_dH4BET8x4soS7_CWbbkA2QeqacQVENmiaugyOct4E63-DfXq2t4K6DDHfS'; // credencial
 var historico_v = 'AKfycbyyS5mWwhxO1IxxVFOxTao2x4G0JSMrlToweeLqJmUrBTJZ6JSevVYQtumG1fgS6RzIBA'; // credencial
 var resp_obj = {};
+var resp_busca_mat_obj = {};
 
 const avaliacoes_em = {
   "POR":['1A','1B','2A','2B','3A','3B','R'],
@@ -136,7 +138,7 @@ var signinChanged = function(val) {
   if (val) {
     token = auth2.currentUser.get().getAuthResponse().id_token;
     usuario = auth2.currentUser.get().getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    console.log('usuario: ' + usuario + ' token: ' + token);
+    //console.log('usuario: ' + usuario + ' token: ' + token);
     
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
@@ -932,6 +934,10 @@ table {
 
 <p onclick="email()" class='link' style='color:#DD6611'>Atualizar email</p>
 
+<br>
+
+<p id='busca_matricula' class='link' style='color:#DD6611'>Consultar número de matrícula</p>
+
 <br />
 
 <p><a href="https://drive.google.com/drive/folders/18TxnjlmMWt7-ifq5xqS5ZYed9iPCggs7" style='color:#AA33AA'>Drive Secretaria</a></p>
@@ -1164,6 +1170,22 @@ table {
   <input id='aviso_button' type="button" value="ok" onclick="aviso_b()">
 </div>
 
+<div id='busca_mat' class='box'>
+  <p>Parte do nome:<input 
+    id="busca_mat_nome" 
+    type="text" 
+    pattern="\([a-zA-Z ]" 
+    maxlength="50"
+    minlength="6"
+    style="margin:5px"
+  ></p>
+  <input 
+    id="busca_mat_button" 
+    type="button" 
+    value="ok" 
+  >
+</div>
+
 <footer style='font-family:"sans-serif"; font-size:10px;'>
 <a href='https://tarcisomesquita.github.io/ceejapd/privacidade.html'>Política de privacidade</a><br/>
 Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
@@ -1325,8 +1347,7 @@ function enviar_escolha() {
       body: '{"tipo":"2", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '", "escolha":{"dia":"' + dia_e + '","hora":"' + hora_e + '"}, "escolha_old":{"dia":"' + dia_old + '","hora":"' + hora_old + '"}}'
     })
     .then(response => response.text())
-    .then(value => { resp_obj = JSON.parse(value); console.log(resp_obj); fetch_resposta();})
-//    .then(response => {resp_obj = response.json(); console.log(resp_obj); fetch_resposta();})
+    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
     .catch((error) => {
       console.error("Catch2:", error);
       page.innerHTML = '<p class="erro">Aguarde. Marcando na agenda...</p>';
@@ -1376,13 +1397,10 @@ let dia_old = '';
 let hora_old = '';
 
 function fetch_resposta() {
-  //console.log(resp_obj);
-  
   if (resp_obj.erro !== '') {fetch_erro(resp_obj.erro); return;}
   if (resp_obj.token !== '') {
     document.cookie = `ceejapd=${resp_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
-    console.log(document.cookie);
   }
   
   page.remove();
@@ -1651,8 +1669,7 @@ agenda.onclick = () => {
       body: '{"tipo":"1", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
-    .then(value => { resp_obj = JSON.parse(value); console.log(resp_obj); fetch_resposta();})
-//    .then(response => {resp_obj = response.json(); console.log(resp_obj); fetch_resposta();})
+    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
     .catch((error) => {
       console.error("Catch1:", error);
       document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
@@ -1661,6 +1678,66 @@ agenda.onclick = () => {
   }
 }
 
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+function resposta_busca_mat() {
+  if (resp_busca_mat_obj.erro !== '') {fetch_erro(resp_busca_mat_obj.erro); return;}
+  if (resp_busca_mat_obj.token !== '') {
+    document.cookie = `ceejapd=${resp_busca_mat_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+    document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+  }
+  
+  busca_mat.style.display = 'none';
+  page.remove();
+  
+  let pre0 = document.createElement('pre');
+  pre0.innerHTML = resp_busca_mat_obj.resultado;
+  document.getElementsByTagName('body')[0].appendChild(pre0);
+}
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+busca_matricula.onclick = () => {
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+    return;
+  }
+  
+  container.style.display = 'inline';
+  busca_mat.style.display = 'inline';
+  
+  busca_mat_nome.focus();
+  
+  busca_mat_nome.onkeyup = function () {
+    if (event.keyCode == 13) busca_mat_button.focus();
+  }
+  
+  busca_mat_button.onclick = function () {
+    if (
+      busca_mat_nome.value.length < 6 || 
+      busca_mat_nome.value.length > 50 
+    ) {busca_mat_nome.focus(); return;}
+    
+    let nome = busca_mat_nome.value;
+    fetch('https://script.google.com/macros/s/' + busca_matricula_v + '/exec', {
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: '{"nome":"' + nome.replace(/'/g, '').toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
+    })
+    .then(response => response.text())
+    .then(value => { resp_busca_mat_obj = JSON.parse(value); resposta_busca_mat();})
+    .catch((error) => {
+      console.error("Catch_busca_matricula:", error);
+      document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+      informe('ERRO: ceejapd: busca_matricula: ' + usuario + ': ' + error);
+    });
+  }
+}
+  
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 let piscar = setInterval(function() {
