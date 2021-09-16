@@ -138,7 +138,7 @@ var signinChanged = function(val) {
   if (val) {
     token = auth2.currentUser.get().getAuthResponse().id_token;
     usuario = auth2.currentUser.get().getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    console.log('usuario: ' + usuario + ' token: ' + token);
+    //console.log('usuario: ' + usuario + ' token: ' + token);
     
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
@@ -1347,8 +1347,7 @@ function enviar_escolha() {
       body: '{"tipo":"2", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '", "escolha":{"dia":"' + dia_e + '","hora":"' + hora_e + '"}, "escolha_old":{"dia":"' + dia_old + '","hora":"' + hora_old + '"}}'
     })
     .then(response => response.text())
-    .then(value => { resp_obj = JSON.parse(value); console.log(resp_obj); fetch_resposta();})
-//    .then(response => {resp_obj = response.json(); console.log(resp_obj); fetch_resposta();})
+    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
     .catch((error) => {
       console.error("Catch2:", error);
       page.innerHTML = '<p class="erro">Aguarde. Marcando na agenda...</p>';
@@ -1398,13 +1397,10 @@ let dia_old = '';
 let hora_old = '';
 
 function fetch_resposta() {
-  //console.log(resp_obj);
-  
   if (resp_obj.erro !== '') {fetch_erro(resp_obj.erro); return;}
   if (resp_obj.token !== '') {
     document.cookie = `ceejapd=${resp_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
-    console.log(document.cookie);
   }
   
   page.remove();
@@ -1673,8 +1669,7 @@ agenda.onclick = () => {
       body: '{"tipo":"1", "matricula":"' + matricula + '", "disciplina":"' + disciplina + '", "avaliacao":"' + avaliacao + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
-    .then(value => { resp_obj = JSON.parse(value); console.log(resp_obj); fetch_resposta();})
-//    .then(response => {resp_obj = response.json(); console.log(resp_obj); fetch_resposta();})
+    .then(value => { resp_obj = JSON.parse(value); fetch_resposta();})
     .catch((error) => {
       console.error("Catch1:", error);
       document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
@@ -1690,7 +1685,6 @@ function resposta_busca_mat() {
   if (resp_busca_mat_obj.token !== '') {
     document.cookie = `ceejapd=${resp_busca_mat_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
     document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
-    console.log(document.cookie);
   }
   
   busca_mat.style.display = 'none';
@@ -1735,7 +1729,7 @@ busca_matricula.onclick = () => {
       body: '{"nome":"' + nome.replace(/'/g, '').toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
-    .then(value => { resp_busca_mat_obj = JSON.parse(value); console.log(resp_busca_mat_obj); resposta_busca_mat();})
+    .then(value => { resp_busca_mat_obj = JSON.parse(value); resposta_busca_mat();})
     .catch((error) => {
       console.error("Catch_busca_matricula:", error);
       document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
