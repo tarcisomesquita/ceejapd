@@ -43,6 +43,7 @@ var requerimento_v = 'AKfycbw01a-ltp7zdlkYh0I2Qbzs0keon0-HANr0MFp2PgYGr0PA2NSpVK
 var relatorio_v = 'AKfycbxL5pRkx_dH4BET8x4soS7_CWbbkA2QeqacQVENmiaugyOct4E63-DfXq2t4K6DDHfS'; // credencial
 var historico_v = 'AKfycbyyS5mWwhxO1IxxVFOxTao2x4G0JSMrlToweeLqJmUrBTJZ6JSevVYQtumG1fgS6RzIBA'; // credencial
 var resp_obj = {};
+var resp_busca_mat_obj = {};
 
 const avaliacoes_em = {
   "POR":['1A','1B','2A','2B','3A','3B','R'],
@@ -918,6 +919,10 @@ table {
 
 <br>
 
+<p id='busca_matricula' class='link' style='color:#22BB22'>Consultar número de matrícula</p>
+
+<br>
+
 <p><a href="https://bit.ly/escolapaulo">Formulário de matrícula</a></p>
 
 <p><a href="https://www.google.com/maps/dir//-22.856400368690867,-47.04246102053969/">Rota para CEEJA Paulo Decourt</a></p>
@@ -1162,6 +1167,21 @@ table {
 <div id='aviso' class='box'>
   <p id='mensagem'></p>
   <input id='aviso_button' type="button" value="ok" onclick="aviso_b()">
+</div>
+
+<div id='busca_mat' class='box'>
+  <p>Nome completo:<input 
+    id="busca_mat_nome" 
+    type="text" 
+    pattern="\([a-zA-Z ]" 
+    maxlength="50" 
+    style="margin:5px"
+  ></p>
+  <input 
+    id="busca_mat_button" 
+    type="button" 
+    value="ok" 
+  >
 </div>
 
 <footer style='font-family:"sans-serif"; font-size:10px;'>
@@ -1661,6 +1681,61 @@ agenda.onclick = () => {
   }
 }
 
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+function resposta_busca_mat() {
+  if (resp_obj.token !== '') {
+    document.cookie = `ceejapd=${resp_obj.token};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+    document.cookie = `usuario=${usuario};expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;`;
+    console.log(document.cookie);
+  }
+  
+  page.remove();
+  
+  let p0 = document.createElement('p');
+  p0.setAttribute('class','erro');
+  p0.innerHTML = resp_busca_mat_obj.msg;
+  document.getElementsByTagName('body')[0].appendChild(p0);
+}
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+busca_matricula.onclick = () => {
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+    return;
+  }
+  
+  container.style.display = 'inline';
+  busca_mat.style.display = 'inline';
+  
+  busca_mat_nome.focus();
+  
+  busca_mat_nome.onkeyup = function () {
+    if (event.keyCode == 13 && /^[a-zA-Z ]+$/.test(busca_mat_nome.value)) button_agenda_id.focus();
+  }
+  
+  busca_mat_button.onclick = function () {
+    if (! /^[a-zA-Z ]+$/.test(busca_mat_nome.value)) return;
+    
+    fetch('https://script.google.com/macros/s/' + busca_matricula_v + '/exec', {
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+      headers: {
+        "Content-Type": "text/plain"
+      },
+      body: '{"nome":"' + busca_mat_nome.value.toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
+    })
+    .then(response => response.text())
+    .then(value => { resp_busca_mat_obj = JSON.parse(value); console.log(resp_busca_mat_obj); resposta_busca_mat();})
+    .catch((error) => {
+      console.error("Catch_busca_matricula:", error);
+      document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
+      informe('ERRO: ceejapd: busca_matricula: ' + usuario + ': ' + error);
+    });
+}
+  
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 let piscar = setInterval(function() {
