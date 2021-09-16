@@ -1175,7 +1175,7 @@ table {
     type="text" 
     pattern="\([a-zA-Z ]" 
     maxlength="50"
-    minlength="7"
+    minlength="6"
     style="margin:5px"
   ></p>
   <input 
@@ -1713,15 +1713,14 @@ busca_matricula.onclick = () => {
   busca_mat_nome.focus();
   
   busca_mat_nome.onkeyup = function () {
-    if (event.keyCode == 13 && /^[a-zA-Z ]+$/.test(busca_mat_nome.value)) button_agenda_id.focus();
+    if (event.keyCode == 13) button_agenda_id.focus();
   }
   
   busca_mat_button.onclick = function () {
     if (
-      ! /^[a-zA-Z ]+$/.test(busca_mat_nome.value) || 
       busca_mat_nome.value.length < 6 || 
       busca_mat_nome.value.length > 50 
-    ) return;
+    ) {busca_mat_nome.focus(); return;}
     
     fetch('https://script.google.com/macros/s/' + busca_matricula_v + '/exec', {
       method: "POST",
@@ -1730,7 +1729,7 @@ busca_matricula.onclick = () => {
       headers: {
         "Content-Type": "text/plain"
       },
-      body: '{"nome":"' + busca_mat_nome.value.toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
+      body: '{"nome":"' + busca_mat_nome.replace(/'/g, '').value.toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
     })
     .then(response => response.text())
     .then(value => { resp_busca_mat_obj = JSON.parse(value); console.log(resp_busca_mat_obj); resposta_busca_mat();})
