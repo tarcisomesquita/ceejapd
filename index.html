@@ -108,7 +108,7 @@ function recarregar() {
 }
   
 var startApp = function() {
-  informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
+  //informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
   //setTimeout(recarregar, 20000);
   
   if (token === '') {
@@ -118,7 +118,7 @@ var startApp = function() {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    //informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
 
@@ -143,7 +143,7 @@ var signinChanged = function(val) {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    //informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
   else {
     token = '';
