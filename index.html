@@ -1258,8 +1258,8 @@ let disciplinas_ausentes = {
     'h09':["MAT", "FIL", "SOC", "QUI"], 
     'h10':["MAT", "FIL", "SOC", "QUI"], 
     'h11':["MAT", "FIL", "SOC", "QUI"], 
-    'h13':["MAT", "FIL", "SOC", "QUI"], 
-    'h14':["MAT", "FIL", "SOC", "QUI"], 
+    'h13':["MAT", "FIL", "SOC", "QUI", "FIS"], 
+    'h14':["MAT", "FIL", "SOC", "QUI", "FIS"], 
     'h15':["ART", "GEO", "FIL", "FIS"], 
     'h16':["ART", "GEO", "FIL", "FIS"], 
     'h17':["ART", "GEO", "FIL", "FIS"], 
@@ -1451,22 +1451,7 @@ function fetch_resposta() {
       if (nao_tem.indexOf(disciplina) != -1) resp_obj.agenda[i].horario[h_ids[j]] = '#AAAAAA';
     }
     
-    if (disciplina === 'QUI' && resp_obj.agenda[i].dia_mes === '17/09') {
-      resp_obj.agenda[i].horario['h10'] = '#AAAAAA';
-      resp_obj.agenda[i].horario['h11'] = '#AAAAAA';
-    }
-    
-    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '15/09') {
-      resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
-      resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
-    }
-    
-    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '22/09') {
-      resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
-      resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
-    }
-    
-    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '29/09') {
+    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '13/10') {
       resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
       resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
     }
