@@ -1232,12 +1232,12 @@ let disciplinas_ausentes = {
     'h11':["GEO", "FIL", "SOC"], 
     'h13':["GEO", "FIL", "SOC"], 
     'h14':["GEO", "FIL", "SOC"], 
-    'h15':["ART", "FIL", "QUI", "FIS"], 
-    'h16':["ART", "FIL", "QUI", "FIS"], 
-    'h17':["ART", "FIL", "QUI", "FIS"], 
-    'h18':["ART", "FIL", "QUI", "FIS"], 
-    'h19':["ART", "FIL", "QUI", "FIS"], 
-    'h20':["ART", "FIL", "QUI", "FIS"]
+    'h15':["ART", "FIL", "FIS"], 
+    'h16':["ART", "FIL", "FIS"], 
+    'h17':["ART", "FIL", "FIS"], 
+    'h18':["ART", "FIL", "FIS"], 
+    'h19':["ART", "FIL", "FIS"], 
+    'h20':["ART", "FIL", "FIS"]
   },
   'terça-feira':{
     'h08':["ART", "GEO", "FIL", "FIS"], 
@@ -1246,20 +1246,20 @@ let disciplinas_ausentes = {
     'h11':["ART", "GEO", "FIL", "FIS"], 
     'h13':["ART", "GEO", "FIL", "FIS"], 
     'h14':["ART", "GEO", "FIL", "FIS"], 
-    'h15':["FIL", "SOC", "QUI"], 
-    'h16':["FIL", "SOC", "QUI"], 
-    'h17':["FIL", "SOC", "QUI"], 
-    'h18':["FIL", "SOC", "QUI"], 
-    'h19':["FIL", "SOC", "QUI"], 
-    'h20':["FIL", "SOC", "QUI"]
+    'h15':["FIL", "SOC"], 
+    'h16':["FIL", "SOC"], 
+    'h17':["FIL", "SOC"], 
+    'h18':["FIL", "SOC"], 
+    'h19':["FIL", "SOC"], 
+    'h20':["FIL", "SOC"]
   },
   'quarta-feira':{
-    'h08':["MAT", "FIL", "SOC", "QUI"], 
-    'h09':["MAT", "FIL", "SOC", "QUI"], 
-    'h10':["MAT", "FIL", "SOC", "QUI"], 
-    'h11':["MAT", "FIL", "SOC", "QUI"], 
-    'h13':["MAT", "FIL", "SOC", "QUI", "FIS"], 
-    'h14':["MAT", "FIL", "SOC", "QUI", "FIS"], 
+    'h08':["FIL", "SOC"], 
+    'h09':["FIL", "SOC"], 
+    'h10':["FIL", "SOC"], 
+    'h11':["FIL", "SOC"], 
+    'h13':["FIL", "SOC", "FIS"], 
+    'h14':["FIL", "SOC", "FIS"], 
     'h15':["ART", "GEO", "FIL", "FIS"], 
     'h16':["ART", "GEO", "FIL", "FIS"], 
     'h17':["ART", "GEO", "FIL", "FIS"], 
@@ -1268,12 +1268,12 @@ let disciplinas_ausentes = {
     'h20':["ART", "GEO", "FIL", "FIS"]
   },
   'quinta-feira':{
-    'h08':["ART", "FIL", "QUI", "FIS"], 
-    'h09':["ART", "FIL", "QUI", "FIS"], 
-    'h10':["ART", "FIL", "QUI", "FIS"], 
-    'h11':["ART", "FIL", "QUI", "FIS"], 
-    'h13':["ART", "FIL", "QUI", "FIS"], 
-    'h14':["ART", "FIL", "QUI", "FIS"], 
+    'h08':["ART", "FIL", "FIS"], 
+    'h09':["ART", "FIL", "FIS"], 
+    'h10':["ART", "FIL", "FIS"], 
+    'h11':["ART", "FIL", "FIS"], 
+    'h13':["ART", "FIL", "FIS"], 
+    'h14':["ART", "FIL", "FIS"], 
     'h15':["GEO", "SOC", "FIL"], 
     'h16':["GEO", "SOC", "FIL"], 
     'h17':["GEO", "SOC", "FIL"], 
@@ -1451,9 +1451,24 @@ function fetch_resposta() {
       if (nao_tem.indexOf(disciplina) != -1) resp_obj.agenda[i].horario[h_ids[j]] = '#AAAAAA';
     }
     
-    if (disciplina === 'FIS' && resp_obj.agenda[i].dia_mes === '13/10') {
+    if (disciplina === 'FIS' && (resp_obj.agenda[i].dia_mes === '13/10' || resp_obj.agenda[i].dia_mes === '20/10' || resp_obj.agenda[i].dia_mes === '27/10')) {
       resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
       resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
+    }
+    
+    if (resp_obj.agenda[i].dia_mes === '12/10' || resp_obj.agenda[i].dia_mes === '02/11' || resp_obj.agenda[i].dia_mes === '15/11' || resp_obj.agenda[i].dia_mes === '08/12') {
+      resp_obj.agenda[i].horario['h08'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h09'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h10'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h11'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h15'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h16'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h17'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h18'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h19'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h20'] = '#AAAAAA';
     }
   }
   
@@ -1740,7 +1755,7 @@ setTimeout(function () {
 
 
 if ((dia_s == 6 || dia_s == 0) || (dia_s == 5 && hora > 22)) avaliacoes.style.display = 'none';
-//else if (dia_m == 6 || dia_m == 7 || (dia_m == 5 && hora > 22) avaliacoes.style.display = 'none';
+else if (dia_m == 12) avaliacoes.style.display = 'none';
 
 /*
  
