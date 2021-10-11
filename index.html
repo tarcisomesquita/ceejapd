@@ -1762,7 +1762,10 @@ setTimeout(function () {
 
 
 if ((dia_s == 6 || dia_s == 0) || (dia_s == 5 && hora > 22)) avaliacoes.style.display = 'none';
+else if (dia_m == 11) avaliacoes.style.display = 'none';
 else if (dia_m == 12) avaliacoes.style.display = 'none';
+
+//'01/11' || resp_obj.agenda[i].dia_mes === '02/11' || resp_obj.agenda[i].dia_mes === '15/11' || resp_obj.agenda[i].dia_mes === '08/12'
 
 /*
  
