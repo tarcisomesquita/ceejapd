@@ -1457,8 +1457,12 @@ function fetch_resposta() {
       if (nao_tem.indexOf(disciplina) != -1) resp_obj.agenda[i].horario[h_ids[j]] = '#AAAAAA';
     }
     
-    if (disciplina === 'FIS' && (resp_obj.agenda[i].dia_mes === '06/10' || resp_obj.agenda[i].dia_mes === '13/10' || resp_obj.agenda[i].dia_mes === '20/10' || resp_obj.agenda[i].dia_mes === '27/10')) {
+    if (disciplina === 'FIS' && (resp_obj.agenda[i].dia_mes === '20/10' || resp_obj.agenda[i].dia_mes === '27/10')) {
       resp_obj.agenda[i].horario['h13'] = '#AAAAAA';
+      resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
+    }
+    
+    if (disciplina === 'SOC' && resp_obj.agenda[i].dia_mes === '26/10') {
       resp_obj.agenda[i].horario['h14'] = '#AAAAAA';
     }
     
