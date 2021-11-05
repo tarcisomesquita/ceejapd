@@ -913,7 +913,7 @@ table {
 
 <br />
 -->
-<div id="avaliacoes">
+
 <p onclick="avaliacao_geo_ef()" class='link' style='color:#22BB22'>Pegar avaliação de Geografia - Ensino Fundamental</p>
 
 <p onclick="avaliacao_geo()" class='link' style='color:#22BB22'>Pegar avaliação de Geografia - Ensino Médio</p>
@@ -927,7 +927,6 @@ table {
 <p onclick="avaliacao_qui()" class='link' style='color:#22BB22'>Pegar avaliação de Química</p>
 
 <p onclick="avaliacao_fis()" class='link' style='color:#22BB22'>Pegar avaliação de Física</p>
-</div> <!--  id="avaliacoes" -->
 
 <br>
 
@@ -1200,6 +1199,7 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 <footer>
 </div><!-- page -->
 
+<!--
 <div id="agenda_div" style="display:none">
 <p style="text-align:center; margin:auto; color:#FF0000">Clique para escolher</p>
 <p style="text-align:center; margin:auto; color:limegreen">Em verde, os horários disponíveis</p><br>
@@ -1222,6 +1222,7 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 </table>
 <p style="text-align:center"><button id="botao2" style="padding: 14px 40px; background-color:#008CBA; border: 2px solid #f44336; border-radius: 8px; color:white; font-size:20px; font-weight:bold">enviar</button></p>
 </div>
+-->
 
 <iframe id="hiddenFrame" name="hiddenFrame" style="display:none"></iframe>
 <form id="formlog2" style='display:none' enctype="application/x-www-form-urlencoded" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse" method="POST" target="hiddenFrame">
@@ -1229,6 +1230,7 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 </form>
 
 <script>
+/*
 let h_ids = ['h08', 'h09', 'h10', 'h11', 'h13', 'h14', 'h15', 'h16', 'h17', 'h18', 'h19', 'h20'];
 
 let disciplinas_ausentes = {
@@ -1693,7 +1695,7 @@ agenda.onclick = () => {
     });
   }
 }
-
+*/
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 function resposta_busca_mat() {
@@ -1758,7 +1760,7 @@ busca_matricula.onclick = () => {
 }
   
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
+/*
 let piscar = setInterval(function() {
   if (agenda.style.color === 'rgb(221, 68, 51)') agenda.style.color = 'rgb(33, 96, 222)';
   else agenda.style.color = 'rgb(221, 68, 51)';
@@ -1775,6 +1777,7 @@ else if (dia_m == 11) avaliacoes.style.display = 'none';
 else if (dia_m == 12) avaliacoes.style.display = 'none';
 
 //'01/11' || resp_obj.agenda[i].dia_mes === '02/11' || resp_obj.agenda[i].dia_mes === '15/11' || resp_obj.agenda[i].dia_mes === '08/12'
+*/
 
 /*
  
