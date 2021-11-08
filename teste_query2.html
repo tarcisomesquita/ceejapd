@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>query</title>
+</head>
+<body>
+
+<button id="authorize-button" style="visibility: hidden">Authorize</button>
+
+<script>
+var clientId = '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com';
+//var clientId = '582649484433-8eir282le8rck27agot8m66ar4k02l96.apps.googleusercontent.com';
+var scopes = 'https://www.googleapis.com/auth/spreadsheets';
+
+function init() {
+  gapi.auth.authorize(
+    {client_id: clientId, scope: scopes, immediate: true},
+    handleAuthResult
+  );
+}
+
+function handleAuthResult(authResult) {
+  var authorizeButton = document.getElementById('authorize-button');
+  if (authResult && !authResult.error) {
+    authorizeButton.style.visibility = 'hidden';
+    makeApiCall();
+  } else {
+    authorizeButton.style.visibility = '';
+    authorizeButton.onclick = handleAuthClick;
+  }
+}
+
+function handleAuthClick(event) {
+  gapi.auth.authorize(
+      {client_id: clientId, scope: scopes, immediate: false},
+      handleAuthResult);
+  return false;
+}
+
+function makeApiCall() {
+  
+  // Note: The below spreadsheet is "Public on the web" and will work with or without an OAuth token.
+  // For a better test, replace this URL with a private spreadsheet.
+  
+  // Atendimento Física
+  var tqUrl = 'https://docs.google.com/spreadsheets/d/1VtD0Q3UgqWmGuPqViuEfOcx4uKzExkq_1VOAGF2jnPE/gviz/tq' +
+      '?tqx=responseHandler:handleTqResponse' +
+      '&access_token=' + encodeURIComponent(gapi.auth.getToken().access_token);
+  
+  console.log(tqUrl);
+}
+
+function handleTqResponse(resp) {
+  document.write(JSON.stringify(resp));
+}
+</script>
+
+<script src="https://apis.google.com/js/auth.js?onload=init"></script>
+
+</body>
+</html>
+<!--   document.write(`<script src="${tqUrl}" type="text/javascript"></script>`); -->
