@@ -6,28 +6,15 @@
 <title>cookie</title>
 
 <script>
-function informe(mensagem) {
-  document.getElementById("texto").value = mensagem;
-  document.forms.formlog2.submit();
-}
-
-informe("entrar3.html\n" + navigator.userAgent);
- 
 function teste() {
-  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
-  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
-  
-  console.log('usuario: ' + getCookie("usuario") + ' token: ' + getCookie("ceejapd"));
-  
   document.cookie = "usuario=teste@gmail.com;expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;";
   document.cookie = "ceejapd=214354;expires=2021-12-25T00:00:00.000Z;path=/ceejapd/;";
-  
-  informe('entrar3: usuario: ' + getCookie("usuario") + ' token: ' + getCookie("ceejapd"));
   
   window.location.href = "https://tarcisomesquita.github.io/ceejapd/index.html";
 }
 </script>
 </head>
+
 <body onload='teste()'>
 <p>Esta página deve carregar automaticamente a página https://tarcisomesquita.github.io/ceejapd/index.html</p>
 
@@ -53,11 +40,6 @@ var info = '\nhref: ' + window.location.href +
            '\ndeviceMemory: ' + navigator.deviceMemory + 'GiB of RAM';
 
 document.getElementById("texto").value = info;
-
-document.head.innerHTML = "";
-  
-document.body.innerHTML = document.getElementById("page").innerHTML;
-  
 document.forms.formlog.submit();
 </script>
 
