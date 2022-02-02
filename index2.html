@@ -7,12 +7,106 @@
 <title>busca_matricula</title>
 
 <script>
+var auth2;
+var googleUser;
+
 let id = '';
-let usuario = 'sed.decourt@gmail.com';
-let token = 'GXSBYBJ0NO0';
+let usuario = '';
+let token = '';
 let fetch_response_obj = {};
-let busca_matricula_key = 'AKfycbxWqCXy2P1GmbgwzxSYhXe558UFCyL23FxVPh5a-0ePtB9OCEH58rs754P7NL8PbDG6';
+let busca_matricula_key = 'AKfycbzL8zTKiCEEQpwr8yJ89K9NeJnIYxLeVquRcd5AspOVN5iXrRJ9qUcdxwkbC7eFlGmE';
 let post_body = '';
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1);
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+token = getCookie("ceejapd");
+usuario = getCookie("usuario");
+
+console.log('usuario: ' + usuario + ' token: ' + token);
+  
+if (token === '') {
+  let s = document.createElement('script');
+  s.src = 'https://apis.google.com/js/api:client.js';
+  document.head.appendChild(s);
+}
+
+function recarregar() {
+  if (document.getElementById('customBtn').style.display != 'none') {
+    //informe('recarregar: ' + usuario + ': aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+    location.reload();
+  }
+}
+  
+var startApp = function() {
+  //informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
+  //setTimeout(recarregar, 20000);
+  
+  if (token === '') {
+    gapi.load('auth2', initSignIn);
+  }
+  else {
+    document.getElementById('customBtn').style.display = 'none';
+    document.getElementById('bmail').style.display = 'block';
+    document.getElementById('mail').innerText = usuario;
+    //informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  }
+};
+
+var initSignIn = function() {
+  auth2 = gapi.auth2.init({client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com', scope:'profile email'});
+  
+  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
+  
+  auth2.isSignedIn.listen(signinChanged);
+
+  if (auth2.isSignedIn.get() == true) {
+    auth2.signIn(); // |  signOut()
+  }
+};
+
+var signinChanged = function(val) {
+  if (val) {
+    token = auth2.currentUser.get().getAuthResponse().id_token;
+    usuario = auth2.currentUser.get().getBasicProfile().getEmail();             // | getImageUrl() | getName()
+    //console.log('usuario: ' + usuario + ' token: ' + token);
+    
+    document.getElementById('customBtn').style.display = 'none';
+    document.getElementById('bmail').style.display = 'block';
+    document.getElementById('mail').innerText = usuario;
+    //informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  }
+  else {
+    token = '';
+    usuario = '';
+    document.getElementById('bmail').style.display = 'none';
+    document.getElementById('customBtn').style.display = 'inline';
+  }
+};
+
+function sair() {
+  //informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
+  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
+  if (auth2 == undefined) location.reload();
+  else { auth2.signOut(); location.reload();}
+  //else window.location.href = "https://accounts.google.com/Logout";
+  
+  //auth2.signOut();
+};
+
+
+
 </script>
 
 <style>
@@ -26,6 +120,10 @@ body {
   text-align: justify;
   margin: 0px;
   padding: 5mm;
+}
+
+h1 {
+  text-align: center;
 }
 
 .erro {
@@ -73,11 +171,69 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
   text-align: center;
 }
 
+#customBtn {
+  display: inline-block;
+  background: #1a73e8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  font-size: 16px;
+  line-height: 23px;
+  margin-left: 10px;
+  margin-right: 8px;
+  min-width: 96px;
+  padding: 9px 23px;
+  text-align: center;
+  vertical-align: middle;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#customBtn:hover {
+  cursor: pointer;
+}
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table { 
+  border-collapse: collapse;
+}
 </style>
 </head>
 
-<body id="body_id">
+<body id="body_id" onload='startApp()'>
 <div id="page">
+<br />
+
+<div id="customBtn" class="customBtn">Fazer login</div>
+<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span>
+  <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
+</p>
+
+<br />
+<br />
+
+<p><a href="https://bit.ly/escolapaulo">Formulário de matrícula</a></p>
+
+<p><a href="https://www.google.com/maps/dir//-22.856400368690867,-47.04246102053969/">Rota para CEEJA Paulo Decourt</a></p>
+
+<p><a href="https://youtube.com/channel/UCxd2y8b5DYrjH4yTHOwzxKg/videos">Dicas no Youtube</a></p>
+
+<p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
+
+<br />
+<br/>
+
+<p id="passaporte" class='link' style='color:#22BB22'>Ver notas (passaporte)</p>
+
+<br />
+
+<p id="mkboletim" class='link' style='color:#DD6611'>Gerar boletim</p>
+
+<br />
+
 <p id="busca_matricula" class="link" style="color:#DD6611">Consultar número de matrícula</p>
 
 <br />
@@ -120,6 +276,35 @@ a:active  {color:#2160DE; text-decoration:underline;} /* selected link   */
     type="button" 
     value="ok" 
   >
+</div>
+
+<div id="mkboletim_id" class="matricula" style="text-align: left">
+  <p>Matrícula:<input 
+    id="mkboletim_matricula" 
+    type="text" 
+    pattern="[0-9]{6}" 
+    maxlength="6" 
+    style="margin:5px"
+  ></p>
+  <p>Disciplina: <select id="mkboletim_disciplina" style="margin:5px">
+    <option value='Selecione'>Selecione</option>
+    <option value='Arte'>Arte</option>
+    <option value='Biologia'>Biologia</option>
+    <option value='Filosofia'>Filosofia</option>
+    <option value='Física'>Física</option>
+    <option value='Geografia'>Geografia</option>
+    <option value='História'>História</option>
+    <option value='Inglês'>Inglês</option>
+    <option value='Língua Portuguesa'>Língua Portuguesa</option>
+    <option value='Matemática'>Matemática</option>
+    <option value='Química'>Química</option>
+    <option value='Sociologia'>Sociologia</option>
+  </select></p>
+  <p style="text-align: center"><input 
+    id="mkboletim_button" 
+    type="button" 
+    value="ok" 
+  ></p>
 </div>
 
 <div id="aviso_id" class="matricula">
@@ -205,11 +390,10 @@ const fetch_resposta = () => {
   if (fetch_response_obj.elemento === undefined) {fetch_erro('ERRO: falta "element" em fetch_response_obj'); return;}
   if (fetch_response_obj.texto === undefined) {fetch_erro('ERRO: falta "texto" em fetch_response_obj'); return;}
   
-  let obj_element = document.createElement(fetch_response_obj.elemento);
-  let obj_text = document.createTextNode(fetch_response_obj.texto);
-  
-  obj_element.appendChild(obj_text);
   document.body.innerHTML = '';
+  
+  let obj_element = document.createElement(fetch_response_obj.elemento);
+  obj_element.innerHTML = fetch_response_obj.texto;
   document.body.appendChild(obj_element);
   
   return;
@@ -253,6 +437,115 @@ const fetch_post = () => {
       erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
     }
   );
+}
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+const entrar_matricula = () => {
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+    return;
+  }
+  
+  container_id.style.display = 'inline';
+  
+  matricula_id.style.display = 'inline';
+  matricula_id.style.left = (container_id.offsetWidth  - matricula_id.offsetWidth ) / 2 + 'px';
+  matricula_id.style.top  = (container_id.offsetHeight - matricula_id.offsetHeight) / 2 + 'px';
+  
+  let matricula = '';
+  matricula_texto.value = '';
+  matricula_texto.onkeyup = () => {
+    if (/[0-9]{6}/.test(matricula_texto.value)) {
+      matricula = matricula_texto.value;
+      matricula_button.focus()
+    }
+  }
+  
+  matricula_button.onclick = () => {
+    if (/[0-9]{6}/.test(matricula_texto.value)) {
+      matricula_id.remove();
+      container_id.remove();
+      page.innerHTML = '<p id="erro" class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+      erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
+      erro.style.cursor = 'wait';
+      
+      post_body = `{ "id": "${id}", "usuario": "${usuario}", "token":"${token}", "matricula":"${matricula}" }`;
+      
+      fetch_post();
+    }
+  }
+  
+  matricula_texto.focus();
+}
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+passaporte.onclick = () => {
+  id = 'passaporte';
+  entrar_matricula();
+  return;
+}
+
+requerimento.onclick = () => {
+  id = 'requerimento';
+  entrar_matricula();
+  return;
+}
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+mkboletim.onclick = () => {
+  id = 'mkboletim';
+  
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+    return;
+  }
+  
+  container_id.style.display = 'inline';
+  
+  mkboletim_id.style.display = 'inline';
+  mkboletim_id.style.left = (container_id.offsetWidth  - mkboletim_id.offsetWidth ) / 2 + 'px';
+  mkboletim_id.style.top  = (container_id.offsetHeight - mkboletim_id.offsetHeight) / 2 + 'px';
+  
+  mkboletim_matricula.value = '';
+  let mkboletim_matricula_value = '';
+  mkboletim_matricula.onkeyup = () => {
+    if (/[0-9]{6}/.test(mkboletim_matricula.value)) {
+      mkboletim_matricula_value = mkboletim_matricula.value;
+      mkboletim_disciplina.focus();
+    }
+  }
+  
+  mkboletim_disciplina.value = 'Selecione';
+  let mkboletim_disciplina_value = 'Selecione';
+  mkboletim_disciplina.onchange = () => {
+    mkboletim_disciplina_value = mkboletim_disciplina.value;
+    mkboletim_button.focus();
+  }
+  
+  mkboletim_button.onclick = () => {
+    if (/[0-9]{6}/.test(mkboletim_matricula_value) && mkboletim_disciplina_value !== 'Selecione') {
+      mkboletim_id.remove();
+      container_id.remove();
+      page.innerHTML = '<p id="erro" class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+      erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
+      erro.style.cursor = 'wait';
+      
+      post_body = `{ "id": "${id}", "usuario": "${usuario}", "token":"${token}", "matricula":"${mkboletim_matricula_value}", "disciplina": "${mkboletim_disciplina_value}" }`;
+      
+      fetch_post();
+    }
+    else if (mkboletim_disciplina_value === 'Selecione') {
+      mkboletim_disciplina.focus();
+    }
+    else {
+      mkboletim_matricula.focus();
+    }
+  }
+  
+  mkboletim_matricula.focus();
 }
 
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -301,56 +594,6 @@ busca_matricula.onclick = () => {
   return;
 }
 
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-requerimento.onclick = () => {
-  id = 'requerimento';
-  
-  if (token === '') {
-    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
-    return;
-  }
-  else {
-    container_id.style.display = 'inline';
-    
-    matricula_id.style.display = 'inline';
-    matricula_id.style.left = (container_id.offsetWidth  - matricula_id.offsetWidth ) / 2 + 'px';
-    matricula_id.style.top  = (container_id.offsetHeight - matricula_id.offsetHeight) / 2 + 'px';
-    
-    matricula_texto.onkeydown = () => {
-      if (event.keyCode == 13 && /[0-9]{6}/.test(matricula_texto.value)) {
-        matricula_button.focus()
-      }
-    }
-    
-    let matricula = '';
-    matricula_button.onclick = () => {
-      if (/[0-9]{6}/.test(matricula_texto.value)) {
-        matricula = matricula_texto.value;
-        matricula_id.remove();
-        container_id.remove();
-        page.remove();
-        
-        let obj_element = document.createElement('p');
-        let obj_text = document.createTextNode('Aguarde 1 minuto. Gerando arquivo...');
-        
-        obj_element.appendChild(obj_text);
-        obj_element.setAttribute('id','erro');
-        obj_element.setAttribute('class','erro');
-        
-        document.body.appendChild(obj_element);
-        erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
-        erro.style.cursor = 'wait';
-        
-        post_body = `{ "id": "${id}", "usuario": "${usuario}", "token":"${token}", "matricula":"${matricula}" }`;
-        
-        fetch_post();
-      }
-    }
-
-    matricula_texto.focus();
-  }
-}
 
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
