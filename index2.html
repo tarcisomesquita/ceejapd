@@ -335,8 +335,8 @@ const aviso = (mensagem) => {
   aviso_id.style.display     = 'inline';
   aviso_mensagem_id.innerText = mensagem;
   
-  aviso_id.style.left = (container_id.offsetWidth  - aviso_id.offsetWidth ) / 2 + 'px';
-  aviso_id.style.top  = (container_id.offsetHeight - aviso_id.offsetHeight) / 2 + 'px';
+  aviso_id.style.left = (container_id.offsetWidth  - aviso_id.offsetWidth ) * 0.2 + 'px';
+  aviso_id.style.top  = (container_id.offsetHeight - aviso_id.offsetHeight) * 0.2 + 'px';
   
   aviso_button.focus();
   
@@ -374,7 +374,7 @@ const fetch_erro = (mensagem) => {
   document.body.innerHTML = '';
   document.body.appendChild(obj_element);
   
-  erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
+  erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
   
   return;
 }
@@ -434,7 +434,7 @@ const fetch_post = () => {
       informe(`ERRO: ${id}: ${usuario}: ${error}`);
       
       page.innerHTML = '<p id="erro" class="erro">ERRO ao carregar. Informe o professor Tarciso.<br />WhatsApp: (19)99296-9405</p>';
-      erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
+      erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
     }
   );
 }
@@ -450,8 +450,8 @@ const entrar_matricula = () => {
   container_id.style.display = 'inline';
   
   matricula_id.style.display = 'inline';
-  matricula_id.style.left = (container_id.offsetWidth  - matricula_id.offsetWidth ) / 2 + 'px';
-  matricula_id.style.top  = (container_id.offsetHeight - matricula_id.offsetHeight) / 2 + 'px';
+  matricula_id.style.left = (container_id.offsetWidth  - matricula_id.offsetWidth ) * 0.2 + 'px';
+  matricula_id.style.top  = (container_id.offsetHeight - matricula_id.offsetHeight) * 0.2 + 'px';
   
   let matricula = '';
   matricula_texto.value = '';
@@ -467,7 +467,7 @@ const entrar_matricula = () => {
       matricula_id.remove();
       container_id.remove();
       page.innerHTML = '<p id="erro" class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
-      erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
+      erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
       erro.style.cursor = 'wait';
       
       post_body = `{ "id": "${id}", "usuario": "${usuario}", "token":"${token}", "matricula":"${matricula}" }`;
@@ -506,8 +506,8 @@ mkboletim.onclick = () => {
   container_id.style.display = 'inline';
   
   mkboletim_id.style.display = 'inline';
-  mkboletim_id.style.left = (container_id.offsetWidth  - mkboletim_id.offsetWidth ) / 2 + 'px';
-  mkboletim_id.style.top  = (container_id.offsetHeight - mkboletim_id.offsetHeight) / 2 + 'px';
+  mkboletim_id.style.left = (container_id.offsetWidth  - mkboletim_id.offsetWidth ) * 0.2 + 'px';
+  mkboletim_id.style.top  = (container_id.offsetHeight - mkboletim_id.offsetHeight) * 0.2 + 'px';
   
   mkboletim_matricula.value = '';
   let mkboletim_matricula_value = '';
@@ -530,7 +530,7 @@ mkboletim.onclick = () => {
       mkboletim_id.remove();
       container_id.remove();
       page.innerHTML = '<p id="erro" class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
-      erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
+      erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
       erro.style.cursor = 'wait';
       
       post_body = `{ "id": "${id}", "usuario": "${usuario}", "token":"${token}", "matricula":"${mkboletim_matricula_value}", "disciplina": "${mkboletim_disciplina_value}" }`;
@@ -561,8 +561,8 @@ busca_matricula.onclick = () => {
   container_id.style.display = 'inline';
   
   busca_matricula_id.style.display = 'inline';
-  busca_matricula_id.style.left    = (container_id.offsetWidth  - busca_matricula_id.offsetWidth ) / 2 + 'px';
-  busca_matricula_id.style.top     = (container_id.offsetHeight - busca_matricula_id.offsetHeight) / 2 + 'px';
+  busca_matricula_id.style.left    = (container_id.offsetWidth  - busca_matricula_id.offsetWidth ) * 0.2 + 'px';
+  busca_matricula_id.style.top     = (container_id.offsetHeight - busca_matricula_id.offsetHeight) * 0.2 + 'px';
   
   busca_matricula_nome.onkeyup = (e) => {
     if (e.keyCode == 13) busca_matricula_button.focus();
@@ -579,7 +579,7 @@ busca_matricula.onclick = () => {
     busca_matricula_id.remove();
     container_id.remove();
     page.innerHTML = '<p id="erro" class="erro">Aguarde um minuto. Procurando ...</p>';
-    erro.style.top = (innerHeight - erro.offsetHeight) / 2 + 'px';
+    erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
     erro.style.cursor = 'wait';
     
     post_body = `{ "id": "busca_matricula", "usuario": "${usuario}", "token":"${token}", "nome":"${nome.replace(/'/g, '').toUpperCase()}" }`;
