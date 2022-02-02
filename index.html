@@ -1696,51 +1696,6 @@ function resposta_busca_mat() {
 }
 
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-busca_matricula.onclick = () => {
-  if (token === '') {
-    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
-    return;
-  }
-  
-  container.style.display = 'inline';
-  busca_mat.style.display = 'inline';
-  
-  busca_mat_nome.focus();
-  
-  busca_mat_nome.onkeyup = function () {
-    if (event.keyCode == 13) busca_mat_button.focus();
-  }
-  
-  busca_mat_button.onclick = function () {
-    if (
-      busca_mat_nome.value.length < 6 || 
-      busca_mat_nome.value.length > 50 
-    ) {busca_mat_nome.focus(); return;}
-    
-    let nome = busca_mat_nome.value;
-    
-    busca_mat_button.style.display = 'none';
-    
-    fetch('https://script.google.com/macros/s/' + busca_matricula_v + '/exec', {
-      method: "POST",
-      mode: "cors",
-      credentials: "omit",
-      headers: {
-        "Content-Type": "text/plain"
-      },
-      body: '{"nome":"' + nome.replace(/'/g, '').toUpperCase() + '", "usuario":"' + usuario + '", "token":"' + token + '"}'
-    })
-    .then(response => response.text())
-    .then(value => { resp_busca_mat_obj = JSON.parse(value); resposta_busca_mat();})
-    .catch((error) => {
-      console.error("Catch_busca_matricula:", error);
-      document.getElementsByTagName('body')[0].innerHTML = '<p class="erro">ERRO ao carregar. Informe o professor.</p>';
-      informe('ERRO: ceejapd: busca_matricula: ' + usuario + ': ' + error);
-    });
-  }
-}
-  
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 /*
 let piscar = setInterval(function() {
@@ -1762,7 +1717,6 @@ else if (dia_m == 12) avaliacoes.style.display = 'none';
 */
 
 /*
- 
 fetch('https://worldtimeapi.org/api/America/Sao_Paulo')
 .then(function(response) {
   let contentType = response.headers.get("content-type");
