@@ -14,7 +14,7 @@ let id = '';
 let usuario = '';
 let token = '';
 let fetch_response_obj = {};
-let busca_matricula_key = 'AKfycbzL8zTKiCEEQpwr8yJ89K9NeJnIYxLeVquRcd5AspOVN5iXrRJ9qUcdxwkbC7eFlGmE';
+let busca_matricula_key = 'AKfycbx0s9UzGWGVnriXf_lpvtN9kyDFGJaGF3U8RNlH1_PkY6BIstI6EKioSy1G0cozkwxU';
 let post_body = '';
 
 function getCookie(cname) {
@@ -335,7 +335,7 @@ const aviso = (mensagem) => {
   aviso_id.style.display     = 'inline';
   aviso_mensagem_id.innerText = mensagem;
   
-  aviso_id.style.left = (container_id.offsetWidth  - aviso_id.offsetWidth ) * 0.2 + 'px';
+  aviso_id.style.left = (container_id.offsetWidth  - aviso_id.offsetWidth ) / 2 + 'px';
   aviso_id.style.top  = (container_id.offsetHeight - aviso_id.offsetHeight) * 0.2 + 'px';
   
   aviso_button.focus();
@@ -450,7 +450,7 @@ const entrar_matricula = () => {
   container_id.style.display = 'inline';
   
   matricula_id.style.display = 'inline';
-  matricula_id.style.left = (container_id.offsetWidth  - matricula_id.offsetWidth ) * 0.2 + 'px';
+  matricula_id.style.left = (container_id.offsetWidth  - matricula_id.offsetWidth ) / 2 + 'px';
   matricula_id.style.top  = (container_id.offsetHeight - matricula_id.offsetHeight) * 0.2 + 'px';
   
   let matricula = '';
@@ -506,7 +506,7 @@ mkboletim.onclick = () => {
   container_id.style.display = 'inline';
   
   mkboletim_id.style.display = 'inline';
-  mkboletim_id.style.left = (container_id.offsetWidth  - mkboletim_id.offsetWidth ) * 0.2 + 'px';
+  mkboletim_id.style.left = (container_id.offsetWidth  - mkboletim_id.offsetWidth ) / 2 + 'px';
   mkboletim_id.style.top  = (container_id.offsetHeight - mkboletim_id.offsetHeight) * 0.2 + 'px';
   
   mkboletim_matricula.value = '';
@@ -561,7 +561,7 @@ busca_matricula.onclick = () => {
   container_id.style.display = 'inline';
   
   busca_matricula_id.style.display = 'inline';
-  busca_matricula_id.style.left    = (container_id.offsetWidth  - busca_matricula_id.offsetWidth ) * 0.2 + 'px';
+  busca_matricula_id.style.left    = (container_id.offsetWidth  - busca_matricula_id.offsetWidth ) / 2 + 'px';
   busca_matricula_id.style.top     = (container_id.offsetHeight - busca_matricula_id.offsetHeight) * 0.2 + 'px';
   
   busca_matricula_nome.onkeyup = (e) => {
