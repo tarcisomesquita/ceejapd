@@ -14,7 +14,7 @@ let id = '';
 let usuario = '';
 let token = '';
 let fetch_response_obj = {};
-let busca_matricula_key = 'AKfycbzqlSWPI1d-_cz8PVXL3TWuUrwDqmLJ0GFOHafb0qF2fdZ24bPsCr2jAlrH0mhvagjX';
+let busca_matricula_key = 'AKfycbxjOEJusXFneOrYvsCO7nvXEvt0ewi6-g9nzLkxwoORWZk1DaCdQSNb76051VH_c0GW'; //t13
 let post_body = '';
 
 function getCookie(cname) {
@@ -95,8 +95,8 @@ body {
   background-color: #FFFFFF;
   font-family: 'Open Sans',sans-serif;
   color: #000000;
-  font-size: 2.2vw;
-  line-height: 2.8vw;
+  font-size: 16px;
+  line-height: 23px;
   text-align: justify;
   margin: 0px;
   padding: 5mm;
@@ -289,17 +289,17 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
   ></p>
   <p>Disciplina: <select id="mkboletim_disciplina" style="margin:5px">
     <option value='Selecione'>Selecione</option>
-    <option value='Arte'>Arte</option>
-    <option value='Biologia'>Biologia</option>
-    <option value='Filosofia'>Filosofia</option>
-    <option value='Física'>Física</option>
-    <option value='Geografia'>Geografia</option>
-    <option value='História'>História</option>
-    <option value='Inglês'>Inglês</option>
-    <option value='Língua Portuguesa'>Língua Portuguesa</option>
-    <option value='Matemática'>Matemática</option>
-    <option value='Química'>Química</option>
-    <option value='Sociologia'>Sociologia</option>
+    <option value='ART'>Arte</option>
+    <option value='BIO'>Biologia</option>
+    <option value='FIL'>Filosofia</option>
+    <option value='FIS'>Física</option>
+    <option value='GEO'>Geografia</option>
+    <option value='HIS'>História</option>
+    <option value='ING'>Inglês</option>
+    <option value='POR'>Língua Portuguesa</option>
+    <option value='MAT'>Matemática</option>
+    <option value='QUI'>Química</option>
+    <option value='SOC'>Sociologia</option>
   </select></p>
   <p style="text-align: center"><input 
     id="mkboletim_button" 
@@ -311,17 +311,17 @@ Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
 <div id="atendimento_id" class="matricula" style="text-align: left">
   <p>Disciplina: <select id="atendimento_disciplina" style="margin:5px">
     <option value='Selecione'>Selecione</option>
-    <option value='Arte'>Arte</option>
-    <option value='Biologia'>Biologia</option>
-    <option value='Filosofia'>Filosofia</option>
-    <option value='Física'>Física</option>
-    <option value='Geografia'>Geografia</option>
-    <option value='História'>História</option>
-    <option value='Inglês'>Inglês</option>
-    <option value='Língua Portuguesa'>Língua Portuguesa</option>
-    <option value='Matemática'>Matemática</option>
-    <option value='Química'>Química</option>
-    <option value='Sociologia'>Sociologia</option>
+    <option value='ART'>Arte</option>
+    <option value='BIO'>Biologia</option>
+    <option value='FIL'>Filosofia</option>
+    <option value='FIS'>Física</option>
+    <option value='GEO'>Geografia</option>
+    <option value='HIS'>História</option>
+    <option value='ING'>Inglês</option>
+    <option value='POR'>Língua Portuguesa</option>
+    <option value='MAT'>Matemática</option>
+    <option value='QUI'>Química</option>
+    <option value='SOC'>Sociologia</option>
   </select></p>
   <p style="text-align: center"><input 
     id="atendimento_button" 
@@ -773,18 +773,18 @@ avaliacao.onclick = () => {
       if (avaliacao_matricula_value.charAt(2) === '1') {
         avaliacao_disciplina.innerHTML = `
     <option value='Selecione'>Selecione</option>
-    <option value='Geografia'>Geografia</option>
+    <option value='GEO'>Geografia</option>
 `;
       }
       else {
         avaliacao_disciplina.innerHTML = `
     <option value='Selecione'>Selecione</option>
-    <option value='Biologia'>Biologia</option>
-    <option value='Filosofia'>Filosofia</option>
-    <option value='Física'>Física</option>
-    <option value='Geografia'>Geografia</option>
-    <option value='Química'>Química</option>
-    <option value='Sociologia'>Sociologia</option>
+    <option value='BIO'>Biologia</option>
+    <option value='FIL'>Filosofia</option>
+    <option value='FIS'>Física</option>
+    <option value='GEO'>Geografia</option>
+    <option value='QUI'>Química</option>
+    <option value='SOC'>Sociologia</option>
 `;
       }
       
