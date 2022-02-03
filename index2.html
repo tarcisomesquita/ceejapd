@@ -7,14 +7,14 @@
 <title>busca_matricula</title>
 
 <script>
-var auth2;
-var googleUser;
+let auth2;
+let googleUser;
 
 let id = '';
 let usuario = '';
 let token = '';
 let fetch_response_obj = {};
-let busca_matricula_key = 'AKfycbx0s9UzGWGVnriXf_lpvtN9kyDFGJaGF3U8RNlH1_PkY6BIstI6EKioSy1G0cozkwxU';
+let busca_matricula_key = 'AKfycbyT0BJ7alcUivYhoCp9EZLK7qT4e0C58IMuA8bR36azpciXzfttQ2iu7gkzy9qLDjn3';
 let post_body = '';
 
 function getCookie(cname) {
@@ -41,17 +41,7 @@ if (token === '') {
   document.head.appendChild(s);
 }
 
-function recarregar() {
-  if (document.getElementById('customBtn').style.display != 'none') {
-    //informe('recarregar: ' + usuario + ': aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
-    location.reload();
-  }
-}
-  
-var startApp = function() {
-  //informe('Cookie: ' + document.cookie + ' | aparelho: ' + navigator.userAgent);
-  //setTimeout(recarregar, 20000);
-  
+let startApp = () => {
   if (token === '') {
     gapi.load('auth2', initSignIn);
   }
@@ -59,11 +49,10 @@ var startApp = function() {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    //informe('login: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
 };
 
-var initSignIn = function() {
+let initSignIn = () => {
   auth2 = gapi.auth2.init({client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com', scope:'profile email'});
   
   auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
@@ -75,16 +64,14 @@ var initSignIn = function() {
   }
 };
 
-var signinChanged = function(val) {
+let signinChanged = (val) => {
   if (val) {
     token = auth2.currentUser.get().getAuthResponse().id_token;
-    usuario = auth2.currentUser.get().getBasicProfile().getEmail();             // | getImageUrl() | getName()
-    //console.log('usuario: ' + usuario + ' token: ' + token);
+    usuario = auth2.currentUser.get().getBasicProfile().getEmail();
     
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    //informe('login: ' + usuario + ' > aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
   }
   else {
     token = '';
@@ -94,19 +81,12 @@ var signinChanged = function(val) {
   }
 };
 
-function sair() {
-  //informe('logout: ' + usuario + ' | aparelho: ' + navigator.userAgent.replace(/^[^(]+\(([^)]+)\).*$/,'$1'));
+let sair = () => {
   document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
   document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
   if (auth2 == undefined) location.reload();
   else { auth2.signOut(); location.reload();}
-  //else window.location.href = "https://accounts.google.com/Logout";
-  
-  //auth2.signOut();
 };
-
-
-
 </script>
 
 <style>
@@ -115,7 +95,7 @@ body {
   background-color: #FFFFFF;
   font-family: 'Open Sans',sans-serif;
   color: #000000;
-  font-size: 16px;
+  font-size: 2.5vw;
   line-height: 23px;
   text-align: justify;
   margin: 0px;
@@ -204,7 +184,7 @@ table {
 </head>
 
 <body id="body_id" onload='startApp()'>
-<div id="page">
+<div id="page" >
 <br />
 
 <div id="customBtn" class="customBtn">Fazer login</div>
@@ -224,22 +204,43 @@ table {
 <p><a href="https://bit.ly/ceejaonline">Drive Livros</a></p>
 
 <br />
-<br/>
+<br />
 
 <p id="passaporte" class='link' style='color:#22BB22'>Ver notas (passaporte)</p>
+
+<p id="avaliacao" class='link' style='color:#22BB22'>Pegar avaliação</p>
 
 <br />
 
 <p id="mkboletim" class='link' style='color:#DD6611'>Gerar boletim</p>
 
-<br />
+<p id="atendimento" class='link' style='color:#DD6611'>Registros de atendimento</p>
 
 <p id="busca_matricula" class="link" style="color:#DD6611">Consultar número de matrícula</p>
 
 <br />
 
+<p id="boletim_file" class='link' style='color:#DD4433'>Boletins para imprimir</a></p>
+
 <p id="requerimento" class="link" style="color:#DD4433">Requerimento de matrícula</a></p>
 
+<br />
+
+<p><a href="https://facebook.com/ceejapaulodecourt">facebook</a></p>
+
+<p><a href="https://instagram.com/ceeja.paulo.decourt">instagram</a></p>
+
+<p><a href="https://www.youtube.com/channel/UCaugpxhjj2F7aOfbG4k3TFQ/videos">youtube</a></p>
+
+<br />
+
+<p><a href='https://tarcisomesquita.github.io/ceejapd/CEEJAs.html'>Outros CEEJAs</a></p>
+
+<footer style='font-family:"sans-serif"; font-size:10px;'>
+<a href='https://tarcisomesquita.github.io/ceejapd/privacidade.html'>Política de privacidade</a><br/>
+Autor: <a href='https://tarcisomesquita.github.io/me/'>Tarciso Mesquita</a><br/>
+<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.pt_BR"><img alt="Licença Creative Commons" style="border-width:0" src="https://tarcisomesquita.github.io/me/CC-BY.png" /></a><br />Esta obra está licenciada com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.pt_BR">Creative Commons Atribuição 4.0 Internacional</a>
+<footer>
 </div><!-- page -->
 
 <div id="container_id" class="container">
@@ -305,6 +306,69 @@ table {
     type="button" 
     value="ok" 
   ></p>
+</div>
+
+<div id="atendimento_id" class="matricula" style="text-align: left">
+  <p>Disciplina: <select id="atendimento_disciplina" style="margin:5px">
+    <option value='Selecione'>Selecione</option>
+    <option value='Arte'>Arte</option>
+    <option value='Biologia'>Biologia</option>
+    <option value='Filosofia'>Filosofia</option>
+    <option value='Física'>Física</option>
+    <option value='Geografia'>Geografia</option>
+    <option value='História'>História</option>
+    <option value='Inglês'>Inglês</option>
+    <option value='Língua Portuguesa'>Língua Portuguesa</option>
+    <option value='Matemática'>Matemática</option>
+    <option value='Química'>Química</option>
+    <option value='Sociologia'>Sociologia</option>
+  </select></p>
+  <p style="text-align: center"><input 
+    id="atendimento_button" 
+    type="button" 
+    value="ok" 
+  ></p>
+</div>
+
+<div id="avaliacao_id" class="matricula" style="text-align: left">
+  <p>Matrícula:<input 
+    id="avaliacao_matricula" 
+    type="text" 
+    pattern="[0-9]{6}" 
+    maxlength="6" 
+    style="margin:5px"
+  ></p>
+  <p>Disciplina: <select id="avaliacao_disciplina" style="margin:5px"><option value='Selecione'>Selecione</option></select></p>
+  <p>Avaliação: <select id="avaliacao_prova" style="margin:5px"><option value='Selecione'>Selecione</option></select></p>
+  <p style="text-align: center"><input 
+    id="avaliacao_button" 
+    type="button" 
+    value="ok" 
+  ></p>
+</div>
+
+<div id="dia_id" class="matricula">
+  <p>Digite o intervalo de dias (dd/mm/aaaa)</p>
+  <p>Início:<input 
+    id="dia_i_id" 
+    type="text" 
+    pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" 
+    maxlength="10" 
+    style="margin:5px"
+  ></p>
+  <p>Final:<input 
+    id="dia_f_id" 
+    type="text" 
+    pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" 
+    maxlength="10" 
+    style="margin:5px"
+  ></p>
+  <br />
+  <input 
+    id="dia_button" 
+    type="button" 
+    value="ok" 
+  >
 </div>
 
 <div id="aviso_id" class="matricula">
@@ -431,7 +495,7 @@ const fetch_post = () => {
   )
   .catch(
     (error) => {
-      informe(`ERRO: ${id}: ${usuario}: ${error}`);
+      informe(`ERRO: ${post_body.replace(/"token":"[^"]*", /,'')}: ${error}`);
       
       page.innerHTML = '<p id="erro" class="erro">ERRO ao carregar. Informe o professor Tarciso.<br />WhatsApp: (19)99296-9405</p>';
       erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
@@ -550,6 +614,46 @@ mkboletim.onclick = () => {
 
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+atendimento.onclick = () => {
+  id = 'atendimento';
+  
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+    return;
+  }
+  
+  container_id.style.display = 'inline';
+  
+  atendimento_id.style.display = 'inline';
+  atendimento_id.style.left = (container_id.offsetWidth  - atendimento_id.offsetWidth ) / 2 + 'px';
+  atendimento_id.style.top  = (container_id.offsetHeight - atendimento_id.offsetHeight) * 0.2 + 'px';
+  
+  atendimento_disciplina.value = 'Selecione';
+  let atendimento_disciplina_value = 'Selecione';
+  atendimento_disciplina.onchange = () => {
+    atendimento_disciplina_value = atendimento_disciplina.value;
+    atendimento_button.focus();
+  }
+  
+  atendimento_button.onclick = () => {
+    if (atendimento_disciplina_value !== 'Selecione') {
+      atendimento_id.remove();
+      container_id.remove();
+      page.innerHTML = '<p id="erro" class="erro">Aguarde 1 minuto. Abrindo planilha...</p>';
+      erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
+      erro.style.cursor = 'wait';
+      
+      post_body = `{ "id": "${id}", "usuario": "${usuario}", "token":"${token}", "disciplina": "${atendimento_disciplina_value}" }`;
+      
+      fetch_post();
+    }
+  }
+  
+  atendimento_disciplina.focus();
+}
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 busca_matricula.onclick = () => {
   id = 'busca_matricula';
   
@@ -594,6 +698,162 @@ busca_matricula.onclick = () => {
   return;
 }
 
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+boletim_file.onclick = () => {
+  id = 'boletim_file';
+  
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+    return;
+  }
+  
+  container_id.style.display = 'inline';
+  
+  dia_id.style.display = 'inline';
+  dia_id.style.left    = (container_id.offsetWidth  - dia_id.offsetWidth ) / 2 + 'px';
+  dia_id.style.top     = (container_id.offsetHeight - dia_id.offsetHeight) * 0.2 + 'px';
+  
+  let dia_i = '';
+  dia_i_id.onkeyup = () => {
+    if (/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_i_id.value)) {
+      dia_i = dia_i_id.value.replace(/\//g,'');
+      dia_f_id.focus();
+    }
+  };
+  
+  let dia_f = '';
+  dia_f_id.onkeyup = () => {
+    if (/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_f_id.value)) {
+      dia_f = dia_f_id.value.replace(/\//g,'');
+      dia_button.focus();
+    }
+  }
+  
+  dia_button.onclick = () => {
+    if (! /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_i_id.value)) { dia_i_id.focus(); return }
+    if (! /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test(dia_f_id.value)) { dia_f_id.focus(); return }
+    
+    dia_id.remove();
+    container_id.remove();
+    
+    page.innerHTML = '<p id="erro" class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+    erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
+    erro.style.cursor = 'wait';
+    
+    post_body = `{ "id": "boletim_file", "usuario": "${usuario}", "token":"${token}", "dia_i":"${dia_i}", "dia_f":"${dia_f}" }`;
+    
+    fetch_post();
+  }
+  
+  dia_i_id.focus();
+}
+
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+avaliacao.onclick = () => {
+  id = 'avaliacao_gerar';
+  
+  if (token === '') {
+    aviso('ERRO: Precisa fazer login.\n\nToque no botão azul na primeira linha.');
+    return;
+  }
+  
+  container_id.style.display = 'inline';
+  
+  avaliacao_id.style.display = 'inline';
+  avaliacao_id.style.left    = (container_id.offsetWidth  - avaliacao_id.offsetWidth ) / 2 + 'px';
+  avaliacao_id.style.top     = (container_id.offsetHeight - avaliacao_id.offsetHeight) * 0.2 + 'px';
+
+  avaliacao_matricula.value = '';
+  let avaliacao_matricula_value = '';
+  avaliacao_matricula.onkeyup = () => {
+    if (/[0-9]{6}/.test(avaliacao_matricula.value)) {
+      avaliacao_matricula_value = avaliacao_matricula.value;
+      if (avaliacao_matricula_value.charAt(2) === '1') {
+        avaliacao_disciplina.innerHTML = `
+    <option value='Selecione'>Selecione</option>
+    <option value='Geografia'>Geografia</option>
+`;
+      }
+      else {
+        avaliacao_disciplina.innerHTML = `
+    <option value='Selecione'>Selecione</option>
+    <option value='Biologia'>Biologia</option>
+    <option value='Filosofia'>Filosofia</option>
+    <option value='Física'>Física</option>
+    <option value='Geografia'>Geografia</option>
+    <option value='Química'>Química</option>
+    <option value='Sociologia'>Sociologia</option>
+`;
+      }
+      
+      avaliacao_disciplina.focus();
+    }
+  }
+  
+  avaliacao_disciplina.value = 'Selecione';
+  let avaliacao_disciplina_value = 'Selecione';
+  avaliacao_disciplina.onchange = () => {
+    avaliacao_disciplina_value = avaliacao_disciplina.value;
+    if (avaliacao_disciplina.value !== 'Selecione') {
+      if (avaliacao_matricula_value.charAt(2) === '1') {
+        avaliacao_prova.innerHTML = `
+    <option value='Selecione'>Selecione</option>
+    <option value='T1'>T1</option>
+    <option value='T2'>T2</option>
+    <option value='T3'>T3</option>
+    <option value='T4'>T4</option>
+`;
+      }
+      else {
+        avaliacao_prova.innerHTML = `
+    <option value='Selecione'>Selecione</option>
+    <option value='T1'>T1</option>
+    <option value='T2'>T2</option>
+    <option value='T3'>T3</option>
+`;
+      }
+    }
+    else {
+        avaliacao_prova.innerHTML = `
+    <option value='Selecione'>Selecione</option>
+`;
+    }
+    
+    avaliacao_prova.focus();
+  }
+  
+  avaliacao_prova.value = 'Selecione';
+  let avaliacao_prova_value = 'Selecione';
+  avaliacao_prova.onchange = () => {
+    avaliacao_prova_value = avaliacao_prova.value;
+    avaliacao_button.focus();
+  }
+  
+  avaliacao_button.onclick = () => {
+    if (/[0-9]{6}/.test(avaliacao_matricula_value) && avaliacao_disciplina_value !== 'Selecione' && avaliacao_prova_value !== 'Selecione') {
+      avaliacao_id.remove();
+      container_id.remove();
+      page.innerHTML = '<p id="erro" class="erro">Aguarde 1 minuto. Gerando arquivo...</p>';
+      erro.style.top = (innerHeight - erro.offsetHeight) * 0.2 + 'px';
+      erro.style.cursor = 'wait';
+      
+      post_body = `{ "id": "${id}", "usuario": "${usuario}", "token":"${token}", "matricula":"${avaliacao_matricula_value}", "disciplina": "${avaliacao_disciplina_value}", "prova": "${avaliacao_prova_value}" }`;
+      
+      fetch_post();
+    }
+    else if (avaliacao_disciplina_value === 'Selecione') {
+      avaliacao_disciplina.focus();
+    }
+    else if (avaliacao_prova_value === 'Selecione') {
+      avaliacao_prova.focus();
+    }
+    else {
+      avaliacao_matricula.focus();
+    }
+  }
+}
 
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
