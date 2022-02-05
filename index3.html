@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta viewport='width=device-width' />
+
+<title>ceejapd3</title>
+
+<script>
+let scriptId = '';
+
+let auth2;
+let googleUser;
+
+let usuario = '';
+let token = '';
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') c = c.substring(1);
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+token = getCookie("ceejapd");
+usuario = getCookie("usuario");
+
+console.log('usuario: ' + usuario + ' token: ' + token);
+  
+if (token === '') {
+  let s = document.createElement('script');
+  s.src = 'https://apis.google.com/js/api:client.js';
+  document.head.appendChild(s);
+}
+
+let startApp = () => {
+  if (token === '') {
+    gapi.load('auth2', initSignIn);
+  }
+  else {
+    document.getElementById('customBtn').style.display = 'none';
+    document.getElementById('bmail').style.display = 'block';
+    document.getElementById('mail').innerText = usuario;
+    window.location.href = `https://script.google.com/macros/s/scriptId/exec?usuario=${usuario}&token=${token}`;
+  }
+};
+
+let initSignIn = () => {
+  auth2 = gapi.auth2.init({client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com', scope:'profile email'});
+  
+  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
+  
+  auth2.isSignedIn.listen(signinChanged);
+
+  if (auth2.isSignedIn.get() == true) {
+    auth2.signIn(); // |  signOut()
+  }
+};
+
+let signinChanged = (val) => {
+  if (val) {
+    token = auth2.currentUser.get().getAuthResponse().id_token;
+    usuario = auth2.currentUser.get().getBasicProfile().getEmail();
+    
+    document.getElementById('customBtn').style.display = 'none';
+    document.getElementById('bmail').style.display = 'block';
+    document.getElementById('mail').innerText = usuario;
+    window.location.href = `https://script.google.com/macros/s/scriptId/exec?usuario=${usuario}&token=${token}`;
+  }
+  else {
+    token = '';
+    usuario = '';
+    document.getElementById('bmail').style.display = 'none';
+    document.getElementById('customBtn').style.display = 'inline';
+  }
+};
+
+let sair = () => {
+  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
+  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
+  if (auth2 == undefined) location.reload();
+  else { auth2.signOut(); location.reload();}
+};
+</script>
+
+<style>
+body {
+  height: 100%;
+  background-color: #FFFFFF;
+  font-family: 'Open Sans',sans-serif;
+  color: #000000;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: justify;
+  margin: 0px;
+  padding: 5mm;
+}
+
+#customBtn {
+  display: inline-block;
+  background: #1a73e8;
+  color: #ffffff;
+  border: 1px solid transparent;
+  font-size: 16px;
+  line-height: 23px;
+  margin-left: 10px;
+  margin-right: 8px;
+  min-width: 96px;
+  padding: 9px 23px;
+  text-align: center;
+  vertical-align: middle;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#customBtn:hover {
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body onload='startApp()'>
+
+<p>Para acessar os serviçoes do CEEJA Paulo Decourt, deve fazer login na Google.</p>
+
+<br />
+
+<div id="customBtn" class="customBtn">Fazer login</div>
+<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span>
+  <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
+</p>
+
+</body>
+</html>
