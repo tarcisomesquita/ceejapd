@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<meta viewport='width=device-width' />
+<meta viewport='width=device-width, initial-scale=1' />
 
 <title>ceejapd3</title>
 
@@ -25,14 +25,12 @@ function getCookie(cname) {
       return c.substring(name.length, c.length);
     }
   }
-  return "";
+  return '';
 }
 
 token = getCookie("ceejapd");
 usuario = getCookie("usuario");
 
-console.log('usuario: ' + usuario + ' token: ' + token);
-  
 if (token === '') {
   let s = document.createElement('script');
   s.src = 'https://apis.google.com/js/api:client.js';
@@ -47,7 +45,8 @@ let startApp = () => {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
+    //window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
+    window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
   }
 };
 
@@ -59,7 +58,7 @@ let initSignIn = () => {
   auth2.isSignedIn.listen(signinChanged);
 
   if (auth2.isSignedIn.get() == true) {
-    auth2.signIn(); // |  signOut()
+    auth2.signIn();
   }
 };
 
@@ -71,7 +70,8 @@ let signinChanged = (val) => {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
+    //window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
+    window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
   }
   else {
     token = '';
@@ -128,7 +128,7 @@ body {
 
 <body onload='startApp()'>
 
-<p>Para acessar os serviçoes do CEEJA Paulo Decourt, deve fazer login na Google.</p>
+<p>Para acessar os serviços do CEEJA Paulo Decourt, deve fazer login na Google.</p>
 
 <br />
 
