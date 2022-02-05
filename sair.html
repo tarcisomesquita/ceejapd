@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta viewport="width=device-width, initial-scale=1" />
+
+<title>Sair CEEJAPD</title>
+
+<script src="https://apis.google.com/js/api:client.js"></script>
+
+<script>
+document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
+document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
+
+let auth2;
+let googleUser;
+
+let initSignIn = () => {
+  auth2 = gapi.auth2.init({client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com', scope:'profile email'});
+  
+  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
+  
+  auth2.isSignedIn.listen(signinChanged);
+
+  if (auth2.isSignedIn.get() == true) {
+    auth2.signOut();
+  }
+};
+
+let signinChanged = (val) => {
+  auth2.signOut();
+};
+
+gapi.load('auth2', initSignIn);
+window.top.location = 'https://tarcisomesquita.github.io/ceejapd/index3.html';
+</script>
