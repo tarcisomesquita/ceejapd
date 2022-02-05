@@ -23,12 +23,14 @@ let initSignIn = () => {
   auth2.isSignedIn.listen(signinChanged);
 
   if (auth2.isSignedIn.get() == true) {
-    auth2.signOut();
+    //auth2.signOut();
+    auth2.getAuthInstance().disconnect();
   }
 };
 
 let signinChanged = (val) => {
-  auth2.signOut();
+  //auth2.signOut();
+  auth2.getAuthInstance().disconnect();
 };
 
 gapi.load('auth2', initSignIn);
