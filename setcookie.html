@@ -22,7 +22,7 @@ const set_cookie = () => {
 <form id="entrar">
   <div><input name="usuario" type="text"     placeholder="Seu email" required="" style="margin: 2px" autofocus=""></div>
   <div><input name="token" type="password" placeholder="Sua senha" required="" style="margin: 2px"></div>
-  <div><button type="submit" style="margin: 2px" onsubmit="set_cookie()">Entrar</button></div>
+  <div><button type="submit" style="margin: 2px" onsubmit="set_cookie(); return false;">Entrar</button></div>
 </form>
 </div>
 
