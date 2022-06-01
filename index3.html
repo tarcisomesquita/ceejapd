@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<meta viewport='width=device-width, initial-scale=1' />
-
-<title>ceejapd3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PD3</title>
 
 <script>
-// https://abre.ai/dVsG
+// https://bit.ly/e3289
 
-let scriptId = 'AKfycbxQPGaSV5IuCX3jHma9jJdqZ_n6rupSPkJxDc4hvoXd9x7Ri1p2TuVrSvnWqhAP6wzV';
+let scriptId = 'AKfycbx1f7EFV2Au0C1Vw2Bb3vTqIuFVrw7w-PzzX53EZNOvD5um2LXafhWOsdQyEfp73N3eTA'; // 22 paren busca matr
+//let scriptId = 'AKfycbwnqHTNi9B3pH5FYOp-UKvsAaEH1NFMbYJof487HSZWvyCuajuWH5ZYKuB9nR2JJ4kgQQ'; // 21 veeja
 
 let auth2;
 let googleUser;
@@ -30,8 +30,8 @@ function getCookie(cname) {
   return '';
 }
 
-token = getCookie("ceejapd");
-usuario = getCookie("usuario");
+token = getCookie('ceejapd');
+usuario = getCookie('usuario');
 
 if (token === '') {
   let s = document.createElement('script');
@@ -47,8 +47,8 @@ let startApp = () => {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    //window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
-    window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
+    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
+    //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
   }
 };
 
@@ -72,8 +72,8 @@ let signinChanged = (val) => {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    //window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
-    window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
+    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
+    //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
   }
   else {
     token = '';
@@ -84,8 +84,8 @@ let signinChanged = (val) => {
 };
 
 let sair = () => {
-  document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
-  document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
+  document.cookie = 'ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;';
+  document.cookie = 'usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;';
   if (auth2 == undefined) location.reload();
   else { auth2.signOut(); location.reload();}
 };
@@ -97,11 +97,11 @@ body {
   background-color: #FFFFFF;
   font-family: 'Open Sans',sans-serif;
   color: #000000;
-  font-size: 16px;
-  line-height: 23px;
+  font-size: 1em;
+  line-height: 1.44em;
   text-align: justify;
-  margin: 0px;
-  padding: 5mm;
+  margin: 0em;
+  padding: 1em;
 }
 
 #customBtn {
@@ -109,16 +109,16 @@ body {
   background: #1a73e8;
   color: #ffffff;
   border: 1px solid transparent;
-  font-size: 16px;
-  line-height: 23px;
-  margin-left: 10px;
-  margin-right: 8px;
-  min-width: 96px;
-  padding: 9px 23px;
+  font-size: 1em;
+  line-height: 1.44em;
+  margin-left: 0.6em;
+  margin-right: 0.5em;
+  min-width: 6em;
+  padding: 0.6em 1.44em;
   text-align: center;
   vertical-align: middle;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  -moz-border-radius: 0.25em;
+  border-radius: 0.25em;
   box-sizing: border-box;
 }
 
@@ -129,14 +129,10 @@ body {
 </head>
 
 <body onload='startApp()'>
-
-<p>Para acessar os serviços do CEEJA Paulo Decourt, deve fazer login na Google.</p>
-
-<br />
-
+<p><img src="https://t7m8.com.br/img/selo.svg"></p>
 <div id="customBtn" class="customBtn">Fazer login</div>
 <p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span>
-  <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:10px; margin-right:8px; min-width:96px; padding: 9px 23px; text-align:center; vertical-align:middle; -moz-border-radius:4px; border-radius:4px; box-sizing: border-box; cursor:pointer;">Sair</span>
+  <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:0.6em; margin-right:0.5em; min-width:6em; padding: 0.56em 1.44em; text-align:center; vertical-align:middle; -moz-border-radius:0.25em; border-radius:0.25em; box-sizing: border-box; cursor:pointer;">Sair</span>
 </p>
 
 <br />
@@ -157,13 +153,13 @@ body {
 <br />
 <br />
 
-<p><a href="https://tarcisomesquita.github.io/ceejapd/CEEJAs.html" target="_blank">Outros CEEJAs</a></p>
+<p><a href="https://t7m8.com.br/CEEJAs.php" target="_blank">Outros CEEJAs</a></p>
 
-<footer style='font-family:"sans-serif"; font-size:10px;'>
+<footer style='font-family:"sans-serif"; font-size:0.63em;'>
 <a href="https://tarcisomesquita.github.io/ceejapd/privacidade.html" target="_blank">Política de privacidade</a><br/>
-Autor: <a href="https://tarcisomesquita.github.io/me/" target="_blank">Tarciso Mesquita</a><br/>
-<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank"><img alt="Licença Creative Commons" style="border-width:0" src="https://tarcisomesquita.github.io/me/CC-BY.png" /></a><br />Esta obra está licenciada com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank">Creative Commons Atribuição 4.0 Internacional</a>
-<footer>
+Autor: <a href="https://t7m8.com.br/me.php" target="_blank">Tarciso Mesquita</a><br/>
+<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank"><img alt="Licença Creative Commons" style="border-width:0" src="https://t7m8.com.br/img/CC-BY.png" /></a>
+</footer>
 
 </body>
 </html>
