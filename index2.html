@@ -11,6 +11,7 @@
       function initClient() {
         client = google.accounts.oauth2.initTokenClient({
           client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com',
+          scope: 'https://www.googleapis.com/auth/userinfo.email',
           callback: (tokenResponse) => {
             access_token = tokenResponse.access_token;
           },
