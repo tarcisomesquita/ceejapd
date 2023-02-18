@@ -1,181 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="cache-control" content="no-store" />
- 
-<title>PD</title>
+  <head>
+    <script src="https://accounts.google.com/gsi/client" onload="initClient()" async defer></script>
+  </head>
+  <body>
+    <script>
+      var client;
+      var access_token;
 
-<script>
-// https://bit.ly/e3289
-
-
- let scriptId = 'AKfycbzyS4cdsxJlSn6kVA6xMpZrIcH8b87zK3sKjET9LEl2JL9Idmn7rkvKq6Xe1lNoHCEwuQ'; // 39 tira pesquisa
-// let scriptId = 'AKfycbyNb16_-0Qex_XAlhi4e2oxzjAehqWXQ2JD7pfolm7BVhpgQbR-4wWzb6GYSmVXR5sZ9A'; // 38 ofi
-// let scriptId = 'AKfycbwwVwRV9xoBZQ6VpWAAHrYCDle7l88kOQxUgZf0qLUAkhJ-zX7mmcjPmbGoShyK4aDS7g'; // 37 Importar Fazer
-// let scriptId = 'AKfycbwnOmy03RNdspYuC0-4KyMthNIxNpconDk9UsAL8-RiGUnJxJalgf-17VCYd6agDPbWvw'; // 36 Ativos
-//let scriptId = 'AKfycbzLYbkrliD-XOXdoqdBvekQ8Tx1UUyshkZudu5q50zsicbSsPmo9JzjIJzKuKhZ5SheQg'; // 35 pesquisa
-//let scriptId = 'AKfycbyO7okgLfh7DxPizdZ5M7zpIfp9gBkyzPG_vByK7di5_jSuexAvt0ck26RxbufV7I_Kng'; // 34 mkboletim_mail
-//let scriptId = 'AKfycbxYejMVi-q1DqSB5lypGMnB4u_ZABeGYCBgzXCIEczXhXKkLqZe7CzsQlLbt22j3p3rHw'; // 33 aprofundamento
-//let scriptId = 'AKfycbzs5aPzN5_BDMwZ6VRkWhPg1ux6eJr9KEoSnow-FTddmR-NPbZGTXGp6qiWLfu3CW47CQ'; // 32 nome_social
-//let scriptId = 'AKfycbwPjsYixsW1mxUYN3IP5ty8OvWsRQ8gD3vmmn_q-zSZKe1OZkXuc95dVo1S2puPgHJA3Q'; // 31 requerimento
-//let scriptId = 'AKfycbwq1faQQQDXRbrFquJhVKm9TT3wF3vDSJ-z29V-yWnKIZoDw-dqDYd4cNJxriATLKPqMA'; // 30 ultimo atendimento2
-//let scriptId = 'AKfycbxA__CkrzotouActb1kmxgmf3q9ix_F_5NNWV65Xq2oiYQ17sAX_HS7TvYvY5NF8P8BGA'; // 29 ultimo atendimento
-//let scriptId = 'AKfycbxa50_qvqqD065rvx1GdQvuFMPI42Gc0EycuE6sOfZ91bl-vFwCXXwR5AnqKrs4sGKfjA'; // 28 email concluinte
-//let scriptId = 'AKfycbxYg1dvcKetiq_HfA21Lpn4iw-5Tjk1sRDSLWOBw93-elRmId0RU_kILIvnHu_DpZFzgQ'; // 27 container_id.offsetWidth
-
-let auth2;
-let googleUser;
-
-let usuario = '';
-let token = '';
-
-function getCookie(cname) {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return '';
-}
-
-token = getCookie('ceejapd');
-usuario = getCookie('usuario');
-
-if (token === '') {
-  let s = document.createElement('script');
-  s.src = 'https://apis.google.com/js/api:client.js';
-  document.head.appendChild(s);
-}
-
-let startApp = () => {
-  if (token === '') {
-    gapi.load('auth2', initSignIn);
-  }
-  else {
-    document.getElementById('customBtn').style.display = 'none';
-    document.getElementById('bmail').style.display = 'block';
-    document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
-    //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
-  }
-};
-
-let initSignIn = () => {
-  auth2 = gapi.auth2.init({client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com', scope:'profile email'});
-  
-  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
-  
-  auth2.isSignedIn.listen(signinChanged);
-
-  if (auth2.isSignedIn.get() == true) {
-    auth2.signIn();
-  }
-};
-
-let signinChanged = (val) => {
-  if (val) {
-    token = auth2.currentUser.get().getAuthResponse().id_token;
-    usuario = auth2.currentUser.get().getBasicProfile().getEmail();
-    
-    document.getElementById('customBtn').style.display = 'none';
-    document.getElementById('bmail').style.display = 'block';
-    document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
-    //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
-  }
-  else {
-    token = '';
-    usuario = '';
-    document.getElementById('bmail').style.display = 'none';
-    document.getElementById('customBtn').style.display = 'inline';
-  }
-};
-
-let sair = () => {
-  document.cookie = 'ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;';
-  document.cookie = 'usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;';
-  if (auth2 == undefined) location.reload();
-  else { auth2.signOut(); location.reload();}
-};
-</script>
-
-<style>
-body {
-  height: 100%;
-  background-color: #FFFFFF;
-  font-family: 'Open Sans',sans-serif;
-  color: #000000;
-  font-size: 1em;
-  line-height: 1.44em;
-  text-align: justify;
-  margin: 0em;
-  padding: 1em;
-}
-
-#customBtn {
-  display: inline-block;
-  background: #1a73e8;
-  color: #ffffff;
-  border: 1px solid transparent;
-  font-size: 1em;
-  line-height: 1.44em;
-  margin-left: 0.6em;
-  margin-right: 0.5em;
-  min-width: 6em;
-  padding: 0.6em 1.44em;
-  text-align: center;
-  vertical-align: middle;
-  -moz-border-radius: 0.25em;
-  border-radius: 0.25em;
-  box-sizing: border-box;
-}
-
-#customBtn:hover {
-  cursor: pointer;
-}
-</style>
-</head>
-
-<body onload='startApp()'>
-<p><img src="https://t7m8.com.br/img/selo.svg"></p>
-<div id="customBtn" class="customBtn">Fazer login</div>
-<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span><br><br>
-  <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:0.6em; margin-right:0.5em; min-width:6em; padding: 0.56em 1.44em; text-align:center; vertical-align:middle; -moz-border-radius:0.25em; border-radius:0.25em; box-sizing: border-box; cursor:pointer;">Sair</span>
-</p>
-
-<br />
-<br />
-<br />
-<br />
-
-<p>Acesse nossas redes sociais:</p>
-
-<p><a href="https://facebook.com/ceejapaulodecourt" target="_blank"><img src="https://github.com/tarcisomesquita/ceejapd/raw/4cb5b97fb0f430a98526060ead1263b660d94c23/imagens/facebook.png"> Facebook</a></p>
-
-<p><a href="https://instagram.com/ceeja.paulo.decourt" target="_blank"><img src="https://github.com/tarcisomesquita/ceejapd/raw/4cb5b97fb0f430a98526060ead1263b660d94c23/imagens/instagran.png"> Instagram</a></p>
-
-<p><a href="https://www.youtube.com/channel/UCaugpxhjj2F7aOfbG4k3TFQ/videos" target="_blank"><img src="https://raw.githubusercontent.com/tarcisomesquita/ceejapd/4cb5b97fb0f430a98526060ead1263b660d94c23/imagens/youtube.png"> Youtube</a></p>
-
-<br />
-<br />
-<br />
-<br />
-
-<p><a href="https://t7m8.com.br/CEEJAs.php" target="_blank">Outros CEEJAs</a></p>
-
-<footer style='font-family:"sans-serif"; font-size:0.63em;'>
-<a href="https://tarcisomesquita.github.io/ceejapd/privacidade.html" target="_blank">Política de privacidade</a><br/>
-Autor: <a href="https://t7m8.com.br/me.php" target="_blank">Tarciso Mesquita</a><br/>
-<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank"><img alt="Licença Creative Commons" style="border-width:0" src="https://t7m8.com.br/img/CC-BY.png" /></a>
-</footer>
-
-</body>
+      function initClient() {
+        client = google.accounts.oauth2.initTokenClient({
+          client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com',
+          scope: 'https://www.googleapis.com/auth/calendar.readonly \
+                  https://www.googleapis.com/auth/contacts.readonly',
+          callback: (tokenResponse) => {
+            access_token = tokenResponse.access_token;
+          },
+        });
+      }
+      function getToken() {
+        client.requestAccessToken();
+      }
+      function revokeToken() {
+        google.accounts.oauth2.revoke(access_token, () => {console.log('access token revoked')});
+      }
+      function loadCalendar() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/primary/events');
+        xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
+        xhr.send();
+      }
+    </script>
+    <h1>Google Identity Services Authorization Token model</h1>
+    <button onclick="getToken();">Get access token</button><br><br>
+    <button onclick="loadCalendar();">Load Calendar</button><br><br>
+    <button onclick="revokeToken();">Revoke token</button>
+  </body>
 </html>
