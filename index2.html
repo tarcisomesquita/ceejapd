@@ -11,8 +11,6 @@
       function initClient() {
         client = google.accounts.oauth2.initTokenClient({
           client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com',
-          scope: 'https://www.googleapis.com/auth/calendar.readonly \
-                  https://www.googleapis.com/auth/contacts.readonly',
           callback: (tokenResponse) => {
             access_token = tokenResponse.access_token;
           },
@@ -24,16 +22,9 @@
       function revokeToken() {
         google.accounts.oauth2.revoke(access_token, () => {console.log('access token revoked')});
       }
-      function loadCalendar() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/primary/events');
-        xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
-        xhr.send();
-      }
     </script>
     <h1>Google Identity Services Authorization Token model</h1>
     <button onclick="getToken();">Get access token</button><br><br>
-    <button onclick="loadCalendar();">Load Calendar</button><br><br>
     <button onclick="revokeToken();">Revoke token</button>
   </body>
 </html>
