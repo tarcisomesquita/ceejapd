@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://accounts.google.com/gsi/client" onload="initClient()" async defer></script>
-  </head>
-  <body>
-    <script>
-      var client;
-      var access_token;
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Fazer login com o Google</title>
+<!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" onload="initClient()" async defer></script>
+</head>
+<body>
 
-      function initClient() {
-        client = google.accounts.oauth2.initTokenClient({
-          client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com',
-          scope: 'https://www.googleapis.com/auth/userinfo.email',
-          callback: (tokenResponse) => {
-            access_token = tokenResponse.access_token;
-          },
-        });
-      }
-      function getToken() {
-        client.requestAccessToken();
-      }
-      function revokeToken() {
-        google.accounts.oauth2.revoke(access_token, () => {console.log('access token revoked')});
-      }
-    </script>
-    <h1>Google Identity Services Authorization Token model</h1>
-    <button onclick="getToken();">Get access token</button><br><br>
-    <button onclick="revokeToken();">Revoke token</button>
-  </body>
+<script>
+let client;
+let access_token;
+let AccessToken;
+
+function initClient() {
+  client = google.accounts.oauth2.initTokenClient({
+    client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com',
+    scope: 'https://www.googleapis.com/auth/userinfo.email',
+    callback: (tokenResponse) => {
+      access_token = tokenResponse.access_token;
+    },
+  });
+  
+  AccessToken = client.requestAccessToken();
+}
+
+function revokeToken() {
+  google.accounts.oauth2.revoke(access_token, () => {console.log('access token revoked')});
+}
+</script>
+
+
+</body>
 </html>
