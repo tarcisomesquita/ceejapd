@@ -3,33 +3,26 @@
 <head>
 <meta charset="utf-8">
 <title>Fazer login com o Google</title>
-<!-- Google Identity Services -->
-<script src="https://accounts.google.com/gsi/client" onload="initClient()" async defer></script>
 </head>
 <body>
 
-<script>
-let client;
-let access_token;
-let AccessToken;
+<div id="g_id_onload"
+     data-client_id="424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="redirect"
+     data-login_uri="https://tarcisomesquita.github.io"
+     data-auto_prompt="false">
+</div>
 
-function initClient() {
-  client = google.accounts.oauth2.initTokenClient({
-    client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com',
-    scope: 'https://www.googleapis.com/auth/userinfo.email',
-    callback: (tokenResponse) => {
-      access_token = tokenResponse.access_token;
-    },
-  });
-  
-  AccessToken = client.requestAccessToken();
-}
-
-function revokeToken() {
-  google.accounts.oauth2.revoke(access_token, () => {console.log('access token revoked')});
-}
-</script>
-
-
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="outline"
+     data-text="signin_with."
+     data-size="large"
+     data-locale="pt-BR"
+     data-logo_alignment="left">
+</div>
+<script src="https://accounts.google.com/gsi/client"></script>
 </body>
 </html>
