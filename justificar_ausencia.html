@@ -14,14 +14,16 @@ let parametros = new URLSearchParams(window.location.search);
 let a;
 let r;
 
-if (URLSearchParams.has('a')) a = parametros.get('a');
+if (parametros.has('a')) a = parametros.get('a');
 else a = '';
 
-if (URLSearchParams.has('r')) r = parametros.get('r');
+if (parametros.has('r')) r = parametros.get('r');
 else r = '';
 
+let mensagem = '';
 let s = document.createElement('script');
-s.src = `https://script.google.com/macros/s/${scriptId}/exec?a=${a}&r=${r}`;
+//s.src = `https://script.google.com/macros/s/${scriptId}/exec?a=${a}&r=${r}`;
+s.src = `https://script.google.com/macros/s/AKfycbz3guw2xv2Lp9Dmu2am3tKH1VlvSdqktAwVkQJMw_w/dev?a=${a}&r=${r}`;
 document.head.appendChild(s);
 </script>
 
