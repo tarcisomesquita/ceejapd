@@ -6,6 +6,12 @@
 <meta name="description" content="Justificar ausência no CEEJA Paulo Decourt">
 <meta http-equiv="cache-control" content="max-age=0">
 <meta viewport="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<p>Obrigado por justificar sua ausência no CEEJA Paulo Decourt.</p>
+
+<p id="mensagem"></p>
 
 <script>
 let scriptId = 'AKfycbwy1AOwz-wVOxJ-ErODAm8Yuu4Lm0xisNuhNJFkipFI0RgJ3ciUMKp2Cw0QhMWu-i-e' // 2 setValues
@@ -25,16 +31,7 @@ let mensagem = '';
 let s = document.createElement('script');
 s.src = `https://script.google.com/macros/s/${scriptId}/exec?a=${a}&r=${r}`;
 document.head.appendChild(s);
-</script>
 
-</head>
-
-<body>
-<p>Obrigado por justificar sua ausência no CEEJA Paulo Decourt.</p>
-
-<p id="mensagem"></p>
-
-<script>
 mensagem.innerHTML = `OBS.: ${mensagem}`;
 </script>
 </body>
