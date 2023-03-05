@@ -7,9 +7,33 @@
 <meta http-equiv="cache-control" content="max-age=0">
 <meta viewport="width=device-width, initial-scale=1">
 
+<script>
+let scriptId = 'AKfycbz63nZ-0xhXCoTE2C6TsEZhkmMmFycXSEyj-pxZSb_69q7UGZo0jGer7uOvCi4mPRFN' // 1 primeira
+
+let parametros = new URLSearchParams(window.location.search);
+let a;
+let r;
+
+if (URLSearchParams.has('a')) a = parametros.get('a');
+else a = '';
+
+if (URLSearchParams.has('r')) r = parametros.get('r');
+else r = '';
+
+let s = document.createElement('script');
+s.src = `https://script.google.com/macros/s/${scriptId}/exec?a=${a}&r=${r}`;
+document.head.appendChild(s);
+</script>
+
 </head>
 
 <body>
 <p>Obrigado por justificar sua ausência no CEEJA Paulo Decourt.</p>
+
+<p id="mensagem"></p>
+
+<script>
+mensagem.innerHTML = `OBS.: ${mensagem}`;
+</script>
 </body>
 </html>
