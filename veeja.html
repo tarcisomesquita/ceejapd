@@ -2,10 +2,14 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+
 <title>Vídeos do EJA Mundo do Trabalho</title>
 <meta name="description" content="Lista dos vídeos EJA Mundo do Trabalho usados em CEEJA no Estado de São Paulo.">
+
 <meta http-equiv="cache-control" content="max-age=0">
 <meta viewport="width=device-width, initial-scale=1">
+
+<script src="https://tarcisomesquita.github.io/log.js"></script>
 
 <style>
 body {
@@ -446,53 +450,6 @@ table {
 Autor: <a href="https://tarcisomesquita.github.io/me/" target="_blank">Tarciso Mesquita</a><br/>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank"><img alt="Licença Creative Commons" style="border-width:0" src="https://tarcisomesquita.github.io/me/CC-BY.png" /></a><br />Esta obra está licenciada com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank">Creative Commons Atribuição 4.0 Internacional</a>
 <footer>
-<script>
-function getCookie(cname) {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return '';
-}
-
-let token = getCookie('token');
-let email = getCookie('email');
-
-const set_cookie = (id,value) => {
-  let expira = new Date((new Date()).getTime() + 365*24*3600*1000).toISOString();
-  document.cookie = `${id}=${value};expires=${expira};path=${location.pathname};`;
-}
-
-if (token === '') {
-  token = (Math.random().toString(36)+"00000000000").substring(2,13).toUpperCase();
-  set_cookie('token',token);
-}
-
-if (email === '') {
-  email = 'indefinido@gmail.com';
-  set_cookie('email',email);
-}
-
-let log = `entry.340072360=${location.href};${token};${email};${screen.width}x${screen.height};${navigator.deviceMemory};${navigator.userAgent.replace(/;/g,',')}`;
-
-fetch(
-  'https://docs.google.com/forms/u/0/d/e/1FAIpQLScGwq8tvtiFUjhTQ58SlhN0b9rymqGGeXbJJoFB2YWks4FSPA/formResponse', 
-  {
-    method: 'POST',
-    mode: 'no-cors',
-    credentials: 'omit',
-    headers: {  
-      'Content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-    },
-    'body': encodeURI(log)
-  }
-);
-</script>
 
 </body>
 </html>
