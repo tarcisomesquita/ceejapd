@@ -41,7 +41,7 @@ function login() {
 }
 
 function sair() {
-  document.cookie = `email=;expires=1970-01-01T00:00:00.000Z;path=/;`;
+  document.cookie = `email=;expires=1970-01-01T00:00:00.000Z;path=/;samesite=none;secure;`;
   // expires
   // access_token
   let access_token = getCookie('access_token');
