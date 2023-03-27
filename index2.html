@@ -142,7 +142,7 @@ box-sizing: border-box;
 
 line-height: 16px;
 
-">Usuário: <span id="mail" style='color:#DD4433'>tarcisomesquita@gmail.com</span> <span onclick="sair()" style="
+">Usuário: <span id="textEmail" style='color:#DD4433'></span> <span onclick="sair()" style="
 background: #cccccc;
 height: 36px;
 min-width: 70px;
@@ -333,7 +333,7 @@ Autor: <a href="https://tarcisomesquita.github.io/me/" target="_blank">Tarciso M
 <footer>
 
 <script>
-if (logEmail === '') {
+if (logEmail === '' || logEmail === 'indefinido@gmail.com') {
   document.getElementById('idEmail').style.display = 'none';
   document.getElementById('idBotao').style.display = 'inline-block';
 }
