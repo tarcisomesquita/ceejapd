@@ -1,38 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8" />
-<meta viewport="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"><!-- iso-8859-1 -->
+  <title>sair</title>
+  <meta name="description" content="Sair da página de serviços do CEEJA Paulo Decourt">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="cache-control" content="max-age=0">
 
-<title>Sair CEEJAPD</title>
-
-<script src="https://apis.google.com/js/api:client.js"></script>
+<script src="https://tarcisomesquita.github.io/log.js"></script>
 
 <script>
 document.cookie = "ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
 document.cookie = "usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;";
-
-let auth2;
-let googleUser;
-
-let initSignIn = () => {
-  auth2 = gapi.auth2.init({client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com', scope:'profile email'});
-  
-  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
-  
-  auth2.isSignedIn.listen(signinChanged);
-
-  if (auth2.isSignedIn.get() == true) {
-    //auth2.signOut();
-    auth2.getAuthInstance().disconnect();
-  }
-};
-
-let signinChanged = (val) => {
-  //auth2.signOut();
-  auth2.getAuthInstance().disconnect();
-};
-
-gapi.load('auth2', initSignIn);
-window.top.location = 'https://tarcisomesquita.github.io/ceejapd/index4.html';
+document.cookie = "token=;expires=1970-01-01T00:00:00.000Z;path=/;";
+document.cookie = "email=;expires=1970-01-01T00:00:00.000Z;path=/;";
 </script>
+
+</head>
+
+<body>
+
+<p><a href="https://myaccount.google.com/permissions" target="_blank">Remover acesso ao site ceejapd via conta google</a></p>
+
+<p><a href="https://accounts.google.com/Logout" target="_blank">Sair da conta Google</a></p>
+
+</body>
+</html>
