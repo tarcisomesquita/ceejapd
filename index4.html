@@ -49,6 +49,8 @@ function getCookie(cname) {
 token = getCookie('ceejapd');
 usuario = getCookie('usuario');
 
+console.log(`getCookie() > token = ${token}; usuario = ${usuario}`);
+
 if (token === '') {
   let s = document.createElement('script');
   s.src = 'https://apis.google.com/js/api:client.js';
@@ -84,6 +86,8 @@ let signinChanged = (val) => {
   if (val) {
     token = auth2.currentUser.get().getAuthResponse().id_token;
     usuario = auth2.currentUser.get().getBasicProfile().getEmail();
+    
+    console.log(`signinChanged() > token = ${token}; usuario = ${usuario}`);
     
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
