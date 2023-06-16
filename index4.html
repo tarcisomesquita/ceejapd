@@ -9,27 +9,8 @@
 
 <script>
 // https://bit.ly/e3289
-let scriptId = 'AKfycbzQXUWoAXVMXtTStrRtFj_eKc4LeyDRoUYfZRzsZ1ykMtGEIODvcf-_Jv8Yhgt-4yUZJg'; // 46 ATIVO
-//let scriptId = 'AKfycbz1-2JsdE42K9N-BEa8cTjRTxLcYtouc2zVJhw2ZrRU2SaMPkQfRRQvfx-GZJT-ycLNiw'; // reimplantado
-//let scriptId = 'AKfycbxaNwluIcYpa3EfFTUMa-hPuoQdijeS0ISLYQEOMHrjbpJrkDaywKt7eMryRemm7TiCjA'; // atualiza email, nota prova, cpf requerimento
-//let scriptId = 'AKfycbyoRH0yK6qqYEUjYzOdIiyB0IKg5a1umqdMfC1AcZjeL9EhUIS4kSqJasvDaeEWtACWfw'; // grupo_alunos renomeei sheet
-//let scriptId = 'AKfycbyq_D4E6mlpiIca81idleBR4ltH5G-2CFOTeAGnquryt1t7bRhi9wDT9-6oNzLaLGBr-A'; // ITF to UC
-// let scriptId = 'AKfycbxcI9aEJlCt7t-iKrWuu0GeJnzqrkxeST1pmO64nulNN-mt1p-Tyl71Ru_8BwS0GfrNGg'; // 42 email FGB
-// let scriptId = 'AKfycbzNtwz_jQXzqJL5yCMy0qjyYnZZ_pdu5MRKo7j7yjV5THpeu-WhwuqTVq84od7SWiFuaQ'; // 41 whats e maps
-// let scriptId = 'AKfycbz7YFPqiU7DIGzeh7gy6qbv5tW40rtqD1zMQ8AxivCClmkOzfjbknLLan4spS6CEqMOag'; // 40 rm t7m8
-// let scriptId = 'AKfycbzyS4cdsxJlSn6kVA6xMpZrIcH8b87zK3sKjET9LEl2JL9Idmn7rkvKq6Xe1lNoHCEwuQ'; // 39 tira pesquisa
-// let scriptId = 'AKfycbyNb16_-0Qex_XAlhi4e2oxzjAehqWXQ2JD7pfolm7BVhpgQbR-4wWzb6GYSmVXR5sZ9A'; // 38 ofi
-// let scriptId = 'AKfycbwwVwRV9xoBZQ6VpWAAHrYCDle7l88kOQxUgZf0qLUAkhJ-zX7mmcjPmbGoShyK4aDS7g'; // 37 Importar Fazer
-// let scriptId = 'AKfycbwnOmy03RNdspYuC0-4KyMthNIxNpconDk9UsAL8-RiGUnJxJalgf-17VCYd6agDPbWvw'; // 36 Ativos
-//let scriptId = 'AKfycbzLYbkrliD-XOXdoqdBvekQ8Tx1UUyshkZudu5q50zsicbSsPmo9JzjIJzKuKhZ5SheQg'; // 35 pesquisa
-//let scriptId = 'AKfycbyO7okgLfh7DxPizdZ5M7zpIfp9gBkyzPG_vByK7di5_jSuexAvt0ck26RxbufV7I_Kng'; // 34 mkboletim_mail
-//let scriptId = 'AKfycbxYejMVi-q1DqSB5lypGMnB4u_ZABeGYCBgzXCIEczXhXKkLqZe7CzsQlLbt22j3p3rHw'; // 33 aprofundamento
-//let scriptId = 'AKfycbzs5aPzN5_BDMwZ6VRkWhPg1ux6eJr9KEoSnow-FTddmR-NPbZGTXGp6qiWLfu3CW47CQ'; // 32 nome_social
-//let scriptId = 'AKfycbwPjsYixsW1mxUYN3IP5ty8OvWsRQ8gD3vmmn_q-zSZKe1OZkXuc95dVo1S2puPgHJA3Q'; // 31 requerimento
-//let scriptId = 'AKfycbwq1faQQQDXRbrFquJhVKm9TT3wF3vDSJ-z29V-yWnKIZoDw-dqDYd4cNJxriATLKPqMA'; // 30 ultimo atendimento2
-//let scriptId = 'AKfycbxA__CkrzotouActb1kmxgmf3q9ix_F_5NNWV65Xq2oiYQ17sAX_HS7TvYvY5NF8P8BGA'; // 29 ultimo atendimento
-//let scriptId = 'AKfycbxa50_qvqqD065rvx1GdQvuFMPI42Gc0EycuE6sOfZ91bl-vFwCXXwR5AnqKrs4sGKfjA'; // 28 email concluinte
-//let scriptId = 'AKfycbxYg1dvcKetiq_HfA21Lpn4iw-5Tjk1sRDSLWOBw93-elRmId0RU_kILIvnHu_DpZFzgQ'; // 27 container_id.offsetWidth
+let scriptId = 'AKfycbx3RgZhax05SjFl6pInoolKkT3P-6BZWq7tDAW99SMjEHlvvAklAviMHWheqgaV-NEYNg'; // 47 passaporte_rapido
+//let scriptId = 'AKfycbzQXUWoAXVMXtTStrRtFj_eKc4LeyDRoUYfZRzsZ1ykMtGEIODvcf-_Jv8Yhgt-4yUZJg'; // 46 ATIVO
 
 let auth2;
 let googleUser;
@@ -37,41 +18,12 @@ let googleUser;
 let usuario = '';
 let token = '';
 
-function getCookie(cname) {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return '';
-}
-
-token = getCookie('ceejapd');
-usuario = getCookie('usuario');
-
-console.log(`getCookie() > token = ${token}; usuario = ${usuario}`);
-
-if (token === '') {
-  let s = document.createElement('script');
-  s.src = 'https://apis.google.com/js/api:client.js';
-  document.head.appendChild(s);
-}
+let s = document.createElement('script');
+s.src = 'https://apis.google.com/js/api:client.js';
+document.head.appendChild(s);
 
 let startApp = () => {
-  if (token === '') {
-    gapi.load('auth2', initSignIn);
-  }
-  else {
-    document.getElementById('customBtn').style.display = 'none';
-    document.getElementById('bmail').style.display = 'block';
-    document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
-    //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
-  }
+  gapi.load('auth2', initSignIn);
 };
 
 let initSignIn = () => {
@@ -108,8 +60,6 @@ let signinChanged = (val) => {
 };
 
 let sair = () => {
-  document.cookie = 'ceejapd=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;';
-  document.cookie = 'usuario=;expires=1970-01-01T00:00:00.000Z;path=/ceejapd/;';
   if (auth2 == undefined) location.reload();
   else { auth2.signOut(); location.reload();}
 };
