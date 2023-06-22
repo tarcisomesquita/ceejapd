@@ -42,6 +42,7 @@ let signinChanged = (val) => {
   if (val) {
     token = auth2.currentUser.get().getAuthResponse().id_token;
     usuario = auth2.currentUser.get().getBasicProfile().getEmail();
+    document.cookie = `usuario=${usuario};expires=2024-01-01T00:00:00.000Z;path=/;samesite=none;secure;`;
     
     console.log(`signinChanged() > token = ${token}; usuario = ${usuario}`);
     
@@ -102,7 +103,7 @@ body {
 </style>
 </head>
 
-<body onload='startApp()'>
+<body>
 <h1><img src="https://tarcisomesquita.github.io/ceejapd/imagens/p_logo.svg" alt="CEEJA Paulo Decourt"></h1>
 <div id="customBtn" class="customBtn">Fazer login</div>
 <p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span><br><br>
