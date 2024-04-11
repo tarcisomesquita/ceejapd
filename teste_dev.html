@@ -46,7 +46,8 @@ let signinChanged = (val) => {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
+    //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
+    window.location.href = `https://script.google.com/a/macros/prof.educacao.sp.gov.br/s/AKfycby-v_JWLoahdYLae_b-5E4lLSDtcejWrumkOPmGxawz/dev?usuario=${usuario}&token=${token}`
   }
   else {
     token = '';
