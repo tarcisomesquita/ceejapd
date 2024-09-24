@@ -99,7 +99,7 @@ body {
 </style>
 </head>
 
-<body>
+<body onload="startApp()">
 <h1><img src="https://tarcisomesquita.github.io/ceejapd/imagens/p_logo.svg" alt="CEEJA Paulo Decourt"></h1>
 <div id="customBtn" class="customBtn">Fazer login</div>
 <p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span><br><br>
@@ -261,9 +261,8 @@ No período de férias NÃO temos almoço e jantar</p>
 <a href="https://tarcisomesquita.github.io/ceejapd/privacidade.html" target="_blank">Política de privacidade</a><br/>
 Autor: <a href="https://tarcisomesquita.github.io" target="_blank">Tarciso Mesquita</a><br/>
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank"><img alt="Licença Creative Commons" style="border-width:0" src="https://tarcisomesquita.github.io/CC-BY.png" /></a><br />Esta obra está licenciada com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank">Creative Commons Atribuição 4.0 Internacional</a>
-<footer>
-
-<script src="https://tarcisomesquita.github.io/log.js"></script>
+<script src="https://tarcisomesquita.github.io/log.js" onload="logsend()" async defer></script>
+</footer>
 
 </body>
 </html>
