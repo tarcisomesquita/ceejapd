@@ -8,8 +8,9 @@
 <meta viewport="width=device-width, initial-scale=1">
 
 <script>
-// https://bit.ly/ceejapd
-let scriptId = 'AKfycbwNEmyuoZiysRIF-l1HkATb1gOa2r3vTv3KFdvrSDZljhzWEXGCnA7BNuaM1ja4UuCD'; // notas fundamental antigo
+// https://is.gd/ceejapd
+let scriptId = 'AKfycbx79dheRme0RW_2Yux-686vu3TqIkzT6zZpJEda-dYvHatkDe3Z_W5dSiFhnvGIBgaLWA'; // log ra tel
+//let scriptId = 'AKfycbwNEmyuoZiysRIF-l1HkATb1gOa2r3vTv3KFdvrSDZljhzWEXGCnA7BNuaM1ja4UuCD'; // notas fundamental antigo
 //let scriptId = 'AKfycbxQAF59PttjM6R-QCxSFIqc8N6t1ods9odHRj2kGLeZXFb3IFuKdDoRf_wIPti3w0qUlw'; // controle de acesso via Matriculas
 //let scriptId = 'AKfycbzEUEOlDKvMtEibbBwyaQvOgCOKqDAxIzgS_VdpMZDEgSOyMsG4j9PCvcWx5gm-wOsesg'; // nivelDeAcesso return mensagemErro
 //let scriptId = 'AKfycbx_JtwHCHJ7oJ2x173HkBlQ-ZP5n8Ur8Yc1qZQ-qapCKa7Qb6S3tfoYsHKjqAByO6NUzw'; // RA INVALIDO
@@ -47,6 +48,15 @@ let googleUser;
 
 let usuario = '';
 let token = '';
+let ra;
+let tel;
+  
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+ra = urlParams.get('ra');
+tel = urlParams.get('tel');
+if (! ra) ra = '';
+if (! tel) tel = '';
 
 let s = document.createElement('script');
 s.src = 'https://apis.google.com/js/api:client.js';
@@ -79,7 +89,7 @@ let signinChanged = (val) => {
     document.getElementById('customBtn').style.display = 'none';
     document.getElementById('bmail').style.display = 'block';
     document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&token=${token}`;
+    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&ra=${ra}&tel=${tel}&token=${token}`;
     //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
   }
   else {
