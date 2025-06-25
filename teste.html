@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><!-- iso-8859-1 -->
+<title>teste</title>
+<meta name="description" content="Página de teste.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+  function handleCredentialResponse(response) {
+    const idToken = response.credential;
+    console.log("ID Token: ", idToken);
+
+    // Agora você pode enviar este ID Token para o seu backend para verificação
+    // ou usá-lo com o endpoint tokeninfo (embora a validação no backend seja preferível para segurança)
+    fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("Informações do ID Token:", data);
+        // Aqui você pode acessar os dados do usuário, como data.email, data.name
+      })
+      .catch(error => console.error("Erro ao validar token:", error));
+  }
+</script>
+</head>
+
+<body>
+
+<div id="g_id_onload" data-client_id="SEU_CLIENT_ID.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
+<div class="g_id_signin" data-type="standard"></div>
+
+<p>Teste</p>
+</body>
+</html>
