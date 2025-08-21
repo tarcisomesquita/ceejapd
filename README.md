@@ -1,6 +1,6 @@
 # ceejapd
 
-Quero facilitadores para meu [trabalho](https://tarcisomesquita.github.io/ceejapd/) e aumentar o impacto social dele.
+Quero facilitadores para meu [trabalho](https://tarcisomesquita.github.io/ceejapd) e aumentar o impacto social dele.
 
 
 ---
