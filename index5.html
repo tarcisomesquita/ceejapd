@@ -2,26 +2,33 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Fazer login com o Google</title>
-</head>
-<body>
-<div id="g_id_onload"
-     data-client_id="424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com"
-     data-context="signin"
-     data-ux_mode="redirect"
-     data-login_uri="ceejapd/index2.html"
-     data-auto_prompt="false">
-</div>
+<title>teste</title>
+<meta name="description" content="Página de teste.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<div class="g_id_signin"
-     data-type="standard"
-     data-shape="pill"
-     data-theme="outline"
-     data-text="signin_with."
-     data-size="large"
-     data-locale="pt-BR"
-     data-logo_alignment="left">
-</div>
-<script src="https://accounts.google.com/gsi/client"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+function handleCredentialResponse(response) {
+  const idToken = response.credential;
+  console.log("ID Token: ", idToken);
+  
+  fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log("Informações do ID Token:", data);
+      // Aqui você pode acessar os dados do usuário, como data.email, data.name
+    })
+    .catch(error => console.error("Erro ao validar token:", error));
+}
+</script>
+</head>
+
+<body>
+<!-- Para obter o SEU_CLIENT_ID, você precisa criar um projeto no Google Cloud Console e configurar uma tela de consentimento OAuth e credenciais de "ID do cliente OAuth 2.0" do tipo "Aplicativo da Web". -->
+<div id="g_id_onload" data-client_id="424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
+<div class="g_id_signin" data-type="standard"></div>
+
+<p>Teste</p>
 </body>
 </html>
