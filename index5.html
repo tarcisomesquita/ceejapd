@@ -1,56 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<title>teste</title>
-<meta name="description" content="Página de teste.">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-
-<script>
-function handleCredentialResponse(response) {
-  const idToken = response.credential;
-  console.log("ID Token: ", idToken);
-  
-  fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log("Informações do ID Token:", data);
-      // Aqui você pode acessar os dados do usuário, como data.email, data.name
-    })
-    .catch(error => console.error("Erro ao validar token:", error));
-}
-</script>
-</head>
-
-<body>
-<!-- Para obter o SEU_CLIENT_ID, você precisa criar um projeto no Google Cloud Console e configurar uma tela de consentimento OAuth e credenciais de "ID do cliente OAuth 2.0" do tipo "Aplicativo da Web". -->
-<div id="g_id_onload" data-client_id="424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
-<div 
-  class="g_id_signin"
-  data-type="standard"
-  data-shape="pill"
-  data-theme="outline"
-  data-text="signin_with."
-  data-size="large"
-  data-locale="pt-BR"
-  data-logo_alignment="left"
->
-</div>
-
-<p>Teste2</p>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
 <meta charset="UTF-8">
 <title>CEEJA Paulo Decourt</title>
 <meta name="description" content="Página de serviços para os alunos do CEEJA Paulo Decourt.">
 <meta http-equiv="cache-control" content="max-age=0">
 <meta viewport="width=device-width, initial-scale=1">
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <script>
 // https://is.gd/ceejapd
@@ -62,9 +19,6 @@ let scriptId = 'AKfycby0XTKnzJMLhpvvNNWxmJkQ4i345mGu1OMYKNOccJd4_sA_NlumbmYICQy_
 //let scriptId = 'AKfycbwNEmyuoZiysRIF-l1HkATb1gOa2r3vTv3KFdvrSDZljhzWEXGCnA7BNuaM1ja4UuCD'; // notas fundamental antigo
 //let scriptId = 'AKfycbxQAF59PttjM6R-QCxSFIqc8N6t1ods9odHRj2kGLeZXFb3IFuKdDoRf_wIPti3w0qUlw'; // controle de acesso via Matriculas
 //let scriptId = 'AKfycbzEUEOlDKvMtEibbBwyaQvOgCOKqDAxIzgS_VdpMZDEgSOyMsG4j9PCvcWx5gm-wOsesg'; // nivelDeAcesso return mensagemErro
-
-let auth2;
-let googleUser;
 
 let usuario = '';
 let token = '';
@@ -78,52 +32,13 @@ tel = urlParams.get('tel');
 if (! ra) ra = '';
 if (! tel) tel = '';
 
-let s = document.createElement('script');
-s.src = 'https://apis.google.com/js/api:client.js';
-document.head.appendChild(s);
-
-let startApp = () => {
-  gapi.load('auth2', initSignIn);
-};
-
-let initSignIn = () => {
-  auth2 = gapi.auth2.init({client_id: '424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com', scope:'profile email'});
-  
-  auth2.attachClickHandler(document.getElementById('customBtn'), {}, null, null);
-  
-  auth2.isSignedIn.listen(signinChanged);
-
-  if (auth2.isSignedIn.get() == true) {
-    auth2.signIn();
-  }
-};
-
-let signinChanged = (val) => {
-  if (val) {
-    token = auth2.currentUser.get().getAuthResponse().id_token;
-    usuario = auth2.currentUser.get().getBasicProfile().getEmail();
-    document.cookie = `usuario=${usuario};expires=2024-01-01T00:00:00.000Z;path=/;samesite=none;secure;`;
-    
-    console.log(`signinChanged() > token = ${token}; usuario = ${usuario}`);
-    
-    document.getElementById('customBtn').style.display = 'none';
-    document.getElementById('bmail').style.display = 'block';
-    document.getElementById('mail').innerText = usuario;
-    window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&ra=${ra}&tel=${tel}&token=${token}`;
-    //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${token}`;
-  }
-  else {
-    token = '';
-    usuario = '';
-    document.getElementById('bmail').style.display = 'none';
-    document.getElementById('customBtn').style.display = 'inline';
-  }
-};
-
-let sair = () => {
-  if (auth2 == undefined) location.reload();
-  else { auth2.signOut(); location.reload();}
-};
+function handleCredentialResponse(response) {
+  const idToken = response.credential;
+  //document.getElementById('login').style.display = 'none';
+  window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?usuario=${usuario}&ra=${ra}&tel=${tel}&token=${idToken}`;
+  //window.location.href = `https://script.google.com/macros/s/AKfycbzqvJ8oZ05VhERVUOi93Jf8CSzrzsRfePJDkRxYe0ek/dev?usuario=${usuario}&token=${idToken}`;
+  console.log("ID Token: ", idToken);
+}
 </script>
 
 <style>
@@ -138,42 +53,28 @@ body {
   margin: 0em;
   padding: 1em;
 }
-
-#customBtn {
-  display: inline-block;
-  background: #1a73e8;
-  color: #ffffff;
-  border: 1px solid transparent;
-  font-size: 2.5em;
-  line-height: 1.44em;
-  margin-left: 0.6em;
-  margin-right: 0.5em;
-  min-width: 6em;
-  padding: 0.6em 1.44em;
-  text-align: center;
-  vertical-align: middle;
-  -moz-border-radius: 0.25em;
-  border-radius: 0.25em;
-  box-sizing: border-box;
-}
-
-#customBtn:hover {
-  cursor: pointer;
-}
 </style>
 </head>
 
 <body onload="startApp()">
 <h1><img src="https://tarcisomesquita.github.io/ceejapd/imagens/p_logo.svg" alt="CEEJA Paulo Decourt"></h1>
-<div id="customBtn" class="customBtn">Fazer login</div>
-<p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span><br><br>
-  <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:0.6em; margin-right:0.5em; min-width:6em; padding: 0.56em 1.44em; text-align:center; vertical-align:middle; -moz-border-radius:0.25em; border-radius:0.25em; box-sizing: border-box; cursor:pointer;">Sair</span>
-</p>
+
+<!-- Para obter o SEU_CLIENT_ID, você precisa criar um projeto no Google Cloud Console e configurar uma tela de consentimento OAuth e credenciais de "ID do cliente OAuth 2.0" do tipo "Aplicativo da Web". -->
+<div id="g_id_onload" data-client_id="424899238646-9rov4v21n8936trraugrl3vcb3cs54id.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
+<div
+  id="login"
+  class="g_id_signin"
+  data-type="standard"
+  data-shape="pill"
+  data-theme="outline"
+  data-text="signin_with."
+  data-size="large"
+  data-locale="pt-BR"
+  data-logo_alignment="left"
+></div>
+
 <br>
-<p>Faça login para acessar nossos serviços.</p>
-<br>
-<p><a href="https://facebook.com/ceejapaulodecourt/photos" target="_blank">Nossas fotos! 😃</a> <a href="https://facebook.com/ceejapaulodecourt/videos" target="_blank">Nosso dia a dia! 😃</a><br>
-<a href="https://www.instagram.com/ceeja.paulo.decourt/" target="_blank">Venha conosco! 👣</a></p>
+<p>Faça login para acessar suas notas.</p>
 <br>
 <br>
 
