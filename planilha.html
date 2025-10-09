@@ -11,11 +11,22 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <script>
-const scriptId = 'AKfycbyKiS4-LdfDiEueCTVICP7JYfFawqE8itmnbHUr6_LahD8DqrJVyn1ImFlB143lvYg5qA';
+const scriptId = 'AKfycbzblsl__nE6S5rDuqageiRQodx2-W7JKkYjLxaOVbk-2DnMZijUILOIrlzLy7ubAhChtg'; // teste
+//const scriptId = 'AKfycbyKiS4-LdfDiEueCTVICP7JYfFawqE8itmnbHUr6_LahD8DqrJVyn1ImFlB143lvYg5qA';
 function handleCredentialResponse(response) {
-  window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?id_token=${response.credential}`;
+  //window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?id_token=${response.credential}&esc=${esc}&ra=${ra}`;
+  window.location.href = `https://script.google.com/macros/s/AKfycbygi2SS3-1hvMTVJuLiR80fIrPP17tYKpC09LAQhsNK/dev?id_token=${response.credential}&esc=${esc}&ra=${ra}`;
 }
 // https://console.cloud.google.com/auth/overview?project=planilhaceeja-id
+
+let ra;
+let esc;
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+ra = urlParams.get('ra');
+esc = urlParams.get('esc');
+if (! ra) ra = '';
+if (! esc) esc = '';
 </script>
 
 <style>
