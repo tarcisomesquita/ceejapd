@@ -15,6 +15,43 @@ const scriptId = 'AKfycbzblsl__nE6S5rDuqageiRQodx2-W7JKkYjLxaOVbk-2DnMZijUILOIrl
 //const scriptId = 'AKfycbyKiS4-LdfDiEueCTVICP7JYfFawqE8itmnbHUr6_LahD8DqrJVyn1ImFlB143lvYg5qA';
 
 function handleCredentialResponse(response) {
+  let styleSheet = null;
+  let ruleIndex = -1;
+  
+  for (let i = 0; i < document.styleSheets.length; i++) {
+    const sheet = document.styleSheets[i];
+    try {
+      const rules = sheet.cssRules || sheet.rules; // compatibilidade
+      for (let j = 0; j < rules.length; j++) {
+        const rule = rules[j];
+        if (rule.selectorText === '.tela-cheia') {
+          styleSheet = sheet;
+          ruleIndex = j;
+          break;
+        }
+      }
+    }
+    catch (e) {
+      continue;
+    }
+    if (styleSheet) break;
+  }
+  
+  if (styleSheet && ruleIndex !== -1) {
+    styleSheet.deleteRule(ruleIndex);
+    styleSheet.insertRule(
+      `.tela-cheia {
+          position: fixed;
+          inset: 0;           /* top:0; right:0; bottom:0; left:0; */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+      }`, 
+      ruleIndex
+    );
+  }
+  
   const existing = document.querySelector('.tela-cheia');
   if (existing) existing.remove();
   
@@ -38,6 +75,11 @@ function handleCredentialResponse(response) {
 
 <style>
 body {
+  margin: 0em;
+  padding: 1em;
+}
+
+.tela-cheia {
   height: 100%;
   background-color: #FFFFFF;
   font-family: 'Open Sans',sans-serif;
@@ -45,17 +87,6 @@ body {
   font-size: 1em;
   line-height: 1.44em;
   text-align: justify;
-  margin: 0em;
-  padding: 1em;
-}
-
-.tela-cheia {
-  position: fixed;
-  inset: 0;           /* top:0; right:0; bottom:0; left:0; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
 }
 
 .tela-cheia img {
