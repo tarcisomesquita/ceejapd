@@ -19,8 +19,8 @@
 
   <script>
     // Substitua pela URL do seu Web App do Google Apps Script (depois de publicar)
-    //const GAS_URL = 'https://script.google.com/macros/s/SEU_DEPLOY_ID/exec';
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbz5V3PtUU94OFVkOP-dH5BSwBMLEmVnzqGlh3gZRN71/dev';
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbzydwVZMhW-m19ggadu1zW-VrFiX2JqztQ2bmzFRecCY8ADjn2Sn1onqY5ZICLLj4jE2w/exec';
+    //const GAS_URL = 'https://script.google.com/macros/s/AKfycbz5V3PtUU94OFVkOP-dH5BSwBMLEmVnzqGlh3gZRN71/dev';
     const output = (text) => document.getElementById('output').textContent = text;
 
     document.getElementById('send').addEventListener('click', async () => {
@@ -31,12 +31,10 @@
       try {
         const res = await fetch(GAS_URL, {
           method: 'POST',
-          mode: 'cors',                 // modo CORS (padrão)
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(payload),
         });
-
-        // Se a resposta não for JSON, o .json() lançará erro
+        
         const data = await res.json();
         output('Resposta recebida:\n' + JSON.stringify(data, null, 2));
       } catch (err) {
