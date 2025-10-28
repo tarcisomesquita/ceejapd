@@ -10,7 +10,8 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <script>
-const scriptId = 'AKfycbzblsl__nE6S5rDuqageiRQodx2-W7JKkYjLxaOVbk-2DnMZijUILOIrlzLy7ubAhChtg'; // teste
+const scriptId = 'AKfycbzydwVZMhW-m19ggadu1zW-VrFiX2JqztQ2bmzFRecCY8ADjn2Sn1onqY5ZICLLj4jE2w'; // teste POST
+//const scriptId = 'AKfycbzblsl__nE6S5rDuqageiRQodx2-W7JKkYjLxaOVbk-2DnMZijUILOIrlzLy7ubAhChtg'; // teste
 //const scriptId = 'AKfycbyKiS4-LdfDiEueCTVICP7JYfFawqE8itmnbHUr6_LahD8DqrJVyn1ImFlB143lvYg5qA';
 
 function handleCredentialResponse(response) {
@@ -66,8 +67,8 @@ function handleCredentialResponse(response) {
   div.appendChild(img);
   document.body.appendChild(div);
   
-  //window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?id_token=${response.credential}`;
-  window.location.href = `https://script.google.com/macros/s/AKfycbz5V3PtUU94OFVkOP-dH5BSwBMLEmVnzqGlh3gZRN71/dev?id_token=${response.credential}`;
+  window.location.href = `https://script.google.com/macros/s/${scriptId}/exec?id_token=${response.credential}`;
+  //window.location.href = `https://script.google.com/macros/s/AKfycbz5V3PtUU94OFVkOP-dH5BSwBMLEmVnzqGlh3gZRN71/dev?id_token=${response.credential}`;
 }
 // https://console.cloud.google.com/auth/overview?project=planilhaceeja-id
 </script>
