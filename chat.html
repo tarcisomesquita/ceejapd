@@ -75,18 +75,24 @@ function handleCredentialResponse(response) {
 
 <style>
 body {
-  margin: 0em;
-  padding: 1em;
-}
-
-.tela-cheia {
-  height: 100%;
-  background-color: #FFFFFF;
+  margin: 0;
+  height: 100vh;          /* ocupa toda a altura da tela */
+  display: flex;
+  flex-direction: column; /* empilha conteúdo e footer */
+  
   font-family: 'Open Sans',sans-serif;
   color: #000000;
   font-size: 1em;
   line-height: 1.44em;
-  text-align: justify;
+  background-color: #FFFFFF;
+}
+
+.tela-cheia {
+  flex: 1; /* ocupa o espaço disponível acima do footer */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .tela-cheia img {
@@ -99,11 +105,10 @@ body {
 <body>
 <div class="tela-cheia">
 <h2>Acessar o chat</h2>
-<br>
+
 <p>Use sua conta Google para entrar.</p>
-<br>
+
 <div id="g_id_onload" data-client_id="453193392660-ftlj3r3c0s9vkembqckaub69fgnau7rm.apps.googleusercontent.com" data-callback="handleCredentialResponse" data-auto_select="true"></div>
-<br>
 <div
   id="login"
   class="g_id_signin"
@@ -113,15 +118,12 @@ body {
   data-text="signin_with."
   data-size="medium"
   data-locale="pt-BR"
-  data-logo_alignment="left"
+  data-logo_alignment="center"
   data-width="280"
 ></div>
 </div>
-<br>
-<br>
 
-<p></p>
-<footer style='font-family:"sans-serif"; font-size:10px;'>
+<footer style='font-family:"sans-serif"; font-size:10px; text-align: center'>
 Autor: <a href="https://tarcisomesquita.github.io" target="_blank">Tarciso Mesquita</a><br/>
 Esta obra está licenciada com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.pt_BR" target="_blank">Creative Commons Atribuição 4.0 Internacional</a>
 <script src="https://tarcisomesquita.github.io/log.js" onload="logsend()" async defer></script>
