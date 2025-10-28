@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enviar POST para Google Script</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding: 2rem; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; }
+    pre { background:#f6f8fa; padding:1rem; border-radius:6px; margin-top:1rem; }
+  </style>
+</head>
+<body>
+  <h1>Enviar POST para Google Apps Script</h1>
+  <p>Clique no botão para enviar {"msg":"teste"} via POST e mostrar a resposta.</p>
+
+  <button id="send">Enviar POST</button>
+  <pre id="output">Nenhuma requisição enviada ainda.</pre>
+
+  <script>
+    // Substitua pela URL do seu Web App do Google Apps Script (depois de publicar)
+    //const GAS_URL = 'https://script.google.com/macros/s/SEU_DEPLOY_ID/exec';
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbz5V3PtUU94OFVkOP-dH5BSwBMLEmVnzqGlh3gZRN71/dev';
+    const output = (text) => document.getElementById('output').textContent = text;
+
+    document.getElementById('send').addEventListener('click', async () => {
+      const payload = { msg: 'teste' };
+
+      output('Enviando...');
+
+      try {
+        const res = await fetch(GAS_URL, {
+          method: 'POST',
+          mode: 'cors',                 // modo CORS (padrão)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        // Se a resposta não for JSON, o .json() lançará erro
+        const data = await res.json();
+        output('Resposta recebida:\n' + JSON.stringify(data, null, 2));
+      } catch (err) {
+        output('Erro: ' + err);
+      }
+    });
+  </script>
+</body>
+</html>
