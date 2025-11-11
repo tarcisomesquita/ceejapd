@@ -63,7 +63,7 @@ let signinChanged = (val) => {
   if (val) {
     token = auth2.currentUser.get().getAuthResponse().id_token;
     usuario = auth2.currentUser.get().getBasicProfile().getEmail();
-    document.cookie = `usuario=${usuario};expires=2024-01-01T00:00:00.000Z;path=/;samesite=none;secure;`;
+    document.cookie = `usuario=${usuario};expires=2027-01-01T00:00:00.000Z;path=/;samesite=none;secure;`;
     
     console.log(`signinChanged() > token = ${token}; usuario = ${usuario}`);
     
