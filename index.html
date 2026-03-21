@@ -8,31 +8,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script>
-// https://is.gd/ceejapd
+if (document.referrer !== 'https://is.gd/ceejapd') window.location.href = 'https://is.gd/ceejapd';
 
 let scriptId = 'AKfycbzAC1AegTNVEosFlppladTkTXqNlAJ-CwWXZn6ZRrHzaZdWpyN1FfEpbwxtThR0GE-7VA'; // acesso apenas de cadastrados 2
 //let scriptId = 'AKfycbyVf3T34dxhgWYWebvuPE8o2JHQIhzLrIqOfDCK1UvdC_vGz6gLj20A30FS5EwTGZXdxw'; // fazer independe da ordem das colunas v103
 //let scriptId = 'AKfycbxqbXPbniY3bCao-RZEmjz-Jm_rUFg3jrEgoqXWOwKaonmG0am8m8mlEXkIIP6e_BLNGA'; // coluna Status em importar
 //let scriptId = 'AKfycbyAi2S9WWEE3YbytMj9dmIi3iJP4AjAtpn9_twlZ18ps0bgq-wyF5Pf0gkyaJwMPQD_nQ'; // status para Matriculas
-//let scriptId = 'AKfycbyp9BlLG70vOCfgLYHt4xObl_zgu5d-i4mmdV-7hsFM1RPDSqDWc7URbIKysXNzw1ep_w'; // notas antigas atualizada
-//let scriptId = 'AKfycbypY4bxZ-w2zfiYrvgwKVlVp_HtwRMmF2P3qg4Zqm2t74sDmR0s5Red4DXXg828S-Zesg'; // atualização de importar
-//let scriptId = 'AKfycbz9VjwzdvNEFtCSBGVN1YS6ESwzKNHc-9Mv5n30Pn93geE5BWyQ85Q-WTjHsnPFlNgH7w'; // nova planilha Atendimentos 2
-//let scriptId = 'AKfycby0XTKnzJMLhpvvNNWxmJkQ4i345mGu1OMYKNOccJd4_sA_NlumbmYICQy_OSuY-RY3jQ'; // nova planilha Atendimentos
-//let scriptId = 'AKfycbxCGviFcOv9dG3_68sEJfJXabSSQLBuv828_vQbthEJKr7-S7cFVoxHu4fZGtQeshXD4A'; // adicionei roteiros
-//let scriptId = 'AKfycbzPo4qvaetuh2OJBnmkio6LdKyAMS4kkZobOUJdy1kkraEqYJZNYgJLBsWKRA1liwwLVQ'; // livros escola e vida
-//let scriptId = 'AKfycbw3vgQY6vqb_Flw0a5gclT5LUwLeV6i-4TdG2nlYAQyX86IHP56_MKTkKUnDDnWd3sWVQ'; // log ra tel
-//let scriptId = 'AKfycbwNEmyuoZiysRIF-l1HkATb1gOa2r3vTv3KFdvrSDZljhzWEXGCnA7BNuaM1ja4UuCD';   // notas fundamental antigo
-//let scriptId = 'AKfycbxQAF59PttjM6R-QCxSFIqc8N6t1ods9odHRj2kGLeZXFb3IFuKdDoRf_wIPti3w0qUlw'; // controle de acesso via Matriculas
-//let scriptId = 'AKfycbzEUEOlDKvMtEibbBwyaQvOgCOKqDAxIzgS_VdpMZDEgSOyMsG4j9PCvcWx5gm-wOsesg'; // nivelDeAcesso return mensagemErro
 
 let auth2;
 let googleUser;
 
 let usuario = '';
 let token = '';
-let ra;
-let tel;
-  
+let ra;  // excluir
+let tel; // excluir
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 ra = urlParams.get('ra');
@@ -131,15 +121,17 @@ body {
 <p id="bmail" style="display:none">Usuário: <span id="mail" style='color:#DD4433'></span><br><br>
   <span onclick="sair();" style="background:#cccccc;border: 1px solid #000000; margin-left:0.6em; margin-right:0.5em; min-width:6em; padding: 0.56em 1.44em; text-align:center; vertical-align:middle; -moz-border-radius:0.25em; border-radius:0.25em; box-sizing: border-box; cursor:pointer;">Sair</span>
 </p>
-<br>
+
 <p>Faça login para acessar nossos serviços.</p>
-<br>
-<p><a href="https://facebook.com/ceejapaulodecourt/photos" target="_blank">Nossas fotos! 😃</a> <a href="https://facebook.com/ceejapaulodecourt/videos" target="_blank">Nosso dia a dia! 😃</a><br>
-<a href="https://www.instagram.com/ceeja.paulo.decourt/" target="_blank">Venha conosco! 👣</a></p>
 
 <br>
 
-<p>🌍 Localização 👇🏽<br>
+<p><a href="https://facebook.com/ceejapaulodecourt/videos" target="_blank">Nosso dia a dia!</a><br>
+<a href="https://www.instagram.com/ceeja.paulo.decourt/" target="_blank">Venha conosco!</a></p>
+
+<br>
+
+<p>Localização<br>
 <a href="https://www.google.com/maps/place/CEEJA+%22PAULO+DECOURT%22+-+SUPLETIVO+GRATUITO+%2F+N%C3%83O+PRECISA+FREQUENTAR+DIARIAMENTE/@-22.8562272,-47.0464132,17z/data=!3m1!4b1!4m6!3m5!1s0x94c8c5c615bd8d25:0x71792614f3147b26!8m2!3d-22.8562273!4d-47.0419285!16s%2Fg%2F12hpfjc1k
 " target="_blank">https://maps.google.com/?q=-22.856377,-47.042259</a></p>
 
