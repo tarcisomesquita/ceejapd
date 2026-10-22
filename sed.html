@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalar Bookmarklet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+            /* Página escura */
+            background-color: #121214;
+            color: #e1e1e6;
+        }
+        .instrucoes {
+            margin-bottom: 30px;
+        }
+        .instrucoes h2 {
+            color: #ffffff;
+        }
+        .instrucoes strong {
+            color: #4da6ff; /* Destaca os pontos importantes em um azul claro */
+        }
+        /* Botão claro e arrastável */
+        .bookmarklet-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background-color: #ffffff;
+            color: #121214;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: move; /* Indica que é arrastável */
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        /* Efeito ao passar o mouse */
+        .bookmarklet-btn:hover {
+            background-color: #e1e1e6;
+            transform: translateY(-2px); /* Leve efeito de flutuação */
+            box-shadow: 0 6px 16px rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="instrucoes">
+        <p>Certifique-se de que a sua <strong>Barra de Favoritos</strong> (Ctrl+Shift+B) está visível.</p>
+        <p><strong>Arraste o botão</strong> abaixo diretamente para a sua barra de favoritos:</p>
+    </div>
+
+    <a class="bookmarklet-btn" href="javascript:(()=>{   if (window.location.href !== 'https://sed.educacao.sp.gov.br/Inicio') {     window.alert('Clique outra vez em LANÇAR');     window.location.href = 'https://sed.educacao.sp.gov.br/Inicio';     return;   }   else AbrirMensagemCarregandoPagina('Carregando script');      const usuario = idPerfilGoogle.textContent.replace(/^.*: (.*)@.*$/, '$1');   const s = document.createElement('script');   s.src = 'https://script.google.com/macros/s/AKfycbyIciLylYhXT6qCAEpCIW4vh6RLfXg3KgoymlyuMsXxsjGJYupZGgkPzO8VKhT1Z8Q/exec?_=%27 + Date.now() + %27&usuario=%27 + encodeURIComponent(usuario);   document.body.appendChild(s); })();">
+        🎯LANÇAR
+    </a>
+
+</body>
+</html>
