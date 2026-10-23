@@ -51,7 +51,7 @@
         <p><strong>Arraste o botão</strong> abaixo diretamente para a sua barra de favoritos:</p>
     </div>
 
-    <a class="bookmarklet-btn" href="javascript:(()=>{   if (window.location.href !== 'https://sed.educacao.sp.gov.br/Inicio') {     window.alert('Clique outra vez em LANÇAR');     window.location.href = 'https://sed.educacao.sp.gov.br/Inicio';     return;   }   else AbrirMensagemCarregandoPagina('Carregando script');      const usuario = idPerfilGoogle.textContent.replace(/^.*: (.*)@.*$/, '$1');   const s = document.createElement('script');   s.src = 'https://script.google.com/macros/s/AKfycbyIciLylYhXT6qCAEpCIW4vh6RLfXg3KgoymlyuMsXxsjGJYupZGgkPzO8VKhT1Z8Q/exec?_=%27 + Date.now() + %27&usuario=%27 + encodeURIComponent(usuario);   document.body.appendChild(s); })();">
+    <a class="bookmarklet-btn" href="javascript:(()=>{  if (window.location.href !== 'https://sed.educacao.sp.gov.br/Inicio') {    window.alert('Clique outra vez em LANÇAR');    window.location.href = 'https://sed.educacao.sp.gov.br/Inicio';  }  else {    const elUsuario = document.getElementById('idPerfilGoogle');    if (! elUsuario) {      window.alert('Erro: Elemento idPerfilGoogle não encontrado na página.');      return;    }    AbrirMensagemCarregandoPagina('Carregando script');    const usuario = elUsuario.textContent.replace(/^.*: (.*)@.*$/, '$1');    const s = document.createElement('script');    s.src = 'https://script.google.com/macros/s/AKfycbyIciLylYhXT6qCAEpCIW4vh6RLfXg3KgoymlyuMsXxsjGJYupZGgkPzO8VKhT1Z8Q/exec?_='+Date.now()+'&usuario='+encodeURIComponent(usuario);    document.body.appendChild(s);  }})();">
         🎯LANÇAR
     </a>
 
